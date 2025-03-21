@@ -6,13 +6,13 @@
     color: #a8d1ff !important;
 }
 .dropdown-menu {
-    background-color: #025d9a;
+    background-color: #1B396A;
 }
 .dropdown-item {
     color: white !important;
 }
 .dropdown-item:hover {
-    background-color: #014e82;
+    background-color: #1B396A;
     color: #a8d1ff !important;
 }
 .form-control {
@@ -23,7 +23,7 @@
     border-color: white;
 }
 .btn-outline-success:hover {
-    background-color: #025d9a;
+    background-color: #1B396A;
     border-color: #a8d1ff;
 }
 </style>
@@ -136,10 +136,9 @@ class NavigationMenu
 
     public function render()
     {
-        echo "<nav class='navbar fixed-top text-white' style='background-color: #014e82;'>
+        echo "<nav class='navbar fixed-top text-white' style='background-color: #1B396A;'>
                 <div class='container-fluid'>
                     <div class='d-flex align-items-center text-white'>
-                        <i class='bi bi-mortarboard-fill me-2 fs-4 text-white'></i>
                         <span class='fs-4 text-white'>{$this->SII}</span>
                     </div>
                     <button class='navbar-toggler bg-light' type='button' data-bs-toggle='offcanvas' 
@@ -148,10 +147,10 @@ class NavigationMenu
                         <span class='navbar-toggler-icon'></span>
                     </button>
                     <div class='offcanvas offcanvas-end text-white' tabindex='-1' id='offcanvasNavbar' 
-                         aria-labelledby='offcanvasNavbarLabel' style='background-color: #014e82;'>
+                         aria-labelledby='offcanvasNavbarLabel' style='background-color: #1B396A;'>
                         <div class='offcanvas-header'>
                             <h5 class='offcanvas-title text-white' id='offcanvasNavbarLabel'>
-                                <i class='bi bi-mortarboard-fill me-2'></i>{$this->brand}
+                    {$this->brand}
                             </h5>
                             <button type='button' class='btn-close btn-close-white' data-bs-dismiss='offcanvas' 
                                     aria-label='Close'></button>

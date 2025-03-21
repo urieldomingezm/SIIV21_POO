@@ -5,13 +5,13 @@
     color: #a8d1ff !important;
 }
 .dropdown-menu {
-    background-color: #025d9a;
+    background-color: #1B396A;
 }
 .dropdown-item {
     color: white !important;
 }
 .dropdown-item:hover {
-    background-color: #014e82;
+    background-color: #1B396A;
     color: #a8d1ff !important;
 }
 .form-control {
@@ -22,6 +22,6 @@
     border-color: white;
 }
 .btn-outline-success:hover {
-    background-color: #025d9a;
+    background-color: #1B396A;
     border-color: #a8d1ff;
 }

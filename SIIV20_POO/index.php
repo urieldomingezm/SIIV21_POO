@@ -4,7 +4,6 @@ session_start();
 require_once($_SERVER['DOCUMENT_ROOT'] . '/config.php');
 require_once(CONFIG_PATH . 'bd.php');
 
-
 // Initialize database connection
 $database = new Database();
 $conn = $database->getConnection();

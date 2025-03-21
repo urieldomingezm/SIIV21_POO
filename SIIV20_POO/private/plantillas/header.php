@@ -153,5 +153,6 @@ $header->render();
         </div>
 </header>
 
-
-<?php require_once(MENU_PATH. 'menu_alumno.php'); ?>
+<?php
+require_once(MENU_PATH. 'menu_aspirante.php');
+?>
