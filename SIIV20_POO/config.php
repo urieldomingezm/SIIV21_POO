@@ -20,6 +20,9 @@ define('PUBLIC_PATH', ROOT_PATH.'public/');
 // RUTA PARA ARCHIVOS CSS PARA INICIO DE SESSION
 define('CUSTOM_INDEX_LOGIN', PUBLIC_PATH.'custom/custom_index_login/');
 
+// RUTA PARA ARCHIVOS PARA MENUS
+define('MENU_PATH', PRIVATE_PATH.'menu/');
+
 // define('MENU_PATH', PRIVATE_PATH.'menu/');
 ?>
 

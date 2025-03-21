@@ -152,3 +152,6 @@ $header->render();
             </div>
         </div>
 </header>
+
+
+<?php require_once(MENU_PATH. 'menu_alumno.php'); ?>
