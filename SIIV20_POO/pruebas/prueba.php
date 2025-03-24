@@ -2,62 +2,62 @@
 require_once($_SERVER['DOCUMENT_ROOT'] . '/config.php');
 require_once(TEMPLATES_PATH . 'header.php');
 
-// Obtener el rango del usuario y cargar el menú correspondiente
-if (isset($_SESSION['user_id'])) {
-    require_once(CONFIG_PATH . 'bd.php');
-    $database = new Database();
-    $conn = $database->getConnection();
+// // Obtener el rango del usuario y cargar el menú correspondiente
+// if (isset($_SESSION['user_id'])) {
+//     require_once(CONFIG_PATH . 'bd.php');
+//     $database = new Database();
+//     $conn = $database->getConnection();
 
-    try {
-        $query = "SELECT rango FROM registro_usuario WHERE id = :user_id";
-        $stmt = $conn->prepare($query);
-        $stmt->bindParam(':user_id', $_SESSION['user_id']);
-        $stmt->execute();
+//     try {
+//         $query = "SELECT rango FROM registro_usuario WHERE id = :user_id";
+//         $stmt = $conn->prepare($query);
+//         $stmt->bindParam(':user_id', $_SESSION['user_id']);
+//         $stmt->execute();
 
-        if ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $userRango = $row['rango'];
-            // Determinar qué menú cargar según el rango
-            switch ($userRango) {
-                case 'En Espera de ser verificado':
-                    require_once(MENU_PATH . 'menu_aunno_verificado.php');
-                    break;
-                case 'Agente':
-                case 'Seguridad':
-                case 'Tecnico':
-                    require_once(MENU_PATH . 'menu_rango_bajos.php');
-                    break;
-                case 'Logistica':
-                case 'Supervisor':
-                    require_once(MENU_PATH . 'menu_rango_medios.php');
-                    break;
-                case 'Director':
-                case 'Presidente':
-                case 'Operativo':
-                case 'Junta directiva':
-                    require_once(MENU_PATH . 'menu_rango_altos.php');
-                    break;
-                case 'Administrador':
-                case 'Manager':
-                case 'Dueno':
-                case 'Fundador':
-                    require_once(MENU_PATH . 'menu_rango_admin.php');
-                    break;
-                default:
-                    require_once(MENU_PATH . 'menu_rango_bajos.php');
-            }
-        }
-    } catch (PDOException $e) {
-        error_log("Error al obtener rango: " . $e->getMessage());
-        require_once(MENU_PATH . 'menu_rango_bajos.php'); // Menú por defecto en caso de error
-    }
-}
+//         if ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+//             $userRango = $row['rango'];
+//             // Determinar qué menú cargar según el rango
+//             switch ($userRango) {
+//                 case 'En Espera de ser verificado':
+//                     require_once(MENU_PATH . 'menu_aunno_verificado.php');
+//                     break;
+//                 case 'Agente':
+//                 case 'Seguridad':
+//                 case 'Tecnico':
+//                     require_once(MENU_PATH . 'menu_rango_bajos.php');
+//                     break;
+//                 case 'Logistica':
+//                 case 'Supervisor':
+//                     require_once(MENU_PATH . 'menu_rango_medios.php');
+//                     break;
+//                 case 'Director':
+//                 case 'Presidente':
+//                 case 'Operativo':
+//                 case 'Junta directiva':
+//                     require_once(MENU_PATH . 'menu_rango_altos.php');
+//                     break;
+//                 case 'Administrador':
+//                 case 'Manager':
+//                 case 'Dueno':
+//                 case 'Fundador':
+//                     require_once(MENU_PATH . 'menu_rango_admin.php');
+//                     break;
+//                 default:
+//                     require_once(MENU_PATH . 'menu_rango_bajos.php');
+//             }
+//         }
+//     } catch (PDOException $e) {
+//         error_log("Error al obtener rango: " . $e->getMessage());
+//         require_once(MENU_PATH . 'menu_rango_bajos.php'); // Menú por defecto en caso de error
+//     }
+// }
 
-// Add session check here
-if (!isset($_SESSION['user_id'])) {
-    echo "<script>window.location.href = '/login.php';</script>";
-    exit;
-}
-?>
+// // Add session check here
+// if (!isset($_SESSION['user_id'])) {
+//     echo "<script>window.location.href = '/login.php';</script>";
+//     exit;
+// }
+// ?>
 
 <body>
     <div class="page-container">
@@ -69,7 +69,7 @@ if (!isset($_SESSION['user_id'])) {
                         $query = strtolower(trim($_GET['q']));
                         // Funcion de buscar
                         $pages = [
-                            'GSTM.php' => 'gestion_de_tiempo',
+                            'plantilla.php' => 'plantilla',
                             'USR.php' => 'inicio',
                             'PRUS.php' => 'ver_perfil',
                             'CRSS.php' => 'cerrar_session',
@@ -141,19 +141,19 @@ if (!isset($_SESSION['user_id'])) {
                         if (isset($_GET['page'])) {
                             $page = $_GET['page'];
                             $validPages = [
-                                'gestion_de_tiempo' => ['file' => 'GSTM.php', 'roles' => ['Director', 'Presidente', 'Operativo', 'Junta directiva', 'Administrador', 'Manager', 'Dueño', 'Fundador']],
-                                'inicio' => ['file' => 'USR.php', 'roles' => ['Agente', 'Seguridad', 'Tecnico', 'Logistica', 'Supervisor', 'Director', 'Presidente', 'Operativo', 'Junta directiva', 'Administrador', 'Manager', 'Dueño', 'Fundador']],
-                                'ver_perfil' => ['file' => 'PRUS.php', 'roles' => ['Agente', 'Seguridad', 'Tecnico', 'Logistica', 'Supervisor', 'Director', 'Presidente', 'Operativo', 'Junta directiva', 'Administrador', 'Manager', 'Dueño', 'Fundador']],
-                                'cerrar_session' => ['file' => 'CRSS.php', 'roles' => ['Agente', 'Seguridad', 'Tecnico', 'Logistica', 'Supervisor', 'Director', 'Presidente', 'Operativo', 'Junta directiva', 'Administrador', 'Manager', 'Dueño', 'Fundador']],
-                                'requisitos_paga' => ['file' => 'RQPG.php', 'roles' => ['Agente', 'Seguridad', 'Tecnico', 'Logistica', 'Supervisor', 'Director', 'Presidente', 'Operativo','Junta directiva', 'Administrador', 'Manager', 'Dueño', 'Fundador']],
-                                'gestion_ascenso' => ['file' => 'GSAS.php', 'roles' => ['Logistica', 'Supervisor', 'Operativo','Director', 'Presidente', 'Junta directiva','Administrador', 'Manager', 'Dueño', 'Fundador']],
-                                'gestion_de_pagas' => ['file' => 'GTPS.php', 'roles' => ['Administrador', 'Manager', 'Dueño', 'Fundador']],
-                                'grafico de pagas' => ['file' => 'GEPS.php', 'roles' => ['Administrador', 'Manager', 'Dueño', 'Fundador']],
-                                'ventas_membresias' => ['file' => 'VTM.php', 'roles' => ['Administrador', 'Manager', 'Dueño', 'Fundador']],
-                                'venta_rangos' => ['file' => 'VTR.php', 'roles' => ['Administrador', 'Manager', 'Dueño', 'Fundador']],
-                                'verificar_usuarios' => ['file' => 'VER.php', 'roles' => ['Tecnico', 'Logistica', 'Supervisor', 'Director', 'Presidente', 'Operativo', 'Junta directiva','Administrador', 'Manager', 'Dueño', 'Fundador']],
-                                'gestionar_usuarios' => ['file' => 'GEUS.php', 'roles' => ['Tecnico', 'Logistica', 'Supervisor', 'Director', 'Presidente', 'Operativo', 'Junta directiva','Administrador', 'Manager', 'Dueño', 'Fundador']],
-                                'total_ventas' => ['file' => 'GEDV.php', 'roles' => ['Tecnico', 'Logistica', 'Supervisor', 'Director', 'Presidente', 'Operativo', 'Junta directiva','Administrador', 'Manager', 'Dueño', 'Fundador']],
+                                'plantilla' => ['file' => 'GSTM.php', 'roles' => ['alumno', 'docente', 'personal', 'aspirante']],
+                                'inicio' => ['file' => 'USR.php', 'roles' => ['alumno', 'docente', 'personal', 'aspirante']],
+                                'ver_perfil' => ['file' => 'PRUS.php', 'roles' => ['alumno', 'docente', 'personal', 'aspirante']],
+                                'cerrar_session' => ['file' => 'CRSS.php', 'roles' => ['alumno', 'docente', 'personal', 'aspirante']],
+                                'requisitos_paga' => ['file' => 'RQPG.php', 'roles' => ['alumno', 'docente', 'personal', 'aspirante']],
+                                'gestion_ascenso' => ['file' => 'GSAS.php', 'roles' => ['alumno', 'docente', 'personal', 'aspirante']],
+                                'gestion_de_pagas' => ['file' => 'GTPS.php', 'roles' => ['alumno', 'docente', 'personal', 'aspirante']],
+                                'grafico de pagas' => ['file' => 'GEPS.php', 'roles' => ['alumno', 'docente', 'personal', 'aspirante']],
+                                'ventas_membresias' => ['file' => 'VTM.php', 'roles' => ['alumno', 'docente', 'personal', 'aspirante']],
+                                'venta_rangos' => ['file' => 'VTR.php', 'roles' => ['alumno', 'docente', 'personal', 'aspirante']],
+                                'verificar_usuarios' => ['file' => 'VER.php', 'roles' => ['alumno', 'docente', 'personal', 'aspirante']],
+                                'gestionar_usuarios' => ['file' => 'GEUS.php', 'roles' => ['alumno', 'docente', 'personal', 'aspirante']],
+                                'total_ventas' => ['file' => 'GEDV.php', 'roles' => ['alumno', 'docente', 'personal', 'aspirante']],
                             ];
 
 

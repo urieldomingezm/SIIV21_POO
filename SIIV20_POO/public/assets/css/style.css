@@ -1,0 +1,71 @@
+.back-to-top {
+  position: fixed;
+  visibility: hidden;
+  opacity: 0;
+  right: 15px;
+  bottom: 15px;
+  z-index: 996;
+  background: #1B396A;
+  width: 40px;
+  height: 40px;
+  transition: all 0.4s;
+  padding: 12px 0px 0px 0px;
+}
+
+.back-to-top:hover {
+  background: #1B396A;
+  color: #fff;
+}
+
+.back-to-top.active {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* TIPO DE LETRA */
+
+@font-face {
+  font-family: 'Montserrat Black';
+  src: url('/SIIV14/private/assets/tipografia/Montserrat-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: 'Montserrat Black', sans-serif;
+}
+
+/* ANTI DESBORDES PARA H2, H1 ECT*/
+
+.anti_des {
+  word-wrap: break-word;
+  overflow: hidden;
+
+  /*MARGENES PARA EL TEXTO*/
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+
+/*MEDIA PARA SII*/
+
+@media (max-width: 767px) {
+  .SII::before {
+    content: "SII | ALUMNO";
+    display: inline-block;
+  }
+
+  .SII {
+    visibility: hidden;
+  }
+
+  .SII::before {
+    visibility: visible;
+  }
+
+  .navbar-breands {
+    overflow-x: hidden;
+    width: 100%;
+  }
+}

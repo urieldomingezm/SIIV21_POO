@@ -25,3 +25,7 @@
     background-color: #1B396A;
     border-color: #a8d1ff;
 }
+
+.navbar-container {
+    margin-top: 20px; /* Adjust this value based on your header height */
+}
