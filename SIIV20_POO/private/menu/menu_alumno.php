@@ -39,7 +39,7 @@
     /* Add these new styles */
     .navbar {
         position: fixed !important;
-        top: 100px; /* Height of the header */
+        top: 73px; /* Height of the header */
         left: 0;
         right: 0;
         z-index: 1020;
@@ -223,3 +223,8 @@ class NavigationMenu
 
 $navigation = new NavigationMenu();
 $navigation->render();
+
+
+?>
+
+<br>
