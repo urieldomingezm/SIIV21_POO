@@ -1,5 +1,5 @@
 <div class="content" id="Alumnos">
-  <form id="formulario_alumno" action="private/procesos/login_alumnos_personal.php" method="POST" class="rounded">
+  <form id="formulario_alumno" action="/private/procesos/login_aspirantes_alumnos_personal/login_alumnos_personal.php" method="POST" class="rounded">
     <br>
     <div class="row justify-content-center">
 

@@ -11,7 +11,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        <a href="/SIIV14/modulos/aspirantes/index.php" class="btn btn-primary" id="modal-redirect">Ir a la página</a>
+        <a href="/modulos/aspirantes/index.php" class="btn btn-primary" id="modal-redirect">Ir a la página</a>
       </div>
     </div>
   </div>

@@ -342,7 +342,7 @@
                                 document.getElementById('login-alert-success').classList.add('d-none');
                                 document.getElementById('login-alert-error').classList.add('d-none');
                                 
-                                fetch('private/procesos/login_aspirantes.php', {
+                                fetch('/private/procesos/login_aspirantes_alumnos_personal/login_aspirantes.php', {
                                     method: 'POST',
                                     body: formData
                                 })
