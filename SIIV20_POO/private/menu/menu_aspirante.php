@@ -1,8 +1,8 @@
 <?php
 class NavigationMenu
 {
-    private $brand = 'Alumno';
-    private $SII = 'Sistema integral de la información | Personal';
+    private $brand = 'Aspirante';
+    private $SII = 'Sistema integral de la información | Aspirante';
     private $SII_short = 'SII';
     private $menuItems = [];
     private $dropdownItems = [];
@@ -12,6 +12,30 @@ class NavigationMenu
         $this->initializeMenuItems();
         $this->dropdownItems = [
             ['text' => 'Cerrar Sesión', 'link' => '?page=logout', 'icon' => 'bi-box-arrow-right']
+        ];
+    }
+
+    private function initializeMenuItems()
+    {
+        $this->menuItems = [
+            [
+                'text' => 'Solicitud de Ficha de Examen Selección',
+                'link' => '#',
+                'icon' => 'bi-file-text',
+                'submenu' => [
+                    ['text' => 'Datos Socioeconómicos', 'link' => '?page=datos-socioeconomicos', 'icon' => 'bi-person-lines-fill'],
+                    ['text' => 'Solicitud de Ficha de Examen de Selección', 'link' => '?page=solicitud-ficha', 'icon' => 'bi-file-earmark-text']
+                ]
+            ],
+            [
+                'text' => 'Formato de Impresión',
+                'link' => '#',
+                'icon' => 'bi-printer',
+                'submenu' => [
+                    ['text' => 'Solicitud de Ficha de Examen Selección', 'link' => '?page=imprimir-solicitud', 'icon' => 'bi-file-pdf'],
+                    ['text' => 'Generar Ficha de Depósito', 'link' => '?page=generar-ficha-deposito', 'icon' => 'bi-cash']
+                ]
+            ]
         ];
     }
 
@@ -71,44 +95,6 @@ class NavigationMenu
         echo "</div>"; // Close the wrapper
     }
 
-    private function initializeMenuItems()
-    {
-        $this->menuItems = [
-            ['text' => 'Inicio', 'link' => '?page=inicio', 'active' => true, 'icon' => 'bi-house-door-fill'],
-            [
-                'text' => 'Selección de Materias',
-                'link' => '#',
-                'icon' => 'bi-journal-plus',
-                'submenu' => [
-                    ['text' => 'Materias Disponibles', 'link' => '?page=materias-disponibles', 'icon' => 'bi-list-check'],
-                    ['text' => 'Horarios', 'link' => '?page=horarios-materias', 'icon' => 'bi-calendar3'],
-                    ['text' => 'Carga Académica', 'link' => '?page=carga-academica', 'icon' => 'bi-journal-text']
-                ]
-            ],
-            [
-                'text' => 'Calificaciones',
-                'link' => '#',
-                'icon' => 'bi-card-checklist',
-                'submenu' => [
-                    ['text' => 'Parciales', 'link' => '?page=calificaciones-parciales', 'icon' => 'bi-123'],
-                    ['text' => 'Kardex', 'link' => '?page=kardex', 'icon' => 'bi-file-text'],
-                    ['text' => 'Boleta', 'link' => '?page=boleta', 'icon' => 'bi-file-earmark-pdf']
-                ]
-            ],
-            ['text' => 'Ficha de Pago', 'link' => '?page=pagos', 'icon' => 'bi-cash-stack'],
-            ['text' => 'Biblioteca', 'link' => '?page=biblioteca', 'icon' => 'bi-book'],
-            [
-                'text' => 'Quejas y Sugerencias',
-                'link' => '#',
-                'icon' => 'bi-chat-right-text-fill',
-                'submenu' => [
-                    ['text' => 'Nueva Queja', 'link' => '?page=nueva-queja', 'icon' => 'bi-exclamation-circle'],
-                    ['text' => 'Nueva Sugerencia', 'link' => '?page=nueva-sugerencia', 'icon' => 'bi-lightbulb'],
-                ]
-            ]
-        ];
-    }
-
     private function renderMenuItem($item)
     {
         $currentPage = $_GET['page'] ?? 'inicio';
@@ -162,8 +148,6 @@ class NavigationMenu
 
 $navigation = new NavigationMenu();
 $navigation->render();
-
-
 ?>
 
 <br>

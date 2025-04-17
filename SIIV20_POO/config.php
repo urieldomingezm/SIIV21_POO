@@ -4,9 +4,13 @@ define('ROOT_PATH', __DIR__ . '/');
 
 // Definir rutas para carpetas específicas
 define('PRIVATE_PATH', ROOT_PATH.'private/');
-define('MODULOS_PATH', ROOT_PATH.'menu/'); // Ruta a menu alumnos, aspirantes y personal
 define('TEMPLATES_PATH', PRIVATE_PATH.'plantillas/'); // Ruta a header.php y footer.php
 define('CONFIG_PATH', PRIVATE_PATH.'conexion/'); // RUTA DE BD
+define('PROCESOS_PATH', PRIVATE_PATH.'procesos/'); // RUTA DE PROCESOS
+
+
+// RUTA PARA PROCESOS DE INICIO DE SESIÓN Y REGISTRO DE ASPIRANTES, PERSONAL Y DE ALUMNOS
+define('LOGIN_PATH', ROOT_PATH.'private/procesos/SII_login_y_registro/');
 
 // RUTA PARA MODALES
 define('MODALES', PRIVATE_PATH.'modal/');
