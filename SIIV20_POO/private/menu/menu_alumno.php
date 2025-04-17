@@ -17,7 +17,7 @@ class NavigationMenu
 
     public function render()
     {
-        echo "<div class='navbar-container'>"; 
+        echo "<div class='navbar-container'>";
         echo "<nav class='navbar text-white shadow-sm' style='background-color: #1B396A;'>
                 <div class='container-fluid px-md-4'>
                     <div class='d-flex align-items-center text-white'>
@@ -54,15 +54,15 @@ class NavigationMenu
                 <ul class='dropdown-menu'>
                     {$this->renderDropdownItems()}
                 </ul>
-              </li>
             </ul>
-            <form class='d-flex mt-3' role='search'>
-                <div class='input-group'>
-                    <input class='form-control' type='search' placeholder='Buscar' aria-label='Buscar'>
-                    <button class='btn btn-outline-success' type='submit'>
-                        <i class='bi bi-search'></i>
-                    </button>
-                </div>
+            <form class='d-flex ms-3' role='search'>
+                <input class='form-control me-2 bg-light text-dark' 
+                       type='search' 
+                       placeholder='Buscar' 
+                       aria-label='Search' >
+                <button class='btn btn-light' type='submit'>
+                    <i class='bi bi-search'></i>
+                </button>
             </form>
             </div>
             </div>

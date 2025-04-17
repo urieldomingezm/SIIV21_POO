@@ -1,12 +1,3 @@
-<?php
-session_start();
-require_once($_SERVER['DOCUMENT_ROOT'] . '/config.php');
-require_once(MENU_PATH . 'menu_aspirante.php'); 
-
-require_once(TEMPLATES_PATH . 'header.php');
-?>
-
-<!-- Content for aspirante panel -->
 <div class="container mt-4">
     <div class="row justify-content-center">
         <div class="col-12">
@@ -114,7 +105,7 @@ require_once(TEMPLATES_PATH . 'header.php');
                             
                             <!-- Added Continue Button -->
                             <div class="mt-4">
-                                <a href="solicitud.php" class="btn btn-primary btn-lg px-5">
+                                <a href="?page=Datos socioeconomicos" class="btn btn-primary btn-lg px-5">
                                     <i class="bi bi-arrow-right-circle-fill me-2"></i>Continuar
                                 </a>
                             </div>
@@ -125,5 +116,3 @@ require_once(TEMPLATES_PATH . 'header.php');
         </div>
     </div>
 </div>
-
-<?php require_once(TEMPLATES_PATH . 'footer.php'); ?>

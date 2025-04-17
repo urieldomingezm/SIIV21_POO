@@ -7,7 +7,10 @@ define('PRIVATE_PATH', ROOT_PATH.'private/');
 define('TEMPLATES_PATH', PRIVATE_PATH.'plantillas/'); // Ruta a header.php y footer.php
 define('CONFIG_PATH', PRIVATE_PATH.'conexion/'); // RUTA DE BD
 define('PROCESOS_PATH', PRIVATE_PATH.'procesos/'); // RUTA DE PROCESOS
+define('DATOS_SOCIOECONOMICOS_PATH', ROOT_PATH.'modulo/aspirante/'); // RUTA DE DATOSSOCIOECONMICOS
 
+// RUTA PARA DATOS SOCIOECONOMICOS DE ASPIRANTES
+define('DATOS_PATH', ROOT_PATH.'modulo/aspirante/datos_socioeconomicos/');
 
 // RUTA PARA PROCESOS DE INICIO DE SESIÓN Y REGISTRO DE ASPIRANTES, PERSONAL Y DE ALUMNOS
 define('LOGIN_PATH', ROOT_PATH.'private/procesos/SII_login_y_registro/');
