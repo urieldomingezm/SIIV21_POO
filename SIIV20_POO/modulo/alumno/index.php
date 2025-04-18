@@ -1,16 +1,38 @@
 <?php
 session_start();
 require_once($_SERVER['DOCUMENT_ROOT'] . '/config.php');
-require_once(MENU_PATH . 'menu_alumno.php'); 
+require_once(MENU_PATH . 'menu_aluimno.php'); 
 
 require_once(TEMPLATES_PATH . 'header.php');
 ?>
 
-<!-- Content for personal panel -->
-<div class="container mt-4">
-    <h2>Panel de Personal</h2>
-    <p>Bienvenido, Usuario: <?php echo htmlspecialchars($_SESSION['numero_control']); ?></p>
-    <!-- Add your personal panel content here -->
-</div>
+<?php
+
+if (isset($_GET['page'])) {
+
+    if ($_GET['page'] == 'Inicio') {
+        include 'ASPB.php';
+    } elseif ($_GET['page'] == 'Datos socioeconomicos') {
+        include 'ASSO.php';
+    } elseif ($_GET['page'] == 'Fichas de pagos') {
+        include 'ASFP.php';
+    } elseif ($_GET['page'] == 'Solicitud de examen') {
+        include 'ASSE.php';
+
+        include 'GVP.php';
+    } else {
+        echo "<h1>Página no encontrada</h1>";
+        echo "<p>Redirigiendo a la página principal...</p>";
+        header("refresh:3;url=index.php");
+        exit();
+    }
+} else {
+    include 'ALHO.php';
+}
+?>
+
+
 
 <?php require_once(TEMPLATES_PATH . 'footer.php'); ?>
+            
+           

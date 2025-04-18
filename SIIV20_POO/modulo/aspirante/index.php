@@ -1,38 +1,86 @@
 <?php
-session_start();
-require_once($_SERVER['DOCUMENT_ROOT'] . '/config.php');
-require_once(MENU_PATH . 'menu_aspirante.php'); 
+class AspiranteController {
+    private $defaultPage = 'ASPB.php';
+    private $userType = 'aspirante';
+    private $pageMapping;
 
-require_once(TEMPLATES_PATH . 'header.php');
-?>
+    public function __construct() {
+        session_start();
+        $this->initializePageMapping();
+        $this->loadDependencies();
+        $this->checkUserAuthentication();
+    }
 
-<?php
+    private function initializePageMapping() {
+        $this->pageMapping = array(
+            'Inicio' => 'ASPB.php',
+            'Datos socioeconomicos' => 'ASSO.php',
+            'Fichas de pagos' => 'ASFP.php',
+            'Solicitud de examen' => array('ASSE.php', 'GVP.php')
+        );
+    }
 
-if (isset($_GET['page'])) {
+    private function loadDependencies() {
+        require_once($_SERVER['DOCUMENT_ROOT'] . '/config.php');
+        require_once(TEMPLATES_PATH . 'header.php');
+        require_once(MENU_PATH . 'menu_aspirante.php');
+    }
 
-    if ($_GET['page'] == 'Inicio') {
-        include 'ASPB.php';
-    } elseif ($_GET['page'] == 'Datos socioeconomicos') {
-        include 'ASSO.php';
-    } elseif ($_GET['page'] == 'Fichas de pagos') {
-        include 'ASFP.php';
-    } elseif ($_GET['page'] == 'Solicitud de examen') {
-        include 'ASSE.php';
+    private function checkUserAuthentication() {
+        if (!isset($_SESSION['user_type']) || $_SESSION['user_type'] !== $this->userType) {
+            require_once(MODALES_ASPIRANTES_PATH . 'modal_verificar_session.php');
+            $this->showUnauthorizedModal();
+            exit();
+        }
+    }
 
-        include 'GVP.php';
-    } else {
-        echo "<h1>Página no encontrada</h1>";
-        echo "<p>Redirigiendo a la página principal...</p>";
-        header("refresh:3;url=index.php");
+    private function showUnauthorizedModal() {
+        echo '<script>
+            document.addEventListener("DOMContentLoaded", function() {
+                var modal = new bootstrap.Modal(document.getElementById("unauthorizedModal"));
+                modal.show();
+                setTimeout(function() {
+                    window.location.href = "/index.php";
+                }, 3000);
+            });
+        </script>';
+    }
+
+    public function handleRequest() {
+        $page = isset($_GET['page']) ? $_GET['page'] : '';
+        if ($page !== '') {
+            $this->loadRequestedPage($page);
+        } else {
+            include $this->defaultPage;
+        }
+        require_once(TEMPLATES_PATH . 'footer.php');
+    }
+
+    private function loadRequestedPage($page) {
+        if (isset($this->pageMapping[$page])) {
+            $pageFiles = $this->pageMapping[$page];
+            if (is_array($pageFiles)) {
+                foreach ($pageFiles as $file) {
+                    include $file;
+                }
+            } else {
+                include $pageFiles;
+            }
+        } else {
+            $this->showPageNotFound();
+        }
+    }
+
+    private function showPageNotFound() {
+        echo '<h1>Página no encontrada</h1>';
+        echo '<p>Redirigiendo a la página principal...</p>';
+        header('refresh:3;url=index.php');
         exit();
     }
-} else {
-    include 'ASPB.php';
 }
+
+$controller = new AspiranteController();
+$controller->handleRequest();
 ?>
-
-
-
-<?php require_once(TEMPLATES_PATH . 'footer.php'); ?>
             
            
