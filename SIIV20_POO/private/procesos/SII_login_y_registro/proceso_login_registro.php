@@ -3,6 +3,18 @@
 $database = new Database();
 $conn = $database->getConnection();
 
+if (!function_exists('password_hash')) {
+    function password_hash($password, $algo, $options = array()) {
+        return crypt($password, '$2y$10$' . substr(str_replace('+', '.', base64_encode(openssl_random_pseudo_bytes(22))), 0, 22));
+    }
+}
+
+if (!function_exists('password_verify')) {
+    function password_verify($password, $hash) {
+        return crypt($password, $hash) === $hash;
+    }
+}
+
 if (empty($_SESSION['csrf_token'])) {
     if (function_exists('random_bytes')) {
         $_SESSION['csrf_token'] = bin2hex(random_bytes(32));

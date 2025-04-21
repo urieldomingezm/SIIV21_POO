@@ -11,8 +11,8 @@
                 <div class="accordion-body">
                     <div id="container">
                         <form id="formulario_primera_vez_aspirantes_registro" class="rounded" method="POST">
-    <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
-    <input type="hidden" name="form_type" value="aspirante_registro">
+                            <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+                            <input type="hidden" name="form_type" value="aspirante_registro">
                             <br>
                             <div class="row g-3">
                                 <!-- Column 1 -->
@@ -182,10 +182,10 @@
                             <!-- CURP -->
                             <div class="col-lg-3 mb-4">
                                 <label for="iniciar_session_aspirante_curp" class="form-label">CURP</label>
-                                <input 
-                                    type="text" 
-                                    class="form-control form-control-lg" 
-                                    id="iniciar_session_aspirante_curp" 
+                                <input
+                                    type="text"
+                                    class="form-control form-control-lg"
+                                    id="iniciar_session_aspirante_curp"
                                     name="iniciar_session_aspirante_curp"
                                     maxlength="18">
                                 <div class="invalid-feedback" style="display: block;"></div>
@@ -218,18 +218,18 @@
                                 <label for="iniciar_session_aspirante_captcha" class="form-label">CAPTCHA</label>
                                 <div class="d-flex align-items-center">
                                     <div class="flex-grow-1 position-relative">
-                                        <input 
-                                            type="text" 
-                                            class="form-control form-control-lg captchaInput" 
-                                            id="iniciar_session_aspirante_captcha" 
-                                            name="iniciar_session_aspirante_captcha" 
+                                        <input
+                                            type="text"
+                                            class="form-control form-control-lg captchaInput"
+                                            id="iniciar_session_aspirante_captcha"
+                                            name="iniciar_session_aspirante_captcha"
                                             maxlength="5">
                                         <div class="invalid-feedback" style="display: block;"></div>
                                     </div>
                                     <canvas class="captchaCanvas" width="128" height="44" class="ms-2"></canvas>
-                                    <button 
-                                        type="button" 
-                                        class="btn btn-secondary me-1 ms-2" 
+                                    <button
+                                        type="button"
+                                        class="btn btn-secondary me-1 ms-2"
                                         onclick="generateCaptcha('formulario_iniciar_session_aspirante')">
                                         <i class="bi bi-arrow-clockwise"></i>
                                     </button>
