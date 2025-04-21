@@ -27,7 +27,7 @@ services:
     volumes:
       - db_data:/var/lib/mysql
     ports:
-      - "3307:3306"  # Cambiado de 3306 a 3307
+      - "3308:3309"  # Cambiado de 3306 a 3307
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin

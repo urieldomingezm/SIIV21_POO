@@ -1,6 +1,6 @@
 <?php
 class AlumnoController {
-    private $defaultPage = 'PEB.php';
+    private $defaultPage = 'ALUB.php';
     private $userType = 'alumno';
     private $pageMapping;
 
@@ -13,11 +13,10 @@ class AlumnoController {
 
     private function initializePageMapping() {
         $this->pageMapping = array(
-            'Inicio' => 'PEB.php',
-            'Datos socioeconomicos' => 'ASSO.php',
-            'Fichas de pagos' => 'ASFP.php',
-            'Horario' => 'ASH.php',
-            'Calificaciones' => 'ASC.php'
+            'Inicio' => 'ALUB.php',
+            'Avance reticular' => 'ALUAN.php',
+            'Boletas' => 'ALUBO.php',
+            'Kardex' => 'ALUKA.php',
         );
     }
 
@@ -75,7 +74,7 @@ class AlumnoController {
     private function showPageNotFound() {
         echo '<h1>Página no encontrada</h1>';
         echo '<p>Redirigiendo a la página principal...</p>';
-        header('refresh:3;url=index.php');
+        header('refresh:3;url=ALUB.php');
         exit();
     }
 }

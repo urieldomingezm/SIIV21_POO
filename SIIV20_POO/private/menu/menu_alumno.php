@@ -2,7 +2,7 @@
 class NavigationMenu
 {
     private $brand = 'Alumno';
-    private $SII = 'Sistema integral de la información | Personal';
+    private $SII = 'Sistema integral de la información | Alumno';
     private $SII_short = 'SII';
     private $menuItems = [];
     private $dropdownItems = [];
