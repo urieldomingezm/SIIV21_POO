@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `alumnos` (
   `alumno_id` int NOT NULL,
   `alumno_numero_control` varchar(15) NOT NULL,
-  `alumno_password` varchar(4) NOT NULL,
+  `alumno_password` varchar(200) NOT NULL,
   `alumno_rol` enum('alumno') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `alumno_ultimo_acceso` timestamp NULL DEFAULT NULL,
   `alumno_fecha_registro` timestamp NULL DEFAULT CURRENT_TIMESTAMP
