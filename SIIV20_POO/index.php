@@ -60,15 +60,14 @@ class LoginController {
     }
 
     private function renderRegistrationModal() {
-        echo '<div class="modal fade" id="registroModal" tabindex="-1" aria-labelledby="registroModalLabel" aria-hidden="true">
+        echo '<div class="modal fade" id="registroModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="registroModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="registroModalLabel">Registro de Aspirante</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div class="modal-header bg-primary">
+                        <h5 class="modal-title text-white" id="registroModalLabel">Registro de Aspirante</h5>
                     </div>
                     <div class="modal-body">
-                        <div id="modal-body-content"></div>
+                        <div id="modal-body-content" class="text-black"></div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Entendido</button>

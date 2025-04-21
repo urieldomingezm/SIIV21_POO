@@ -1,0 +1,20 @@
+/* CSS DE STRIP FORM (MULTIPLE FORMULARIO) */
+
+.accordion-button.completed {
+    background-color: #f8f9fa;
+}
+.step-icon {
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+.progress {
+    height: 10px;
+    border-radius: 5px;
+}
+.progress-bar {
+    transition: width 0.5s ease-in-out;
+    background-color: #198754;
+}
+.accordion-button.completed .step-icon {
+    color: #198754;
+}

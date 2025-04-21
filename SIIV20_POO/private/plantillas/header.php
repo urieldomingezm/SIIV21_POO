@@ -75,13 +75,31 @@ class Header
             'css' => [
                 '/public/assets/css/style.css',
                 '/public/static/estilos_de_menus/style.css',
-                '/public/static/data_table_simple/style.css'
+                '/public/static/data_table_simple/style.css',
+
+                // ASPIRANTES
+                '/public/custom/aspirante/formulario_socioeconomicos/css/tyle.css',
+
+                // ALUMNOS
+                '/public/custom/alumnos/formulario_socioeconomicos/css/tyle.css',
+
+                // PERSONAL
+                '/public/custom/personal/formulario_socioeconomicos/css/tyle.css',
             ],
             'js' => [
                 '/public/static/data_table_simple/script.js',
                 '/public/assets/js/char.js',
-                '/public/assets/js/datatable_registrar_actualizar_justvalidate_exportacion_archivos.js'
-            ]
+                '/public/assets/js/datatable_registrar_actualizar_justvalidate_exportacion_archivos.js',
+            
+                // ASPIRANTES
+                '/public/custom/aspirante/formulario_socioeconomicos/js/script.js',
+
+                // ALUMNOS
+                '/public/custom/alumnos/formulario_socioeconomicos/css/tyle.css',
+
+                // PERSONAL
+                '/public/custom/personal/formulario_socioeconomicos/css/tyle.css',
+             ]
         ];
     }
 
