@@ -8,7 +8,7 @@
           <div class="col-lg-5 mb-4">
               <label for="personal_usuario" class="form-label">USUARIO</label>
               <input type="text" class="form-control form-control-lg" 
-                     id="personal_usuario" maxlength="20" name="numero_control">
+                     id="personal_usuario" maxlength="20" name="personal_usuario">
               <div class="invalid-feedback" style="display: block;"></div>
           </div>
 
@@ -18,7 +18,7 @@
               <div class="d-flex align-items-center">
                   <div class="flex-grow-1 position-relative">
                       <input type="password" class="form-control form-control-lg passwordInput" 
-                             id="personal_password" name="password">
+                             id="personal_password" name="personal_password">
                       <div class="invalid-feedback" style="display: block;"></div>
                   </div>
                   <button type="button" class="btn btn-secondary ms-2 togglePassword"

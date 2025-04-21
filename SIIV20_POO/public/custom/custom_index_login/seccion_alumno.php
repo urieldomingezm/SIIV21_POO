@@ -7,7 +7,7 @@
           <!-- Número de Control -->
           <div class="col-lg-3 mb-4">
               <label for="alumno_numero_control" class="form-label">NUMERO DE CONTROL</label>
-              <input type="text" class="form-control form-control-lg" id="alumno_numero_control" name="numero_control">
+              <input type="text" class="form-control form-control-lg" id="alumno_numero_control" name="alumno_numero_control">
               <div class="invalid-feedback" style="display: block;"></div>
           </div>
 
@@ -17,7 +17,7 @@
               <div class="d-flex align-items-center">
                   <div class="flex-grow-1 position-relative">
                       <input type="password" class="form-control form-control-lg passwordInput" 
-                             id="alumno_password" name="password" maxlength="4">
+                             id="alumno_password" name="alumno_password" maxlength="4">
                       <div class="invalid-feedback" style="display: block;"></div>
                   </div>
                   <button type="button" class="btn btn-secondary ms-2 togglePassword"
