@@ -10,7 +10,7 @@
                 <div class="modal-body text-center">
                     <i class="bi bi-shield-lock display-1 text-danger mb-4"></i>
                     <h4>¡Acceso Denegado!</h4>
-                    <p class="mb-0">Debes iniciar sesión como personal docente para acceder a esta página.</p>
+                    <p class="mb-0">Debes iniciar sesión para acceder a esta página.</p>
                     <p>Serás redirigido a la página de inicio...</p>
                 </div>
             </div>

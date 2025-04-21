@@ -1,7 +1,7 @@
 <?php
-class PersonalController {
+class AlumnoController {
     private $defaultPage = 'PEB.php';
-    private $userType = 'personal';
+    private $userType = 'alumno';
     private $pageMapping;
 
     public function __construct() {
@@ -16,19 +16,20 @@ class PersonalController {
             'Inicio' => 'PEB.php',
             'Datos socioeconomicos' => 'ASSO.php',
             'Fichas de pagos' => 'ASFP.php',
-            'Solicitud de examen' => array('ASSE.php', 'GVP.php')
+            'Horario' => 'ASH.php',
+            'Calificaciones' => 'ASC.php'
         );
     }
 
     private function loadDependencies() {
         require_once($_SERVER['DOCUMENT_ROOT'] . '/config.php');
         require_once(TEMPLATES_PATH . 'header.php');
-        require_once(MENU_PATH . 'menu_personal.php');
+        require_once(MENU_PATH . 'menu_alumno.php');
     }
 
     private function checkUserAuthentication() {
         if (!isset($_SESSION['user_type']) || $_SESSION['user_type'] !== $this->userType) {
-            require_once(MODALES_PERSONAL_PATH . 'modal_verificar_session.php');
+            require_once(MODALES_ALUMNOS_PATH . 'modal_verificar_session.php');
             $this->showUnauthorizedModal();
             exit();
         }
@@ -79,6 +80,6 @@ class PersonalController {
     }
 }
 
-$controller = new PersonalController();
+$controller = new AlumnoController();
 $controller->handleRequest();
 ?>
