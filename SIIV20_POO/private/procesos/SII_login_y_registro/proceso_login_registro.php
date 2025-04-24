@@ -295,8 +295,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['form_type']) && $_POST
         $stmt = $conn->prepare($update_query);
         $stmt->execute(array(':id' => $personal['personal_id']));
 
+        // In the personal login handler section
         $_SESSION['user_id'] = $personal['personal_id'];
-        $_SESSION['usuario'] = $personal['personal_usuario'];
+        $_SESSION['personal_usuario'] = $personal['personal_usuario']; // Changed from 'usuario' to 'personal_usuario'
         $_SESSION['user_type'] = 'personal';
         $_SESSION['rol'] = $personal['personal_rol'];
 

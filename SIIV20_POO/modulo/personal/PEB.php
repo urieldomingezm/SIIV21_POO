@@ -15,7 +15,7 @@
                         </div>
                         <h4 class="mb-3">¡Bienvenido(a)!</h4>
                         <p class="h5">
-                            Usuario: <span class="badge bg-primary"><?php echo htmlspecialchars($_SESSION['numero_control']); ?></span>
+                            Usuario: <span class="badge bg-primary"><?php echo htmlspecialchars($_SESSION['personal_usuario']); ?></span>
                         </p>
                     </div>
                     

@@ -28,7 +28,7 @@ if (isset($_SESSION['user_type'])) {
     } elseif ($userType === 'personal') {
 
         $userId = $_SESSION['user_id'];
-        $numeroControl = $_SESSION['numero_control'];
+        $personalUsuario = $_SESSION['personal_usuario'];
         ob_end_clean();
         header('Location: /modulo/personal/');
         exit;
