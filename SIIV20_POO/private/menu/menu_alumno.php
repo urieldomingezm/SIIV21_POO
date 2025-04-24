@@ -17,7 +17,7 @@ class NavigationMenu
 
     public function render()
     {
-        echo "<div class='navbar-container'>";
+        echo "<div class='navbar-container fixed-bottom'>";
         echo "<nav class='navbar text-white shadow-sm' style='background-color: #1B396A;'>
                 <div class='container-fluid px-md-4'>
                     <div class='d-flex align-items-center text-white'>
@@ -40,12 +40,10 @@ class NavigationMenu
                         <div class='offcanvas-body'>
                             <ul class='navbar-nav justify-content-end flex-grow-1 pe-3'>";
 
-        // Render menu items
         foreach ($this->menuItems as $item) {
             echo $this->renderMenuItem($item);
         }
 
-        // Render dropdown
         echo "<li class='nav-item dropdown'>
                 <a class='nav-link dropdown-toggle' href='#' role='button' 
                    data-bs-toggle='dropdown' aria-expanded='false'>
@@ -68,7 +66,7 @@ class NavigationMenu
             </div>
             </div>
             </nav>";
-        echo "</div>"; // Close the wrapper
+        echo "</div>";
     }
 
     private function initializeMenuItems()

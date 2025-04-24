@@ -128,7 +128,7 @@ class NavigationMenu
 
     public function render()
     {
-        echo "<div class='navbar-container'>"; 
+        echo "<div class='navbar-container fixed-bottom'>";
         echo "<nav class='navbar text-white shadow-sm' style='background-color: #1B396A;'>
                 <div class='container-fluid px-md-4'>
                     <div class='d-flex align-items-center text-white'>
