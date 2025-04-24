@@ -15,6 +15,7 @@ define('MENU_PATH', PRIVATE_PATH.'menu/');
 define('CONFIG_PATH', PRIVATE_PATH.'conexion/');
 define('PROCESOS_PATH', PRIVATE_PATH.'procesos/');
 define('LOGIN_PATH', ROOT_PATH.'private/procesos/SII_login_y_registro/');
+define('CAPTURA_DATOS_SOCIOECONOMICOS_PATH', ROOT_PATH.'private/procesos/aspirante/socioeconomicos/');
 
 // Modal paths by user type
 define('MODALES_PERSONAL_PATH', PRIVATE_PATH.'modales/personal/');

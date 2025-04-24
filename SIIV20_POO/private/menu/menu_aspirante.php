@@ -22,11 +22,16 @@ class NavigationMenu
     {
         $this->menuItems = array(
             array(
+                'text' => 'Inicio',
+                'link' => '?page=Inicio',
+                'icon' => 'bi-house'
+            ),
+            array(
                 'text' => 'Solicitud de Ficha de Examen Selección',
                 'link' => '#',
                 'icon' => 'bi-file-text',
                 'submenu' => array(
-                    array('text' => 'Datos Socioeconómicos', 'link' => '?page=datos-socioeconomicos', 'icon' => 'bi-person-lines-fill'),
+                    array('text' => 'Datos Socioeconómicos', 'link' => '?page=Datos socioeconomicos', 'icon' => 'bi-person-lines-fill'),
                     array('text' => 'Solicitud de Ficha de Examen', 'link' => '?page=solicitud-ficha', 'icon' => 'bi-file-earmark-text')
                 )
             ),

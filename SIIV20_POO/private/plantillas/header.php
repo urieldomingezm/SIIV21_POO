@@ -78,13 +78,7 @@ class Header
                 '/public/static/data_table_simple/style.css',
 
                 // ASPIRANTES
-                '/public/custom/aspirante/formulario_socioeconomicos/css/tyle.css',
-
-                // ALUMNOS
-                '/public/custom/alumnos/formulario_socioeconomicos/css/tyle.css',
-
-                // PERSONAL
-                '/public/custom/personal/formulario_socioeconomicos/css/tyle.css',
+                '/public/custom/aspirante/formulario_socioeconomicos/css/style.css',
             ],
             'js' => [
                 '/public/static/data_table_simple/script.js',
@@ -93,12 +87,6 @@ class Header
             
                 // ASPIRANTES
                 '/public/custom/aspirante/formulario_socioeconomicos/js/script.js',
-
-                // ALUMNOS
-                '/public/custom/alumnos/formulario_socioeconomicos/css/tyle.css',
-
-                // PERSONAL
-                '/public/custom/personal/formulario_socioeconomicos/css/tyle.css',
              ]
         ];
     }
