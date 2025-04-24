@@ -55,10 +55,37 @@ function togglePasswordVisibility(inputId, button) {
     }
   }
 
+  // Add this at the top of your script.js
   function verifyCaptcha(formId) {
-    const form = document.getElementById(formId);
-    const userCaptcha = form.querySelector('.captchaInput').value;
-    const captchaCode = form.dataset.captchaCode;
+      const form = document.getElementById(formId);
+      const userCaptcha = form.querySelector('.captchaInput').value;
+      const captchaCode = form.dataset.captchaCode;
+      
+      if (!userCaptcha || userCaptcha !== captchaCode) {
+          showModalMessage('Error de CAPTCHA', 'Por favor ingrese el código CAPTCHA correctamente', 'error');
+          generateCaptcha(formId); // Regenerate CAPTCHA on error
+          return false;
+      }
+      return true;
+  }
+  
+  function showModalMessage(title, message, status) {
+      const modalTitle = document.getElementById('registroModalLabel');
+      const modalBody = document.getElementById('modal-body-content');
+      
+      modalTitle.textContent = title;
+      modalBody.innerHTML = message;
+      
+      if (status === 'success') {
+          modalBody.classList.add('text-success');
+          modalBody.classList.remove('text-danger');
+      } else {
+          modalBody.classList.add('text-danger');
+          modalBody.classList.remove('text-success');
+      }
+      
+      const modal = new bootstrap.Modal(document.getElementById('registroModal'));
+      modal.show();
   }
 
   window.onload = function() {
@@ -118,6 +145,8 @@ function togglePasswordVisibility(inputId, button) {
   document.getElementById('formulario_alumno').addEventListener('submit', function(e) {
       e.preventDefault();
       
+      if (!verifyCaptcha('formulario_alumno')) return;
+      
       let formData = new FormData(this);
       
       fetch(window.location.href, {
@@ -168,6 +197,8 @@ function togglePasswordVisibility(inputId, button) {
   document.getElementById('formulario_iniciar_session_aspirante').addEventListener('submit', function(e) {
       e.preventDefault();
       
+      if (!verifyCaptcha('formulario_iniciar_session_aspirante')) return;
+      
       let formData = new FormData(this);
       formData.append('csrf_token', document.querySelector('input[name="csrf_token"]').value);
       formData.append('form_type', 'aspirante_login');
@@ -217,6 +248,8 @@ function togglePasswordVisibility(inputId, button) {
   // Add this alongside your existing form handlers
   document.getElementById('formulario_personal').addEventListener('submit', function(e) {
       e.preventDefault();
+      
+      if (!verifyCaptcha('formulario_personal')) return;
       
       let formData = new FormData(this);
       

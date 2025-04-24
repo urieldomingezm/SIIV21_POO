@@ -25,8 +25,7 @@ class LoginController {
     private function renderMainSection() {
         echo '<section class="accordion-demo">
             <div class="container mt-1">
-                <br>
-                <div class="text-center mb-4">
+                <div class="text-center mb-3">
                     <a href="/pruebas/plantilla.php" class="btn btn-info">
                         <i class="bi bi-bug"></i> Ambiente de Pruebas
                     </a>

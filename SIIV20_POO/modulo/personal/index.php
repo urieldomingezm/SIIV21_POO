@@ -16,6 +16,7 @@ class PersonalController {
             'Inicio' => 'PEB.php',
             'Datos socioeconomicos' => 'ASSO.php',
             'Fichas de pagos' => 'ASFP.php',
+            'logout' => 'logout.php',
             'Solicitud de examen' => array('ASSE.php', 'GVP.php')
         );
     }

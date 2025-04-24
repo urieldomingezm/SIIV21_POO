@@ -17,6 +17,7 @@ class AlumnoController {
             'Avance reticular' => 'ALUAN.php',
             'Boletas' => 'ALUBO.php',
             'Kardex' => 'ALUKA.php',
+            'logout' => 'logout.php',
         );
     }
 

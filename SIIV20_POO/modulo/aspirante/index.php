@@ -16,7 +16,8 @@ class AspiranteController {
             'Inicio' => 'ASPB.php',
             'Datos socioeconomicos' => 'ASSO.php',
             'Fichas de pagos' => 'ASFP.php',
-            'Solicitud de examen' => array('ASSE.php', 'GVP.php')
+            'Solicitud de examen' => array('ASSE.php', 'GVP.php'),
+            'logout' => 'logout.php',
         );
     }
 
