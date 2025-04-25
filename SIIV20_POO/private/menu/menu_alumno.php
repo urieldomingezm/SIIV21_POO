@@ -1,7 +1,7 @@
 <?php
 class NavigationMenu
 {
-    private $brand = 'Alumno';
+    private $brand = 'Menu principal';
     private $SII = 'Sistema integral de la información | Alumno';
     private $SII_short = 'SII';
     private $menuItems = [];
@@ -53,7 +53,8 @@ class NavigationMenu
                     {$this->renderDropdownItems()}
                 </ul>
             </ul>
-            <form class='d-flex ms-3' role='search'>
+            <br>
+            <form class='d-flex ms-1' role='search'>
                 <input class='form-control me-2 bg-light text-dark' 
                        type='search' 
                        placeholder='Buscar' 

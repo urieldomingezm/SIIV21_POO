@@ -9,7 +9,7 @@ class NavigationMenu
 
     public function __construct()
     {
-        $this->brand = 'Aspirante';
+        $this->brand = 'Menu principal';
         $this->SII = 'Sistema integral de la información | Aspirante';
         $this->SII_short = 'SII';
         $this->initializeMenuItems();
@@ -136,7 +136,8 @@ class NavigationMenu
                 </ul>
               </li>
             </ul>
-            <form class='d-flex ms-3' role='search'>
+            <br>
+            <form class='d-flex ms-1' role='search'>
                 <input class='form-control me-2 bg-light text-dark' 
                        type='search' 
                        placeholder='Buscar' 

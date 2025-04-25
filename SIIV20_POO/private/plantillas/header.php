@@ -26,64 +26,66 @@ class Header
 
     private function initializeResources()
     {
-        // CDN resources
+        // CDN resources framework css and js
         $this->cdnResources = [
             'css' => [
                 'bootstrap' => [
                     'cdn' => 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css',
-                    'local' => '/public/assets/css/bootstrap.min.css'
+                    'local' => '/public/framework/boostrap/bootstrap/css/bootstrap.min.css'
                 ],
                 'bootstrap-icons' => [
                     'cdn' => 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css',
-                    'local' => '/public/assets/css/bootstrap-icons.css'
+                    'local' => '/public/framework/boostrap/bootstrap-icons/bootstrap-icons.css'
                 ],
                 'boxicons' => [
                     'cdn' => 'https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css',
-                    'local' => '/public/assets/css/boxicons.min.css'
+                    'local' => '/public/framework/boostrap/boxicons/css/boxicons.min.css'
                 ],
                 'simple-datatables' => [
                     'cdn' => 'https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css',
-                    'local' => '/public/assets/css/simple-datatables.css'
+                    'local' => '/public/framework/simple-datatables/simple-datatables.css'
                 ]
             ],
             'js' => [
                 'bootstrap' => [
                     'cdn' => 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js',
-                    'local' => '/public/assets/js/bootstrap.bundle.min.js'
+                    'local' => '/public/framework/boostrap/bootstrap/js/bootstrap.bundle.min.js'
                 ],
                 'jspdf' => [
                     'cdn' => 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js',
-                    'local' => '/public/assets/js/jspdf.umd.min.js'
+                    'local' => '/public/framework/pdf/jspdf.umd.min.js'
                 ],
                 'xlsx' => [
                     'cdn' => 'https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js',
-                    'local' => '/public/assets/js/xlsx.full.min.js'
+                    'local' => '/public/framework/excel/xlsx.full.min.js'
                 ],
                 'just-validate' => [
                     'cdn' => 'https://unpkg.com/just-validate@latest/dist/just-validate.production.min.js',
-                    'local' => '/public/assets/js/just-validate.production.min.js'
+                    'local' => '/public/framework/just_validate/just-validate.production.min.js'
                 ],
                 'simple-datatables' => [
                     'cdn' => 'https://cdn.jsdelivr.net/npm/simple-datatables@latest',
-                    'local' => '/public/assets/js/simple-datatables.js'
+                    'local' => '/public/framework/simple-datatables/simple-datatables.js'
+                ],
+                'chart' => [
+                    'cdn' => 'https://cdn.jsdelivr.net/npm/chart.js',
+                    'local' => '/public/framework/chart/chart.js'
                 ]
             ]
         ];
 
-        // Additional local resources
+        // Additional local custom resources
         $this->localResources = [
             'css' => [
-                '/public/assets/css/style.css',
-                '/public/static/estilos_de_menus/style.css',
-                '/public/static/data_table_simple/style.css',
+                // estilos de menu responsivo
+                '/public/custom/menu/style.css',
 
                 // ASPIRANTES
                 '/public/custom/aspirante/formulario_socioeconomicos/css/style.css',
             ],
             'js' => [
-                '/public/static/data_table_simple/script.js',
-                '/public/assets/js/char.js',
-                '/public/assets/js/datatable_registrar_actualizar_justvalidate_exportacion_archivos.js',
+                // '/public/static/data_table_simple/script.js',
+                // '/public/assets/js/char.js',
             
                 // ASPIRANTES
                 '/public/custom/aspirante/formulario_socioeconomicos/js/script.js',
@@ -93,19 +95,16 @@ class Header
 
     private function renderResources()
     {
-        // Render CSS resources
         foreach ($this->cdnResources['css'] as $key => $resource) {
             $path = $this->useLocalResources ? $resource['local'] : $resource['cdn'];
             echo '<link id="' . $key . '" href="' . $path . '" rel="stylesheet">';
         }
 
-        // Render JS resources
         foreach ($this->cdnResources['js'] as $key => $resource) {
             $path = $this->useLocalResources ? $resource['local'] : $resource['cdn'];
             echo '<script id="' . $key . '" src="' . $path . '"></script>';
         }
 
-        // Render additional local resources
         foreach ($this->localResources['css'] as $css) {
             echo '<link href="' . $css . '" rel="stylesheet">';
         }
@@ -126,11 +125,9 @@ class Header
 
         $this->renderResources();
 
-        // Rest of the render method remains the same
         echo '</head>';
         echo '<body class="d-flex flex-column min-vh-100 bg-light">';
 
-        // Add the logos header here
         echo '<!--LOGOTIPOS-->
         <header class="fixed-top" style="background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity));">
             <section id="topbar" class="d-flex align-items-center">

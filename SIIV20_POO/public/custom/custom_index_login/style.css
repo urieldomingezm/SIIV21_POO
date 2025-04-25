@@ -135,3 +135,16 @@
         border-radius: 12px;
     }
 }
+
+/* tipografias y body */
+
+@font-face {
+    font-family: 'Montserrat Black';
+    src: url('/public/assets/tipografia/Montserrat-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  body {
+    font-family: 'Montserrat Black', sans-serif;
+  }
