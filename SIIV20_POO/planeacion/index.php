@@ -8,7 +8,7 @@ $header->render();
 ?>
 
 
-<main class="mt-5 mb-5">
+<main class="mt-2 mb-5">
     <div class="container">
         <div class="row justify-content-center align-items-center min-vh-75">
             <div class="col-md-6 col-lg-5">

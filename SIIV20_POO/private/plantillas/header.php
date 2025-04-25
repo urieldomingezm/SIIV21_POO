@@ -77,18 +77,20 @@ class Header
         // Additional local custom resources
         $this->localResources = [
             'css' => [
-                // estilos de menu responsivo
+                // ESTILOS GENERALES PARA TODOS LOS MENUS
                 '/public/assets/custom/menu/style.css',
 
-                
                 // ASPIRANTES
                 '/public/assets/custom/aspirante/formulario_socioeconomicos/css/style.css',
             ],
             'js' => [
+                // JUST VALIDATE PARA FORMULARIO DE ASPIRANTES, ALUMNOS, PLANEACION Y PERSONAL 
+                '/public/assets/custom/alumnos/just-validate/script.js',
+                '/public/assets/custom/aspirante/just-validate/script.js',
+                '/public/assets/custom/personal/just-validate/script.js',
+                '/public/assets/custom/planeacion/just-validate/script.js',
 
-                // JUST VALIDATE PARA FORMULARIO DE ASPIRANTES, ALUMNOS Y PERSONAL 
-                
-                // ASPIRANTES
+                // CAPTURA DE DATOS SOCIOECONOMICOS ASPIRANTES (MUTI FORMULARIO)
                 '/public/assets/custom/aspirante/formulario_socioeconomicos/js/script.js',
              ]
         ];
