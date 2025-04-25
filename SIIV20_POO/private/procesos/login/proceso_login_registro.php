@@ -209,6 +209,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['form_type']) && $_POST
 // login alumno login handler
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['form_type']) && $_POST['form_type'] === 'alumno_login') {
     try {
+        // Verificar el token CSRF
+        if (!isset($_POST['csrf_token']) || !hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
+            throw new Exception('Token de seguridad inválido');
+        }
+
         if (empty($_POST['alumno_numero_control']) || empty($_POST['alumno_password'])) {
             throw new Exception('Número de control y NIP son requeridos');
         }
