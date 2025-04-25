@@ -28,7 +28,7 @@ define('DATOS_SOCIOECONOMICOS_PATH', ROOT_PATH.'modulo/aspirante/');
 define('DATOS_PATH', ROOT_PATH.'modulo/aspirante/datos_socioeconomicos/');
 
 // Asset paths
-define('CUSTOM_INDEX_LOGIN', PUBLIC_PATH.'custom/custom_index_login/');
+define('CUSTOM_INDEX_LOGIN', PUBLIC_PATH.'assets/custom/custom_index_login/');
 
 ?>
 

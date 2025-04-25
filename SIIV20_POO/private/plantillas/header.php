@@ -31,45 +31,45 @@ class Header
             'css' => [
                 'bootstrap' => [
                     'cdn' => 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css',
-                    'local' => '/public/framework/boostrap/bootstrap/css/bootstrap.min.css'
+                    'local' => '/public/assets/framework/boostrap/bootstrap/css/bootstrap.min.css'
                 ],
                 'bootstrap-icons' => [
                     'cdn' => 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css',
-                    'local' => '/public/framework/boostrap/bootstrap-icons/bootstrap-icons.css'
+                    'local' => '/public/assets/framework/boostrap/bootstrap-icons/bootstrap-icons.css'
                 ],
                 'boxicons' => [
                     'cdn' => 'https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css',
-                    'local' => '/public/framework/boostrap/boxicons/css/boxicons.min.css'
+                    'local' => '/public/assets/framework/boostrap/boxicons/css/boxicons.min.css'
                 ],
                 'simple-datatables' => [
                     'cdn' => 'https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css',
-                    'local' => '/public/framework/simple-datatables/simple-datatables.css'
+                    'local' => '/public/assets/framework/simple-datatables/simple-datatables.css'
                 ]
             ],
             'js' => [
                 'bootstrap' => [
                     'cdn' => 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js',
-                    'local' => '/public/framework/boostrap/bootstrap/js/bootstrap.bundle.min.js'
+                    'local' => '/public/assets/framework/boostrap/bootstrap/js/bootstrap.bundle.min.js'
                 ],
                 'jspdf' => [
                     'cdn' => 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js',
-                    'local' => '/public/framework/pdf/jspdf.umd.min.js'
+                    'local' => '/public/assets/framework/pdf/jspdf.umd.min.js'
                 ],
                 'xlsx' => [
                     'cdn' => 'https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js',
-                    'local' => '/public/framework/excel/xlsx.full.min.js'
+                    'local' => '/public/assets/framework/excel/xlsx.full.min.js'
                 ],
                 'just-validate' => [
                     'cdn' => 'https://unpkg.com/just-validate@latest/dist/just-validate.production.min.js',
-                    'local' => '/public/framework/just_validate/just-validate.production.min.js'
+                    'local' => '/public/assets/framework/just_validate/just-validate.production.min.js'
                 ],
                 'simple-datatables' => [
                     'cdn' => 'https://cdn.jsdelivr.net/npm/simple-datatables@latest',
-                    'local' => '/public/framework/simple-datatables/simple-datatables.js'
+                    'local' => '/public/assets/framework/simple-datatables/simple-datatables.js'
                 ],
                 'chart' => [
                     'cdn' => 'https://cdn.jsdelivr.net/npm/chart.js',
-                    'local' => '/public/framework/chart/chart.js'
+                    'local' => '/public/assets/framework/chart/chart.js'
                 ]
             ]
         ];
@@ -78,17 +78,18 @@ class Header
         $this->localResources = [
             'css' => [
                 // estilos de menu responsivo
-                '/public/custom/menu/style.css',
+                '/public/assets/custom/menu/style.css',
 
+                
                 // ASPIRANTES
-                '/public/custom/aspirante/formulario_socioeconomicos/css/style.css',
+                '/public/assets/custom/aspirante/formulario_socioeconomicos/css/style.css',
             ],
             'js' => [
-                // '/public/static/data_table_simple/script.js',
-                // '/public/assets/js/char.js',
-            
+
+                // JUST VALIDATE PARA FORMULARIO DE ASPIRANTES, ALUMNOS Y PERSONAL 
+                
                 // ASPIRANTES
-                '/public/custom/aspirante/formulario_socioeconomicos/js/script.js',
+                '/public/assets/custom/aspirante/formulario_socioeconomicos/js/script.js',
              ]
         ];
     }
