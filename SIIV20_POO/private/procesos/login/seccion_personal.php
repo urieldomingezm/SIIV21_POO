@@ -4,7 +4,6 @@
         <input type="hidden" name="form_type" value="personal_login">
         <br>
         <div class="row justify-content-center">
-            <!-- Usuario -->
             <div class="col-lg-5 mb-4">
                 <label for="personal_usuario" class="form-label">USUARIO</label>
                 <input type="text" class="form-control form-control-lg"
@@ -12,7 +11,6 @@
                 <div class="invalid-feedback" style="display: block;"></div>
             </div>
 
-            <!-- Contraseña -->
             <div class="col-lg-3 mb-4">
                 <label for="personal_password" class="form-label">CONTRASEÑA</label>
                 <div class="d-flex align-items-center">
@@ -28,7 +26,6 @@
                 </div>
             </div>
 
-            <!-- CAPTCHA -->
             <div class="col-lg-4 mb-3">
                 <label for="personal_captcha" class="form-label">CAPTCHA</label>
                 <div class="d-flex align-items-center">

@@ -14,9 +14,7 @@
                             <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
                             <input type="hidden" name="form_type" value="aspirante_registro">
                             
-                            <!-- Información Personal -->
                             <div class="row g-2">
-                                <!-- Nombres y Apellidos -->
                                 <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                                     <div class="form-floating mb-2">
                                         <input type="text" class="form-control" id="primera_vez_nombre" name="primera_vez_nombre">
@@ -41,7 +39,6 @@
                                     </div>
                                 </div>
                             
-                                <!-- Fecha y Sexo -->
                                 <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                                     <div class="form-floating mb-2">
                                         <input type="date" class="form-control" id="primera_vez_fecha_nacimiento" name="primera_vez_fecha_nacimiento" value="2003-01-01">
@@ -62,7 +59,6 @@
                                     </div>
                                 </div>
                             
-                                <!-- Estado -->
                                 <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                                     <div class="form-floating mb-2">
                                         <select class="form-select" id="primera_vez_entidad" name="primera_vez_entidad">
@@ -128,7 +124,6 @@
                                     </div>
                                 </div>
                             
-                                <!-- CAPTCHA -->
                                 <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                                     <div class="form-floating mb-2">
                                         <div class="input-group">
@@ -144,7 +139,6 @@
                                 </div>
                             </div>
                             
-                            <!-- Botones -->
                             <div class="d-flex justify-content-center gap-2 mt-3">
                                 <button type="button" id="vaciar_aspirantes_registrados" class="btn btn-secondary">Vaciar</button>
                                 <button type="submit" class="btn btn-primary">Registrarse</button>
