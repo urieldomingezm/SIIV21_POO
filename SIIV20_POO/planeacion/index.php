@@ -2,11 +2,17 @@
 session_start();
 require_once($_SERVER['DOCUMENT_ROOT'] . '/config.php');
 require_once(TEMPLATES_PATH . 'header.php');
+require_once(LOGIN_PATH . 'login_personal.php');
+
+// Verificar si ya hay una sesión activa
+if (isset($_SESSION['user_type']) && $_SESSION['user_type'] === 'personal') {
+    header('Location: /modulo/personal/');
+    exit;
+}
 
 $header = new Header("Login - SIIV");
 $header->render();
 ?>
-
 
 <main class="mt-2 mb-5">
     <div class="container">
@@ -18,7 +24,9 @@ $header->render();
                     </div>
                     <div class="card-body p-4">
                         <form method="POST">
-
+                            <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+                            <input type="hidden" name="form_type" value="personal_login">
+                            
                             <div class="mb-4">
                                 <label for="usuario" class="form-label">Usuario</label>
                                 <div class="input-group">
@@ -28,7 +36,7 @@ $header->render();
                                     <input type="text"
                                         class="form-control"
                                         id="usuario"
-                                        name="usuario"
+                                        name="personal_usuario"
                                         placeholder="Ingrese su usuario"
                                         required>
                                 </div>
@@ -43,14 +51,9 @@ $header->render();
                                     <input type="password"
                                         class="form-control"
                                         id="password"
-                                        name="password"
+                                        name="personal_password"
                                         placeholder="Ingrese su contraseña"
                                         required>
-                                    <button class="btn btn-outline-secondary"
-                                        type="button"
-                                        onclick="togglePasswordVisibility('password', this)">
-                                        <i class="bi bi-eye-slash"></i>
-                                    </button>
                                 </div>
                             </div>
 
@@ -66,21 +69,6 @@ $header->render();
         </div>
     </div>
 </main>
-
-<script>
-    function togglePasswordVisibility(inputId, button) {
-        const input = document.getElementById(inputId);
-        const icon = button.querySelector('i');
-
-        if (input.type === 'password') {
-            input.type = 'text';
-            icon.classList.replace('bi-eye-slash', 'bi-eye');
-        } else {
-            input.type = 'password';
-            icon.classList.replace('bi-eye', 'bi-eye-slash');
-        }
-    }
-</script>
 
 <?php
 require_once(TEMPLATES_PATH . 'footer.php');

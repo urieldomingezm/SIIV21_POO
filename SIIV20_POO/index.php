@@ -10,7 +10,7 @@ class LoginController {
 
     private function loadDependencies() {
         require_once($_SERVER['DOCUMENT_ROOT'] . '/config.php');
-        require_once(CONFIG_PATH . 'bd.php');
+        require_once(CONFIG_PATH . 'bd.php');        
         require_once(LOGIN_PATH. 'proceso_login_registro.php');
         require_once(TEMPLATES_PATH . 'header.php');
     }

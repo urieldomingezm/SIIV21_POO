@@ -24,6 +24,7 @@ define('MODALES_ASPIRANTES_PATH', PRIVATE_PATH.'modales/aspirantes/');
 define('MODALES_ALUMNOS_PATH', PRIVATE_PATH.'modales/alumnos/');
 define('MODALES_INICIO_SESSION_PATH', PRIVATE_PATH.'modal/modal_session_general/');
 
+
 // MODULOS DEL SISTEMA DE ASIPIRANTES
 define('DATOS_SOCIOECONOMICOS_PATH', ROOT_PATH.'modulo/aspirante/');
 define('DATOS_PATH', ROOT_PATH.'modulo/aspirante/datos_socioeconomicos/');

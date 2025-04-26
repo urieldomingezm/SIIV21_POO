@@ -84,11 +84,6 @@ class Header
                 '/public/assets/custom/aspirante/formulario_socioeconomicos/css/style.css',
             ],
             'js' => [
-                // JUST VALIDATE PARA FORMULARIO DE ASPIRANTES, ALUMNOS, PLANEACION Y PERSONAL 
-                '/public/assets/custom/alumnos/just-validate/script.js',
-                '/public/assets/custom/aspirante/just-validate/script.js',
-                '/public/assets/custom/personal/just-validate/script.js',
-                '/public/assets/custom/planeacion/just-validate/script.js',
 
                 // CAPTURA DE DATOS SOCIOECONOMICOS ASPIRANTES (MUTI FORMULARIO)
                 '/public/assets/custom/aspirante/formulario_socioeconomicos/js/script.js',

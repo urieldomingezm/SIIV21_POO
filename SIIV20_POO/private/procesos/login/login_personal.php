@@ -36,12 +36,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['form_type']) && $_POST
         $_SESSION['user_type'] = 'personal';
         $_SESSION['rol'] = $personal['personal_rol'];
 
+        // Modificar la redirección según el rol
+        $redirect_path = '';
+        switch ($personal['personal_rol']) {
+            case 'planeacion':
+                $redirect_path = '/planeacion/modulo/';
+                break;
+            default:
+                $redirect_path = '/modulo/personal/';
+        }
+
         $response = array(
             'status' => 'success',
             'title' => '¡Inicio de Sesión Exitoso!',
-            'message' => 'Redireccionando al panel de personal...',
+            'message' => 'Redireccionando al panel correspondiente...',
             'icon' => 'success',
-            'redirect' => '/modulo/'
+            'redirect' => $redirect_path
         );
         echo json_encode($response);
         exit;
