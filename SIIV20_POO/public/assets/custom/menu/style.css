@@ -63,12 +63,38 @@ header {
     right: 0;
     z-index: 1030;
     background-color: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 #topbar {
     height: 73px;
     display: flex;
     align-items: center;
+}
+
+/* Ajustar la navbar */
+.navbar {
+    position: fixed !important;
+    top: 73px; /* Altura del header */
+    left: 0;
+    right: 0;
+    z-index: 1020;
+    height: 48px; /* Altura del botón hamburguesa */
+    min-height: 48px; /* Asegurar altura mínima */
+    padding: 0 !important; /* Eliminar padding */
+    background-color: #1B396A;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.navbar-toggler {
+    height: 48px;
+    padding: 0.25rem 0.75rem;
+    margin: 0;
+}
+
+.navbar-container {
+    margin-top: 0;
+    height: 48px;
 }
 
 /* Ajustar el padding del body */
