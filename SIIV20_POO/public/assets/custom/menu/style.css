@@ -113,7 +113,7 @@ body {
 
 @media (max-width: 767px) {
     .sii-title::before {
-        content: "SII";
+        content: "SII | Aspirante";
         display: inline-block;
         visibility: visible;
         position: absolute;
