@@ -40,7 +40,7 @@ class NavigationMenu
                 'link' => '#',
                 'icon' => 'bi-printer',
                 'submenu' => array(
-                    array('text' => 'Solicitud de Ficha de Examen Selección', 'link' => '?page=imprimir-solicitud', 'icon' => 'bi-file-pdf'),
+                    array('text' => 'Ficha de Examen Selección', 'link' => '?page=imprimir-solicitud', 'icon' => 'bi-file-pdf'),
                     array('text' => 'Generar Ficha de Depósito', 'link' => '?page=generar-ficha-deposito', 'icon' => 'bi-cash')
                 )
             )
