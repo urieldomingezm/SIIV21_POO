@@ -177,6 +177,10 @@ class NavigationMenu
                     margin-left: 1rem;
                 }
             }
+
+            .dropdown-item {
+    color: white !important;
+}
         </style>";
     }
 }
