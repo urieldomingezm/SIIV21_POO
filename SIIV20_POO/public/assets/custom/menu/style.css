@@ -12,6 +12,9 @@
     background-color: #1B396A;
 }
 
+.dropdown-item {
+    color: white !important;
+}
 
 .dropdown-item:hover {
     background-color: #1B396A;
