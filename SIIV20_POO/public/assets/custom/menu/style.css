@@ -35,24 +35,45 @@
 /* Add these new styles */
 .navbar {
     position: fixed !important;
-    top: 73px; /* Height of the header */
+    top: 73px; /* Altura del header */
     left: 0;
     right: 0;
     z-index: 1020;
+    height: 48px; /* Altura del botón hamburguesa */
+    min-height: 48px; /* Asegurar altura mínima */
+    padding: 0 !important; /* Eliminar padding */
+}
+
+.navbar-toggler {
+    height: 48px;
+    padding: 0.25rem 0.75rem;
+    margin: 0;
 }
 
 .navbar-container {
     margin-top: 0;
+    height: 48px;
 }
 
-.dropdown-item {
-    color: #fff !important;
-    transition: all 0.3s ease;
+/* Ajustar el header para que se mantenga fijo */
+header {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1030;
+    background-color: white;
 }
 
-/* Add padding to body to prevent content from hiding under fixed navbar */
+#topbar {
+    height: 73px;
+    display: flex;
+    align-items: center;
+}
+
+/* Ajustar el padding del body */
 body {
-    padding-top: 160px; /* Combined height of header and navbar */
+    padding-top: 121px; /* 73px (header) + 48px (navbar) */
 }
 
 .offcanvas {
