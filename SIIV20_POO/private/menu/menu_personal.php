@@ -128,25 +128,36 @@ class NavigationMenu
 
     public function render()
     {
-        echo "<div class='navbar-container'>"; // Removido fixed-bottom para mejor adaptabilidad
-        echo "<nav class='navbar navbar-expand-lg text-white shadow-sm' style='background-color: #1B396A;'>
+        echo "<div class='navbar-container fixed-bottom'>";
+        echo "<nav class='navbar text-white shadow-sm' style='background-color: #1B396A;'>
                 <div class='container-fluid px-md-4'>
                     <div class='d-flex align-items-center text-white'>
                         <span class='sii-title d-none d-lg-inline'>{$this->SII}</span>
                         <span class='sii-title d-lg-none'>{$this->SII_short}</span>
                     </div>
-                    
-                    <button class='navbar-toggler bg-light' type='button' 
-                            data-bs-toggle='collapse' 
-                            data-bs-target='#navbarContent' 
-                            aria-controls='navbarContent' 
-                            aria-expanded='false' 
+                    <button class='navbar-toggler bg-light ms-auto' type='button' data-bs-toggle='offcanvas' 
+                            data-bs-target='#offcanvasNavbar' aria-controls='offcanvasNavbar' 
                             aria-label='Toggle navigation'>
                         <span class='navbar-toggler-icon'></span>
                     </button>
+                    <div class='offcanvas offcanvas-end text-white' tabindex='-1' id='offcanvasNavbar' 
+                         aria-labelledby='offcanvasNavbarLabel' style='background-color: #1B396A;'>
+                        <div class='d-flex align-items-center text-white'>
+                            <span class='sii-title d-none d-lg-inline'>{$this->SII}</span>
+                            <span class='sii-title d-lg-none'>{$this->SII_short}</span>
+                        </div>
+                        
+                        <button class='navbar-toggler bg-light' type='button' 
+                                data-bs-toggle='collapse' 
+                                data-bs-target='#navbarContent' 
+                                aria-controls='navbarContent' 
+                                aria-expanded='false' 
+                                aria-label='Toggle navigation'>
+                            <span class='navbar-toggler-icon'></span>
+                        </button>
 
-                    <div class='collapse navbar-collapse' id='navbarContent'>
-                        <ul class='navbar-nav me-auto mb-2 mb-lg-0'>";
+                        <div class='collapse navbar-collapse' id='navbarContent'>
+                            <ul class='navbar-nav me-auto mb-2 mb-lg-0'>";
 
         foreach ($this->menuItems as $item) {
             echo $this->renderMenuItem($item);
@@ -176,38 +187,15 @@ class NavigationMenu
             </nav>";
         echo "</div>";
 
-        // Agregar estilos CSS para mejor responsividad
+        // Estilos CSS para mejorar la responsividad del navbar
         echo "<style>
             .navbar-container {
                 width: 100%;
                 z-index: 1030;
             }
             
-            @media (max-width: 991.98px) {
-                .navbar-collapse {
-                    background-color: #1B396A;
-                    padding: 1rem;
-                    border-radius: 0.25rem;
-                    margin-top: 0.5rem;
-                }
-                
-                .dropdown-menu {
-                    background-color: rgba(255,255,255,0.1);
-                    border: none;
-                }
-                
-                .dropdown-item {
-                    color: white;
-                }
-                
-                .dropdown-item:hover {
-                    background-color: rgba(255,255,255,0.2);
-                    color: white;
-                }
-                
-                .form-control {
-                    margin-top: 1rem;
-                }
+            .navbar {
+                min-height: 60px;
             }
             
             .sii-title {
@@ -215,19 +203,19 @@ class NavigationMenu
                 font-weight: 500;
             }
             
-            .nav-link {
-                color: rgba(255,255,255,0.9) !important;
-                padding: 0.5rem 1rem;
+            @media (max-width: 768px) {
+                .navbar-toggler {
+                    position: relative;
+                    top: 0;
+                }
+                
+                .container-fluid {
+                    padding: 0.5rem 1rem;
+                }
             }
             
-            .nav-link:hover {
-                color: white !important;
-                background-color: rgba(255,255,255,0.1);
-                border-radius: 0.25rem;
-            }
-            
-            .dropdown-menu {
-                margin-top: 0.5rem;
+            .offcanvas {
+                max-width: 300px;
             }
         </style>";
     }
