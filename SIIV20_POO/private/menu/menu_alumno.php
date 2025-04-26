@@ -21,9 +21,10 @@ class NavigationMenu
         echo "<nav class='navbar text-white shadow-sm' style='background-color: #1B396A;'>
                 <div class='container-fluid px-md-4'>
                     <div class='d-flex align-items-center text-white'>
-                        <span class='sii-title'>{$this->SII}</span>
+                        <span class='sii-title d-none d-md-inline'>{$this->SII}</span>
+                        <span class='sii-title d-md-none'>{$this->SII_short}</span>
                     </div>
-                    <button class='navbar-toggler bg-light' type='button' data-bs-toggle='offcanvas' 
+                    <button class='navbar-toggler bg-light ms-auto' type='button' data-bs-toggle='offcanvas' 
                             data-bs-target='#offcanvasNavbar' aria-controls='offcanvasNavbar' 
                             aria-label='Toggle navigation'>
                         <span class='navbar-toggler-icon'></span>
@@ -68,6 +69,32 @@ class NavigationMenu
             </div>
             </nav>";
         echo "</div>";
+
+        echo "<style>
+            .navbar-container {
+                width: 100%;
+                z-index: 1030;
+            }
+            
+            .navbar {
+                min-height: 60px;
+            }
+            
+            .sii-title {
+                font-size: 1.1rem;
+                font-weight: 500;
+            }
+            
+            @media (max-width: 768px) {
+                .container-fluid {
+                    padding: 0.5rem 1rem;
+                }
+                
+                .navbar-toggler {
+                    margin-left: 1rem;
+                }
+            }
+        </style>";
     }
 
     private function initializeMenuItems()
