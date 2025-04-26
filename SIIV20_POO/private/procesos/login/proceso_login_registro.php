@@ -4,13 +4,15 @@ $database = new Database();
 $conn = $database->getConnection();
 
 if (!function_exists('password_hash')) {
-    function password_hash($password, $algo, $options = array()) {
+    function password_hash($password, $algo, $options = array())
+    {
         return crypt($password, '$2y$10$' . substr(str_replace('+', '.', base64_encode(openssl_random_pseudo_bytes(22))), 0, 22));
     }
 }
 
 if (!function_exists('password_verify')) {
-    function password_verify($password, $hash) {
+    function password_verify($password, $hash)
+    {
         return crypt($password, $hash) === $hash;
     }
 }
@@ -24,15 +26,17 @@ if (empty($_SESSION['csrf_token'])) {
     }
 }
 
-class CURPGenerator {
-    public function generate($apellido_paterno, $apellido_materno, $nombre, $fecha_nacimiento, $sexo, $entidad) {
+class CURPGenerator
+{
+    public function generate($apellido_paterno, $apellido_materno, $nombre, $fecha_nacimiento, $sexo, $entidad)
+    {
         $apellido_paterno = strtoupper(trim($apellido_paterno));
         $apellido_materno = strtoupper(trim($apellido_materno));
         $nombre = strtoupper(trim($nombre));
         $curp = substr($apellido_paterno, 0, 1);
         $vocales = preg_replace('/[^AEIOU]/', '', substr($apellido_paterno, 1));
         $curp .= substr($vocales, 0, 1);
-        $curp .= substr($apellido_materno, 0, 1);  
+        $curp .= substr($apellido_materno, 0, 1);
         $curp .= substr($nombre, 0, 1);
         $fecha = new DateTime($fecha_nacimiento);
         $curp .= $fecha->format('ymd');
@@ -43,8 +47,9 @@ class CURPGenerator {
         $curp .= $this->getPrimeraConsonante(substr($nombre, 1));
         return $curp;
     }
-    
-    private function getPrimeraConsonante($texto) {
+
+    private function getPrimeraConsonante($texto)
+    {
         $consonantes = preg_replace('/[AEIOU\s]/', '', $texto);
         return substr($consonantes, 0, 1);
     }
@@ -55,7 +60,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['form_type']) && $_POST
     try {
         // Polyfill for hash_equals for PHP < 5.6
         if (!function_exists('hash_equals')) {
-            function hash_equals($str1, $str2) {
+            function hash_equals($str1, $str2)
+            {
                 if (strlen($str1) != strlen($str2)) {
                     return false;
                 } else {
@@ -68,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['form_type']) && $_POST
                 }
             }
         }
-        
+
         if (!isset($_POST['csrf_token']) || !hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
             throw new Exception('Invalid CSRF token');
         }
@@ -122,7 +128,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['form_type']) && $_POST
             :fecha_nacimiento, :sexo, :curp, :celular,
             :email, :nip, NOW()
         )";
-    
+
         $stmt = $conn->prepare($query);
         $params = array(
             ':apellido_paterno' => strtoupper($_POST['primera_vez_apellido_paterno']),
@@ -141,13 +147,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['form_type']) && $_POST
             'status' => 'success',
             'title' => '¡Registro Exitoso!',
             'message' => "Tu registro se ha completado correctamente.<br><br>" .
-                        "<strong>Tu NIP es: " . $nip . "</strong><br><br>" .
-                        "Por favor, guarda este NIP en un lugar seguro. Lo necesitarás para iniciar sesión.",
+                "<strong>Tu NIP es: " . $nip . "</strong><br><br>" .
+                "Por favor, guarda este NIP en un lugar seguro. Lo necesitarás para iniciar sesión.",
             'icon' => 'success'
         );
         echo json_encode($response);
         exit;
-
     } catch (Exception $e) {
         $response = array(
             'status' => 'error',
@@ -160,171 +165,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['form_type']) && $_POST
     }
 }
 
-// login aspirante login handler
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['form_type']) && $_POST['form_type'] === 'aspirante_login') {
-    try {
-        if (empty($_POST['iniciar_session_aspirante_curp']) || empty($_POST['iniciar_session_aspirante_password'])) {
-            throw new Exception('CURP y NIP son requeridos');
-        }
-
-        $curp = strtoupper(trim($_POST['iniciar_session_aspirante_curp']));
-        $nip = $_POST['iniciar_session_aspirante_password'];
-
-        $query = "SELECT aspirante_id, aspirante_curp, aspirante_nip FROM aspirantes WHERE aspirante_curp = :curp";
-        $stmt = $conn->prepare($query);
-        $stmt->execute(array(':curp' => $curp));
-        $aspirante = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if (!$aspirante || !password_verify($nip, $aspirante['aspirante_nip'])) {
-            throw new Exception('CURP o NIP incorrectos');
-        }
-
-        $_SESSION['aspirante_id'] = $aspirante['aspirante_id'];
-        $_SESSION['aspirante_curp'] = $aspirante['aspirante_curp'];
-        $_SESSION['user_type'] = 'aspirante';
-
-        $response = array(
-            'status' => 'success',
-            'title' => '¡Inicio de Sesión Exitoso!',
-            'message' => 'Redireccionando al panel de aspirante...',
-            'icon' => 'success',
-            'redirect' => '/modulo/'
-        );
-        echo json_encode($response);
-        exit;
-
-    } catch (Exception $e) {
-        $response = array(
-            'status' => 'error',
-            'title' => 'Error de Inicio de Sesión',
-            'message' => htmlspecialchars($e->getMessage()),
-            'icon' => 'error'
-        );
-        echo json_encode($response);
-        exit;
-    }
-}
-
-
-// login alumno login handler
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['form_type']) && $_POST['form_type'] === 'alumno_login') {
-    try {
-        // Verificar el token CSRF
-        if (!isset($_POST['csrf_token']) || !hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
-            throw new Exception('Token de seguridad inválido');
-        }
-
-        if (empty($_POST['alumno_numero_control']) || empty($_POST['alumno_password'])) {
-            throw new Exception('Número de control y NIP son requeridos');
-        }
-
-        $numero_control = trim($_POST['alumno_numero_control']);
-        $password = $_POST['alumno_password'];
-
-        $query = "SELECT alumno_id, alumno_numero_control, alumno_password, alumno_rol 
-                 FROM alumnos 
-                 WHERE alumno_numero_control = :numero_control";
-        $stmt = $conn->prepare($query);
-        $stmt->execute(array(':numero_control' => $numero_control));
-        $alumno = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if (!$alumno) {
-            throw new Exception('Número de control o NIP incorrectos');
-        }
-
-        if (!password_verify($password, $alumno['alumno_password'])) {
-            throw new Exception('Número de control o NIP incorrectos');
-        }
-
-        $update_query = "UPDATE alumnos SET alumno_ultimo_acceso = NOW() WHERE alumno_id = :id";
-        $stmt = $conn->prepare($update_query);
-        $stmt->execute(array(':id' => $alumno['alumno_id']));
-
-        $_SESSION['user_id'] = $alumno['alumno_id'];
-        $_SESSION['numero_control'] = $alumno['alumno_numero_control'];
-        $_SESSION['user_type'] = 'alumno';
-        $_SESSION['rol'] = $alumno['alumno_rol'];
-
-        $response = array(
-            'status' => 'success',
-            'title' => '¡Inicio de Sesión Exitoso!',
-            'message' => 'Redireccionando al panel de alumno...',
-            'icon' => 'success',
-            'redirect' => '/modulo/'
-        );
-        echo json_encode($response);
-        exit;
-
-    } catch (Exception $e) {
-        $response = array(
-            'status' => 'error',
-            'title' => 'Error de Inicio de Sesión',
-            'message' => htmlspecialchars($e->getMessage()),
-            'icon' => 'error'
-        );
-        echo json_encode($response);
-        exit;
-    }
-}
-
-// login personal login handler
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['form_type']) && $_POST['form_type'] === 'personal_login') {
-    try {
-        if (empty($_POST['personal_usuario']) || empty($_POST['personal_password'])) {
-            throw new Exception('Usuario y contraseña son requeridos');
-        }
-
-        $usuario = trim($_POST['personal_usuario']);
-        $password = $_POST['personal_password'];
-
-        $query = "SELECT personal_id, personal_usuario, personal_password, personal_rol, personal_activo 
-                 FROM personal 
-                 WHERE personal_usuario = :usuario";
-        $stmt = $conn->prepare($query);
-        $stmt->execute(array(':usuario' => $usuario));
-        $personal = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if (!$personal) {
-            throw new Exception('Usuario o contraseña incorrectos');
-        }
-
-        if (!$personal['personal_activo']) {
-            throw new Exception('Usuario inactivo. Contacte al administrador.');
-        }
-
-        if (!password_verify($password, $personal['personal_password'])) {
-            throw new Exception('Usuario o contraseña incorrectos');
-        }
-
-        $update_query = "UPDATE personal SET personal_ultimo_acceso = NOW() WHERE personal_id = :id";
-        $stmt = $conn->prepare($update_query);
-        $stmt->execute(array(':id' => $personal['personal_id']));
-
-        // In the personal login handler section
-        $_SESSION['user_id'] = $personal['personal_id'];
-        $_SESSION['personal_usuario'] = $personal['personal_usuario']; // Changed from 'usuario' to 'personal_usuario'
-        $_SESSION['user_type'] = 'personal';
-        $_SESSION['rol'] = $personal['personal_rol'];
-
-        $response = array(
-            'status' => 'success',
-            'title' => '¡Inicio de Sesión Exitoso!',
-            'message' => 'Redireccionando al panel de personal...',
-            'icon' => 'success',
-            'redirect' => '/modulo/'
-        );
-        echo json_encode($response);
-        exit;
-
-    } catch (Exception $e) {
-        $response = array(
-            'status' => 'error',
-            'title' => 'Error de Inicio de Sesión',
-            'message' => htmlspecialchars($e->getMessage()),
-            'icon' => 'error'
-        );
-        echo json_encode($response);
-        exit;
-    }
-}
-?>
+require_once('login_aspirante.php');
+require_once('login_alumno.php');
+require_once('login_personal.php');
