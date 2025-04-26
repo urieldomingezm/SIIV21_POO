@@ -132,8 +132,8 @@ class NavigationMenu
         echo "<nav class='navbar text-white shadow-sm' style='background-color: #1B396A;'>
                 <div class='container-fluid px-md-4'>
                     <div class='d-flex align-items-center text-white'>
-                        <span class='sii-title d-none d-lg-inline'>{$this->SII}</span>
-                        <span class='sii-title d-lg-none'>{$this->SII_short}</span>
+                        <span class='sii-title d-none d-md-inline'>{$this->SII}</span>
+                        <span class='sii-title d-md-none'>{$this->SII_short}</span>
                     </div>
                     <button class='navbar-toggler bg-light ms-auto' type='button' data-bs-toggle='offcanvas' 
                             data-bs-target='#offcanvasNavbar' aria-controls='offcanvasNavbar' 
@@ -142,22 +142,15 @@ class NavigationMenu
                     </button>
                     <div class='offcanvas offcanvas-end text-white' tabindex='-1' id='offcanvasNavbar' 
                          aria-labelledby='offcanvasNavbarLabel' style='background-color: #1B396A;'>
-                        <div class='d-flex align-items-center text-white'>
-                            <span class='sii-title d-none d-lg-inline'>{$this->SII}</span>
-                            <span class='sii-title d-lg-none'>{$this->SII_short}</span>
+                        <div class='offcanvas-header'>
+                            <h5 class='offcanvas-title text-white' id='offcanvasNavbarLabel'>
+                                {$this->brand}
+                            </h5>
+                            <button type='button' class='btn-close btn-close-white' data-bs-dismiss='offcanvas' 
+                                    aria-label='Close'></button>
                         </div>
-                        
-                        <button class='navbar-toggler bg-light' type='button' 
-                                data-bs-toggle='collapse' 
-                                data-bs-target='#navbarContent' 
-                                aria-controls='navbarContent' 
-                                aria-expanded='false' 
-                                aria-label='Toggle navigation'>
-                            <span class='navbar-toggler-icon'></span>
-                        </button>
-
-                        <div class='collapse navbar-collapse' id='navbarContent'>
-                            <ul class='navbar-nav me-auto mb-2 mb-lg-0'>";
+                        <div class='offcanvas-body'>
+                            <ul class='navbar-nav justify-content-end flex-grow-1 pe-3'>";
 
         foreach ($this->menuItems as $item) {
             echo $this->renderMenuItem($item);
@@ -173,21 +166,22 @@ class NavigationMenu
                 </ul>
               </li>
             </ul>
-            
-            <form class='d-flex' role='search'>
-                <div class='input-group'>
-                    <input class='form-control' type='search' placeholder='Buscar' aria-label='Search'>
-                    <button class='btn btn-light' type='submit'>
-                        <i class='bi bi-search'></i>
-                    </button>
-                </div>
+            <br>
+            <form class='d-flex ms-1' role='search'>
+                <input class='form-control me-2 bg-light text-dark' 
+                       type='search' 
+                       placeholder='Buscar' 
+                       aria-label='Search' >
+                <button class='btn btn-light' type='submit'>
+                    <i class='bi bi-search'></i>
+                </button>
             </form>
+            </div>
             </div>
             </div>
             </nav>";
         echo "</div>";
 
-        // Estilos CSS para mejorar la responsividad del navbar
         echo "<style>
             .navbar-container {
                 width: 100%;
@@ -204,18 +198,13 @@ class NavigationMenu
             }
             
             @media (max-width: 768px) {
-                .navbar-toggler {
-                    position: relative;
-                    top: 0;
-                }
-                
                 .container-fluid {
                     padding: 0.5rem 1rem;
                 }
-            }
-            
-            .offcanvas {
-                max-width: 300px;
+                
+                .navbar-toggler {
+                    margin-left: 1rem;
+                }
             }
         </style>";
     }
