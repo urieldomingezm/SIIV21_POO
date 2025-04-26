@@ -56,7 +56,6 @@
 }
 
 /* Ajustar el header para que se mantenga fijo */
-/* Estilos base para el header y navbar */
 header {
     position: fixed !important;
     top: 0;
@@ -65,58 +64,26 @@ header {
     z-index: 1030;
     background-color: white;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    width: 100%;
 }
 
 #topbar {
     height: 73px;
     display: flex;
     align-items: center;
-    background-color: white;
 }
 
+/* Ajustar la navbar */
 .navbar {
     position: fixed !important;
-    top: 73px;
+    top: 73px; /* Altura del header */
     left: 0;
     right: 0;
-    z-index: 1029;
-    height: 48px;
-    min-height: 48px;
-    padding: 0 !important;
+    z-index: 1020;
+    height: 48px; /* Altura del botón hamburguesa */
+    min-height: 48px; /* Asegurar altura mínima */
+    padding: 0 !important; /* Eliminar padding */
     background-color: #1B396A;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    width: 100%;
-    transform: translateZ(0);
-    -webkit-transform: translateZ(0);
-}
-
-/* Ajustes para dispositivos móviles */
-@media (max-width: 767px) {
-    body {
-        padding-top: 121px;
-        overflow-x: hidden;
-    }
-
-    .navbar, header {
-        -webkit-backface-visibility: hidden;
-        backface-visibility: hidden;
-        will-change: transform;
-    }
-
-    .navbar-container {
-        position: fixed;
-        width: 100%;
-        z-index: 1029;
-    }
-
-    .container-fluid {
-        padding: 0 0.5rem !important;
-    }
-    
-    .offcanvas {
-        top: 121px;
-    }
 }
 
 .navbar-toggler {
