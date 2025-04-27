@@ -130,12 +130,22 @@ body {
     position: absolute;
 }
 
-/* Para el menú de Personal */
-.menu-personal .sii-title::before {
-    content: "SII | Personal";
-    display: inline-block;
+/* Responsive SII title para Personal */
+.menu-personal {
     visibility: visible;
-    position: absolute;
+}
+
+@media (max-width: 767px) {
+    .menu-personal::before {
+        content: "SII | Personal";
+        display: inline-block;
+        visibility: visible;
+        position: absolute;
+    }
+
+    .menu-personal {
+        visibility: hidden;
+    }
 }
 
 @media (max-width: 767px) {
