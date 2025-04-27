@@ -114,37 +114,15 @@ body {
     visibility: visible;
 }
 
-/* Para el menú de Aspirante */
-.menu-aspirante .sii-title::before {
-    content: "SII | Aspirante";
-    display: inline-block;
-    visibility: visible;
-    position: absolute;
-}
-
-/* Para el menú de Alumno */
-.menu-alumno .sii-title::before {
-    content: "SII | Alumno";
-    display: inline-block;
-    visibility: visible;
-    position: absolute;
-}
-
-/* Responsive SII title para Personal */
-.menu-personal {
-    visibility: visible;
-}
-
 @media (max-width: 767px) {
-    .menu-personal::before {
-        content: "SII | Personal";
+    .sii-title::before {
+        content: "SII | Aspirante";
         display: inline-block;
         visibility: visible;
         position: absolute;
-        color: white;
     }
 
-    .menu-personal {
+    .sii-title {
         visibility: hidden;
     }
 
@@ -154,8 +132,21 @@ body {
     }
 }
 
+
+/* Responsive SII title */
+.SII-MENU-PERSONAL {
+    visibility: visible;
+}
+
 @media (max-width: 767px) {
-    .sii-title {
+    .SII-MENU-PERSONAL::before {
+        content: "SII | Personal";
+        display: inline-block;
+        visibility: visible;
+        position: absolute;
+    }
+
+    .SII-MENU-PERSONAL {
         visibility: hidden;
     }
 
