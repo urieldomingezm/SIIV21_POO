@@ -62,16 +62,29 @@ function togglePasswordVisibility(inputId, button) {
       const captchaCode = form.dataset.captchaCode;
       
       if (!userCaptcha || userCaptcha !== captchaCode) {
+          // Asegurarse de que cualquier modal previo esté cerrado
+          const existingModal = bootstrap.Modal.getInstance(document.getElementById('registroModal'));
+          if (existingModal) {
+              existingModal.dispose();
+          }
+          
           showModalMessage('Error de CAPTCHA', 'Por favor ingrese el código CAPTCHA correctamente', 'error');
-          generateCaptcha(formId); // Regenerate CAPTCHA on error
+          generateCaptcha(formId);
           return false;
       }
       return true;
   }
   
   function showModalMessage(title, message, status) {
+      const modalElement = document.getElementById('registroModal');
       const modalTitle = document.getElementById('registroModalLabel');
       const modalBody = document.getElementById('modal-body-content');
+      
+      // Limpiar cualquier instancia previa del modal
+      const existingModal = bootstrap.Modal.getInstance(modalElement);
+      if (existingModal) {
+          existingModal.dispose();
+      }
       
       modalTitle.textContent = title;
       modalBody.innerHTML = message;
@@ -84,7 +97,22 @@ function togglePasswordVisibility(inputId, button) {
           modalBody.classList.remove('text-success');
       }
       
-      const modal = new bootstrap.Modal(document.getElementById('registroModal'));
+      // Crear nueva instancia del modal
+      const modal = new bootstrap.Modal(modalElement, {
+          backdrop: 'static',
+          keyboard: false
+      });
+      
+      // Agregar evento para limpiar el modal cuando se cierre
+      modalElement.addEventListener('hidden.bs.modal', function () {
+          modal.dispose();
+          // Remover el backdrop manualmente si aún existe
+          const backdrops = document.getElementsByClassName('modal-backdrop');
+          while(backdrops.length > 0) {
+              backdrops[0].remove();
+          }
+      }, { once: true });
+      
       modal.show();
   }
 

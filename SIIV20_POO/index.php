@@ -64,6 +64,7 @@ class LoginController {
                 <div class="modal-content">
                     <div class="modal-header bg-primary">
                         <h5 class="modal-title text-white" id="registroModalLabel">Registro de Aspirante</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div id="modal-body-content" class="text-black"></div>
