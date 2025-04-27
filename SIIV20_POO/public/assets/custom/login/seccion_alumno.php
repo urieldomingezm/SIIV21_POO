@@ -59,7 +59,14 @@
         lockForm: true,
         tooltip: {
             position: 'top',
+            showOnFocus: true,
+            hideOnBlur: true,
+            style: {
+                fontSize: window.innerWidth < 768 ? '12px' : '14px',
+                padding: window.innerWidth < 768 ? '5px 10px' : '8px 16px'
+            }
         },
+        validateBeforeSubmitting: true
     });
 
     // Verificar el token CSRF
