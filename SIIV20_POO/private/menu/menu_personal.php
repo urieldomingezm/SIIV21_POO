@@ -12,7 +12,7 @@ class NavigationMenu
     {
         $this->brand = 'Menu principal';
         $this->SII = 'Sistema integral de la información | Personal';
-        $this->SII_short = 'SII';
+        $this->SII_short = 'SII | Personal';
         $this->initializeMenuItems();
         $this->dropdownItems = array(
             array('text' => 'Cerrar Sesión', 'link' => '?page=logout', 'icon' => 'bi-box-arrow-right')
