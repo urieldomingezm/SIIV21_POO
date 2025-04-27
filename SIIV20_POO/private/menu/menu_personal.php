@@ -132,7 +132,7 @@ class NavigationMenu
         echo "<nav class='navbar text-white shadow-sm' style='background-color: #1B396A;'>
                 <div class='container-fluid px-md-4'>
                     <div class='d-flex align-items-center text-white'>
-                        <span class='menu-personal d-none d-md-inline'>{$this->SII}</span>
+                        <span class='menu-personal'>{$this->SII}</span>
                         <span class='menu-personal d-md-none'>{$this->SII_short}</span>
                     </div>
                     <button class='navbar-toggler bg-light ms-auto' type='button' data-bs-toggle='offcanvas' 

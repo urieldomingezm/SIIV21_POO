@@ -141,10 +141,16 @@ body {
         display: inline-block;
         visibility: visible;
         position: absolute;
+        color: white;
     }
 
     .menu-personal {
         visibility: hidden;
+    }
+
+    .navbar-container {
+        overflow-x: hidden;
+        width: 100%;
     }
 }
 
