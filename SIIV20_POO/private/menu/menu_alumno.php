@@ -3,7 +3,7 @@ class NavigationMenu
 {
     private $brand = 'Menu principal';
     private $SII = 'Sistema integral de la información | Alumno';
-    private $SII_short = 'SII';
+    private $SII_short = 'SII | Alumno';
     private $menuItems = [];
     private $dropdownItems = [];
 
@@ -21,8 +21,8 @@ class NavigationMenu
         echo "<nav class='navbar text-white shadow-sm' style='background-color: #1B396A;'>
                 <div class='container-fluid px-md-4'>
                     <div class='d-flex align-items-center text-white'>
-                        <span class='sii-title d-none d-md-inline'>{$this->SII}</span>
-                        <span class='sii-title d-md-none'>{$this->SII_short}</span>
+                        <span class='SII-MENU-ALUMNO d-none d-md-inline'>{$this->SII}</span>
+                        <span class='SII-MENU-ALUMNO d-md-none'>{$this->SII_short}</span>
                     </div>
                     <button class='navbar-toggler bg-light ms-auto' type='button' data-bs-toggle='offcanvas' 
                             data-bs-target='#offcanvasNavbar' aria-controls='offcanvasNavbar' 

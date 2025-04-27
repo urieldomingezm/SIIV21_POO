@@ -134,19 +134,42 @@ body {
 
 
 /* Responsive SII title */
-.SII-MENU-PERSONAL {
+.SII-MENU-ALUMNO {
     visibility: visible;
 }
 
 @media (max-width: 767px) {
-    .SII-MENU-PERSONAL::before {
-        content: "SII | Personal";
+    .SII-MENU-ALUMNO::before {
+        content: "SII | ALUMNO";
         display: inline-block;
         visibility: visible;
         position: absolute;
     }
 
-    .SII-MENU-PERSONAL {
+    .SII-MENU-ALUMNO {
+        visibility: hidden;
+    }
+
+    .navbar-container {
+        overflow-x: hidden;
+        width: 100%;
+    }
+}
+
+/* Responsive SII title menu alumno */
+.SII-MENU-ALUMNO {
+    visibility: visible;
+}
+
+@media (max-width: 767px) {
+    .SII-MENU-ALUMNO::before {
+        content: "SII | ALUMNO";
+        display: inline-block;
+        visibility: visible;
+        position: absolute;
+    }
+
+    .SII-MENU-ALUMNO {
         visibility: hidden;
     }
 
