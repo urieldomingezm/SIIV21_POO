@@ -85,17 +85,8 @@
             {
                 rule: 'minLength',
                 value: 8,
-                errorMessage: 'El número de control debe tener 8 caracteres'
+                errorMessage: 'Se requieren 8 caracteres'
             },
-            {
-                rule: 'maxLength',
-                value: 8,
-                errorMessage: 'El número de control debe tener 8 caracteres'
-            },
-            {
-                rule: 'number',
-                errorMessage: 'El número de control debe contener solo números'
-            }
         ])
         .addField('#alumno_password', [
             {
