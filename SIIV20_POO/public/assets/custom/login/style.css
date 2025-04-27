@@ -7,26 +7,36 @@
 }
 
 .accordion-demo {
+    margin: -1.1rem 0;
+    padding: 2rem 0;
     overflow-x: hidden; /* Previene el scroll horizontal */
-    width: 100%;
-    padding: 0 15px; /* Agrega padding horizontal para evitar que el contenido toque los bordes */
 }
 
 .tabs {
     display: flex;
     width: 100%;
-    justify-content: center; /* Centra los tabs horizontalmente */
-    gap: 0.75rem;
-    margin: 0 auto; /* Centra el contenedor de tabs */
-    max-width: 800px; /* Ancho máximo para mejor legibilidad */
-    padding: 0 15px; /* Padding para evitar que toque los bordes */
+    gap: 0.5rem;
+    position: relative;
+    z-index: 2;
+    justify-content: center; /* Centra los tabs */
+    max-width: 800px; /* Limita el ancho máximo */
+    margin: 0 auto; /* Centra el contenedor */
 }
 
 .tabs dd {
-    flex: 0 1 auto; /* Cambiado de flex: 1 para que los tabs no se estiren */
-    min-width: 150px; /* Ancho mínimo para cada tab */
+    background: #f7fcff;
+    border: 2px solid #1B396A;
+    display: block;
+    flex: 0 1 auto; /* Evita que los tabs se estiren */
+    padding-top: 1rem;
     text-align: center;
-    margin: 0 5px; /* Espaciado uniforme entre tabs */
+    transition: all 0.3s ease;
+    border-radius: 8px 8px 0 0;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: -2px;
+    cursor: pointer;
+    min-width: 150px; /* Ancho mínimo para cada tab */
 }
 
 @media (max-width: 855px) {
