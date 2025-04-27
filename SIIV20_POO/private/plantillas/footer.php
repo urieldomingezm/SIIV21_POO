@@ -112,8 +112,6 @@ class Footer {
         echo '<span class="text-body-primary text-white"><strong>' . $this->copyright . '</strong></span>';
         echo '<a class="prueba" href="' . $this->instituteUrl . '"><strong><span>' . $this->instituteName . '</span></strong></a>';
         echo '<br>';
-        echo '<span class="text-white">SII Versión 21</span>';
-        echo '<br>';
         echo '</div>';
         echo '</footer>';
 

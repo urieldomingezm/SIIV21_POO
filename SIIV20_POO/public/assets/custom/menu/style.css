@@ -114,14 +114,31 @@ body {
     visibility: visible;
 }
 
-@media (max-width: 767px) {
-    .sii-title::before {
-        content: "SII | Aspirante";
-        display: inline-block;
-        visibility: visible;
-        position: absolute;
-    }
+/* Para el menú de Aspirante */
+.menu-aspirante .sii-title::before {
+    content: "SII | Aspirante";
+    display: inline-block;
+    visibility: visible;
+    position: absolute;
+}
 
+/* Para el menú de Alumno */
+.menu-alumno .sii-title::before {
+    content: "SII | Alumno";
+    display: inline-block;
+    visibility: visible;
+    position: absolute;
+}
+
+/* Para el menú de Personal */
+.menu-personal .sii-title::before {
+    content: "SII | Personal";
+    display: inline-block;
+    visibility: visible;
+    position: absolute;
+}
+
+@media (max-width: 767px) {
     .sii-title {
         visibility: hidden;
     }
