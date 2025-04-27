@@ -9,6 +9,7 @@
 .accordion-demo {
     margin: -1.1rem 0;
     padding: 2rem 0;
+    overflow-x: hidden; /* Previene el scroll horizontal */
 }
 
 .tabs {
@@ -18,6 +19,9 @@
     position: relative;
     z-index: 2;
     margin-bottom: 2px;
+    justify-content: center; /* Centra los tabs */
+    max-width: 800px; /* Limita el ancho máximo */
+    margin: 0 auto; /* Centra el contenedor */
 }
 
 .tabs dd {
