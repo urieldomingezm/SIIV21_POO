@@ -11,7 +11,6 @@
     padding: 2rem 0;
 }
 
-/* Estilos base para las pestañas */
 .tabs {
     display: flex;
     width: 100%;
@@ -51,9 +50,8 @@
     box-shadow: 0 -4px 20px rgba(27, 57, 106, 0.2);
 }
 
-/* Modificar este estilo para que el enlace sea blanco cuando está activo */
 .tabs dd.active a {
-    color: white !important; /* Forzamos el color blanco */
+    color: white !important;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
@@ -72,7 +70,6 @@
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
-/* Contenido de las pestañas */
 .tabs-content {
     background: white;
     position: relative;
@@ -97,7 +94,6 @@
     animation: fadeIn 0.3s ease-in;
 }
 
-/* Estilos responsivos */
 @media (max-width: 855px) {
     .tabs {
         flex-direction: column;
@@ -135,13 +131,11 @@
     }
 }
 
-/* Animaciones */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(5px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Tipografías */
 @font-face {
     font-family: 'Montserrat';
     src: url('/public/assets/tipografia/Montserrat-Regular.ttf') format('truetype');
