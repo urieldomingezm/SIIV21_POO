@@ -35,13 +35,13 @@ class LoginController {
 
                 <div class="tabs" role="tablist">
                     <dd data-target="#Aspirantes" role="tab">
-                        <a href="#" style="color: black;">ASPIRANTES</a>
+                        <a href="#">ASPIRANTES</a>
                     </dd>
                     <dd data-target="#Alumnos" role="tab">
-                        <a href="#" style="color: black;">ALUMNOS</a>
+                        <a href="#">ALUMNOS</a>
                     </dd>
                     <dd data-target="#Personal" role="tab">
-                        <a href="#" style="color: black;">PERSONAL</a>
+                        <a href="#">PERSONAL</a>
                     </dd>
                 </div>
 

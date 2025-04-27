@@ -51,6 +51,12 @@
     box-shadow: 0 -4px 20px rgba(27, 57, 106, 0.2);
 }
 
+/* Modificar este estilo para que el enlace sea blanco cuando está activo */
+.tabs dd.active a {
+    color: white !important; /* Forzamos el color blanco */
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
 .tabs dd a {
     display: block;
     font-size: clamp(1rem, 2vw, 1.2rem);
