@@ -52,6 +52,7 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
+    // Configuración común
     const validation = new JustValidate('#formulario_alumno', {
         errorFieldCssClass: 'is-invalid',
         successFieldCssClass: 'is-valid',
@@ -65,80 +66,33 @@
                 fontSize: window.innerWidth < 768 ? '12px' : '14px',
                 padding: window.innerWidth < 768 ? '5px 10px' : '8px 16px'
             }
-        },
-        validateBeforeSubmitting: true
+        }
     });
 
-    // Verificar el token CSRF
-    const csrfToken = document.querySelector('input[name="csrf_token"]').value;
-    if (!csrfToken) {
-        console.error('Token CSRF no encontrado');
-        return;
-    }
+    // Reglas comunes
+    const requiredRule = { rule: 'required', errorMessage: 'Campo requerido' };
 
+    // Validaciones de campos
     validation
         .addField('#alumno_numero_control', [
-            {
-                rule: 'required',
-                errorMessage: 'El número de control es requerido'
-            },
-            {
-                rule: 'minLength',
-                value: 8,
-                errorMessage: 'Se requieren 8 caracteres'
-            },
+            requiredRule,
+            { rule: 'minLength', value: 8, errorMessage: '8 caracteres' }
         ])
         .addField('#alumno_password', [
-            {
-                rule: 'required',
-                errorMessage: 'El NIP es requerido'
-            },
-            {
-                rule: 'minLength',
-                value: 4,
-                errorMessage: 'El NIP debe tener 4 caracteres'
-            },
-            {
-                rule: 'maxLength',
-                value: 4,
-                errorMessage: 'El NIP debe tener 4 caracteres'
-            },
-            {
-                rule: 'number',
-                errorMessage: 'El NIP debe contener solo números'
-            }
+            requiredRule,
+            { rule: 'minLength', value: 4, errorMessage: '4 dígitos' },
+            { rule: 'number', errorMessage: 'Solo números' }
         ])
         .addField('#alumno_captcha', [
-            {
-                rule: 'required',
-                errorMessage: 'El CAPTCHA es requerido'
-            },
-            {
-                rule: 'minLength',
-                value: 5,
-                errorMessage: 'El CAPTCHA debe tener 5 caracteres'
-            },
-            {
-                rule: 'maxLength',
-                value: 5,
-                errorMessage: 'El CAPTCHA debe tener 5 caracteres'
-            }
+            requiredRule,
+            { rule: 'minLength', value: 5, errorMessage: '5 caracteres' }
         ])
         .onSuccess((event) => {
-            // Verificar el CSRF token antes del CAPTCHA
-            const formCsrfToken = event.target.querySelector('input[name="csrf_token"]').value;
-            if (!formCsrfToken) {
-                console.error('Token CSRF no válido');
-                return;
-            }
-
-            // Verificar el CAPTCHA
             if (!verifyCaptcha('formulario_alumno')) {
                 event.preventDefault();
                 return;
             }
             
-            // Si todo está correcto, permitir el envío del formulario
             const formData = new FormData(event.target);
             
             fetch(window.location.href, {
@@ -152,25 +106,15 @@
                 
                 modalTitle.textContent = data.title;
                 modalBody.innerHTML = data.message;
+                modalBody.classList.toggle('text-success', data.status === 'success');
+                modalBody.classList.toggle('text-danger', data.status !== 'success');
                 
-                if (data.status === 'success') {
-                    modalBody.classList.add('text-success');
-                    modalBody.classList.remove('text-danger');
-                    
-                    const modal = new bootstrap.Modal(document.getElementById('registroModal'));
-                    modal.show();
-                    
-                    if (data.redirect) {
-                        setTimeout(() => {
-                            window.location.href = data.redirect;
-                        }, 2000);
-                    }
+                const modal = new bootstrap.Modal(document.getElementById('registroModal'));
+                modal.show();
+                
+                if (data.status === 'success' && data.redirect) {
+                    setTimeout(() => window.location.href = data.redirect, 2000);
                 } else {
-                    modalBody.classList.add('text-danger');
-                    modalBody.classList.remove('text-success');
-                    const modal = new bootstrap.Modal(document.getElementById('registroModal'));
-                    modal.show();
-                    
                     generateCaptcha('formulario_alumno');
                 }
             })
