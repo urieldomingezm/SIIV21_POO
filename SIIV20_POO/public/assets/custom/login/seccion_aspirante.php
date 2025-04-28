@@ -251,285 +251,96 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-    // Validación para el formulario de registro
-    const validationRegistro = new JustValidate('#formulario_primera_vez_aspirantes_registro', {
+    // Configuración común para ambas validaciones
+    const commonConfig = {
         errorFieldCssClass: 'is-invalid',
         successFieldCssClass: 'is-valid',
         focusInvalidField: true,
         lockForm: true,
-        tooltip: {
-            position: 'top',
-        },
+        tooltip: { position: 'top' }
+    };
+
+    // Reglas comunes
+    const requiredRule = { rule: 'required', errorMessage: 'Campo requerido' };
+    const captchaRules = [
+        requiredRule,
+        { rule: 'minLength', value: 5, errorMessage: 'Debe tener 5 caracteres' },
+        { rule: 'maxLength', value: 5, errorMessage: 'Debe tener 5 caracteres' }
+    ];
+
+    // Validación para registro
+    const validationRegistro = new JustValidate('#formulario_primera_vez_aspirantes_registro', commonConfig);
+    
+    const registroFields = {
+        '#primera_vez_apellido_paterno': [requiredRule, { rule: 'minLength', value: 2, errorMessage: 'Mínimo 2 caracteres' }],
+        '#primera_vez_apellido_materno': [requiredRule, { rule: 'minLength', value: 2, errorMessage: 'Mínimo 2 caracteres' }],
+        '#primera_vez_nombre': [requiredRule, { rule: 'minLength', value: 2, errorMessage: 'Mínimo 2 caracteres' }],
+        '#primera_vez_fecha_nacimiento': [requiredRule],
+        '#primera_vez_sexo': [requiredRule],
+        '#primera_vez_curp': [requiredRule, { rule: 'minLength', value: 18, errorMessage: '18 caracteres' }],
+        '#primera_vez_celular': [requiredRule, { rule: 'number', errorMessage: 'Solo números' }, { rule: 'minLength', value: 10, errorMessage: '10 dígitos' }],
+        '#primera_vez_email': [requiredRule, { rule: 'email', errorMessage: 'Email inválido' }],
+        '#primera_vez_aspirante_registro_captcha': captchaRules
+    };
+
+    Object.entries(registroFields).forEach(([field, rules]) => {
+        validationRegistro.addField(field, rules);
     });
 
-    validationRegistro
-        .addField('#primera_vez_apellido_paterno', [
-            {
-                rule: 'required',
-                errorMessage: 'El apellido paterno es requerido'
-            },
-            {
-                rule: 'minLength',
-                value: 2,
-                errorMessage: 'El apellido paterno debe tener al menos 2 caracteres'
-            }
-        ])
-        .addField('#primera_vez_apellido_materno', [
-            {
-                rule: 'required',
-                errorMessage: 'El apellido materno es requerido'
-            },
-            {
-                rule: 'minLength',
-                value: 2,
-                errorMessage: 'El apellido materno debe tener al menos 2 caracteres'
-            }
-        ])
-        .addField('#primera_vez_nombre', [
-            {
-                rule: 'required',
-                errorMessage: 'El nombre es requerido'
-            },
-            {
-                rule: 'minLength',
-                value: 2,
-                errorMessage: 'El nombre debe tener al menos 2 caracteres'
-            }
-        ])
-        .addField('#primera_vez_fecha_nacimiento', [
-            {
-                rule: 'required',
-                errorMessage: 'La fecha de nacimiento es requerida'
-            }
-        ])
-        .addField('#primera_vez_sexo', [
-            {
-                rule: 'required',
-                errorMessage: 'El sexo es requerido'
-            }
-        ])
-        .addField('#primera_vez_curp', [
-            {
-                rule: 'required',
-                errorMessage: 'La CURP es requerida'
-            },
-            {
-                rule: 'minLength',
-                value: 18,
-                errorMessage: 'La CURP debe tener 18 caracteres'
-            },
-            {
-                rule: 'maxLength',
-                value: 18,
-                errorMessage: 'La CURP debe tener 18 caracteres'
-            }
-        ])
-        .addField('#primera_vez_celular', [
-            {
-                rule: 'required',
-                errorMessage: 'El número de celular es requerido'
-            },
-            {
-                rule: 'minLength',
-                value: 10,
-                errorMessage: 'El número de celular debe tener 10 dígitos'
-            },
-            {
-                rule: 'maxLength',
-                value: 10,
-                errorMessage: 'El número de celular debe tener 10 dígitos'
-            },
-            {
-                rule: 'number',
-                errorMessage: 'El número de celular debe contener solo números'
-            }
-        ])
-        .addField('#primera_vez_email', [
-            {
-                rule: 'required',
-                errorMessage: 'El correo electrónico es requerido'
-            },
-            {
-                rule: 'email',
-                errorMessage: 'Ingrese un correo electrónico válido'
-            }
-        ])
-        .addField('#primera_vez_aspirante_registro_captcha', [
-            {
-                rule: 'required',
-                errorMessage: 'El CAPTCHA es requerido'
-            },
-            {
-                rule: 'minLength',
-                value: 5,
-                errorMessage: 'El CAPTCHA debe tener 5 caracteres'
-            },
-            {
-                rule: 'maxLength',
-                value: 5,
-                errorMessage: 'El CAPTCHA debe tener 5 caracteres'
-            }
-        ])
-        .onSuccess((event) => {
-            if (!verifyCaptcha('formulario_primera_vez_aspirantes_registro')) {
-                event.preventDefault();
-                return;
-            }
-            
-            const formData = new FormData(event.target);
-            
-            fetch(window.location.href, {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                const modalTitle = document.getElementById('registroModalLabel');
-                const modalBody = document.getElementById('modal-body-content');
-                
-                modalTitle.textContent = data.title;
-                modalBody.innerHTML = data.message;
-                
-                if (data.status === 'success') {
-                    modalBody.classList.add('text-success');
-                    modalBody.classList.remove('text-danger');
-                    const modal = new bootstrap.Modal(document.getElementById('registroModal'));
-                    modal.show();
-                    
-                    if (data.redirect) {
-                        setTimeout(() => {
-                            window.location.href = data.redirect;
-                        }, 2000);
-                    }
-                } else {
-                    modalBody.classList.add('text-danger');
-                    modalBody.classList.remove('text-success');
-                    const modal = new bootstrap.Modal(document.getElementById('registroModal'));
-                    modal.show();
-                    generateCaptcha('formulario_primera_vez_aspirantes_registro');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                const modalBody = document.getElementById('modal-body-content');
-                modalBody.innerHTML = 'Error en el sistema. Por favor, intente más tarde.';
-                modalBody.classList.add('text-danger');
-                const modal = new bootstrap.Modal(document.getElementById('registroModal'));
-                modal.show();
-            });
-        });
+    // Validación para login
+    const validationLogin = new JustValidate('#formulario_iniciar_session_aspirante', commonConfig);
+    
+    const loginFields = {
+        '#iniciar_session_aspirante_curp': [requiredRule, { rule: 'minLength', value: 18, errorMessage: '18 caracteres' }],
+        '#iniciar_session_aspirante_password': [requiredRule, { rule: 'number', errorMessage: 'Solo números' }, { rule: 'minLength', value: 4, errorMessage: '4 dígitos' }],
+        '#iniciar_session_aspirante_captcha': captchaRules
+    };
 
-    // Validación para el formulario de inicio de sesión
-    const validationLogin = new JustValidate('#formulario_iniciar_session_aspirante', {
-        errorFieldCssClass: 'is-invalid',
-        successFieldCssClass: 'is-valid',
-        focusInvalidField: true,
-        lockForm: true,
-        tooltip: {
-            position: 'top',
-        },
+    Object.entries(loginFields).forEach(([field, rules]) => {
+        validationLogin.addField(field, rules);
     });
 
-    validationLogin
-        .addField('#iniciar_session_aspirante_curp', [
-            {
-                rule: 'required',
-                errorMessage: 'La CURP es requerida'
-            },
-            {
-                rule: 'minLength',
-                value: 18,
-                errorMessage: 'La CURP debe tener 18 caracteres'
-            },
-            {
-                rule: 'maxLength',
-                value: 18,
-                errorMessage: 'La CURP debe tener 18 caracteres'
-            }
-        ])
-        .addField('#iniciar_session_aspirante_password', [
-            {
-                rule: 'required',
-                errorMessage: 'El NIP es requerido'
-            },
-            {
-                rule: 'minLength',
-                value: 4,
-                errorMessage: 'El NIP debe tener 4 caracteres'
-            },
-            {
-                rule: 'maxLength',
-                value: 4,
-                errorMessage: 'El NIP debe tener 4 caracteres'
-            },
-            {
-                rule: 'number',
-                errorMessage: 'El NIP debe contener solo números'
-            }
-        ])
-        .addField('#iniciar_session_aspirante_captcha', [
-            {
-                rule: 'required',
-                errorMessage: 'El CAPTCHA es requerido'
-            },
-            {
-                rule: 'minLength',
-                value: 5,
-                errorMessage: 'El CAPTCHA debe tener 5 caracteres'
-            },
-            {
-                rule: 'maxLength',
-                value: 5,
-                errorMessage: 'El CAPTCHA debe tener 5 caracteres'
-            }
-        ])
-        .onSuccess((event) => {
-            if (!verifyCaptcha('formulario_iniciar_session_aspirante')) {
-                event.preventDefault();
-                return;
-            }
+    // Manejadores de éxito
+    const handleSuccess = (formId) => (event) => {
+        if (!verifyCaptcha(formId)) {
+            event.preventDefault();
+            return;
+        }
+        
+        fetch(window.location.href, {
+            method: 'POST',
+            body: new FormData(event.target)
+        })
+        .then(response => response.json())
+        .then(data => {
+            const modalTitle = document.getElementById('registroModalLabel');
+            const modalBody = document.getElementById('modal-body-content');
             
-            const formData = new FormData(event.target);
+            modalTitle.textContent = data.title;
+            modalBody.innerHTML = data.message;
+            modalBody.classList.toggle('text-success', data.status === 'success');
+            modalBody.classList.toggle('text-danger', data.status !== 'success');
             
-            fetch(window.location.href, {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                const modalTitle = document.getElementById('registroModalLabel');
-                const modalBody = document.getElementById('modal-body-content');
-                
-                modalTitle.textContent = data.title;
-                modalBody.innerHTML = data.message;
-                
-                if (data.status === 'success') {
-                    modalBody.classList.add('text-success');
-                    modalBody.classList.remove('text-danger');
-                    const modal = new bootstrap.Modal(document.getElementById('registroModal'));
-                    modal.show();
-                    
-                    if (data.redirect) {
-                        setTimeout(() => {
-                            window.location.href = data.redirect;
-                        }, 2000);
-                    }
-                } else {
-                    modalBody.classList.add('text-danger');
-                    modalBody.classList.remove('text-success');
-                    const modal = new bootstrap.Modal(document.getElementById('registroModal'));
-                    modal.show();
-                    generateCaptcha('formulario_iniciar_session_aspirante');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                const modalBody = document.getElementById('modal-body-content');
-                modalBody.innerHTML = 'Error en el sistema. Por favor, intente más tarde.';
-                modalBody.classList.add('text-danger');
-                const modal = new bootstrap.Modal(document.getElementById('registroModal'));
-                modal.show();
-            });
+            const modal = new bootstrap.Modal(document.getElementById('registroModal'));
+            modal.show();
+            
+            if (data.status === 'success' && data.redirect) {
+                setTimeout(() => window.location.href = data.redirect, 2000);
+            } else {
+                generateCaptcha(formId);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            const modalBody = document.getElementById('modal-body-content');
+            modalBody.innerHTML = 'Error en el sistema. Por favor, intente más tarde.';
+            modalBody.classList.add('text-danger');
+            const modal = new bootstrap.Modal(document.getElementById('registroModal'));
+            modal.show();
         });
+    };
+
+    validationRegistro.onSuccess(handleSuccess('formulario_primera_vez_aspirantes_registro'));
+    validationLogin.onSuccess(handleSuccess('formulario_iniciar_session_aspirante'));
 });
 </script>
