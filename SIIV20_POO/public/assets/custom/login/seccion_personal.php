@@ -62,7 +62,7 @@
         focusInvalidField: true,
         lockForm: true,
         tooltip: {
-            position: 'top',
+            position: 'bottom', // Cambiado de 'top' a 'bottom'
             showOnFocus: true,
             hideOnBlur: true,
             style: {

@@ -257,7 +257,7 @@
         successFieldCssClass: 'is-valid',
         focusInvalidField: true,
         lockForm: true,
-        tooltip: { position: 'top' }
+        tooltip: { position: 'bottom' }
     };
 
     // Reglas comunes
