@@ -15,6 +15,19 @@ class NavigationMenu
         ];
     }
 
+    private function initializeMenuItems()
+    {
+        $this->menuItems = [
+            ['text' => 'Inicio', 'link' => '?page=inicio', 'icon' => 'bi-house-door'],
+            ['text' => 'Perfil', 'link' => '?page=perfil', 'icon' => 'bi-person'],
+            ['text' => 'Académico', 'icon' => 'bi-book', 'submenu' => [
+                ['text' => 'Calificaciones', 'link' => '?page=calificaciones', 'icon' => 'bi-list-check'],
+                ['text' => 'Horario', 'link' => '?page=horario', 'icon' => 'bi-calendar3'],
+                ['text' => 'Kardex', 'link' => '?page=kardex', 'icon' => 'bi-file-text']
+            ]]
+        ];
+    }
+
     public function render()
     {
         echo "<div class='navbar-container fixed-bottom'>";
