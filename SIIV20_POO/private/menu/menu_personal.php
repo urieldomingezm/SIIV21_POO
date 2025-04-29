@@ -28,9 +28,8 @@ class NavigationMenu
                 'link' => '#',
                 'icon' => 'bi-journal-text',
                 'submenu' => array(
-                    array('text' => 'Mis Grupos', 'link' => '?page=mis-grupos', 'icon' => 'bi-people-fill'),
-                    array('text' => 'Horarios', 'link' => '?page=horarios', 'icon' => 'bi-calendar3'),
-                    array('text' => 'Lista de Asistencia', 'link' => '?page=asistencia', 'icon' => 'bi-list-check')
+                    array('text' => 'Gestion de usuarios', 'link' => '?page=Gestion de alumnos', 'icon' => 'bi-people-fill'),
+                    array('text' => 'Gestion de pagos', 'link' => '?page=Gestion de pagos', 'icon' => 'bi-cash-coin'),
                 )
             ),
             array(
