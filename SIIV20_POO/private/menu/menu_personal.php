@@ -79,49 +79,53 @@ class NavigationMenu
     private function renderMenuItem($item)
     {
         $currentPage = isset($_GET['page']) ? $_GET['page'] : 'inicio';
-        $activeClass = ($currentPage === str_replace('?page=', '', $item['link'])) ? 'active' : '';
-        $ariaCurrent = $activeClass ? 'aria-current="page"' : '';
+        $itemId = 'accordion_' . str_replace([' ', '-'], '_', strtolower($item['text']));
 
         if (isset($item['submenu'])) {
             $submenuItems = '';
             foreach ($item['submenu'] as $submenu) {
-                $submenuItems .= "<li>
-                                    <a class='dropdown-item' href='{$submenu['link']}'>
+                $submenuItems .= "<li class='list-group-item'>
+                                    <a href='{$submenu['link']}'>
                                         <i class='bi {$submenu['icon']} me-2'></i>{$submenu['text']}
                                     </a>
                                 </li>";
             }
 
-            return "<li class='nav-item dropdown'>
-                        <a class='nav-link dropdown-toggle {$activeClass}' href='#' role='button' 
-                           data-bs-toggle='dropdown' aria-expanded='false'>
-                            <i class='bi {$item['icon']} me-2'></i>{$item['text']}
-                        </a>
-                        <ul class='dropdown-menu'>
-                            {$submenuItems}
-                        </ul>
-                    </li>";
+            return "<div class='accordion-item bg-transparent border-0'>
+                        <h2 class='accordion-header'>
+                            <button class='accordion-button bg-transparent text-white collapsed' type='button' 
+                                    data-bs-toggle='collapse' data-bs-target='#{$itemId}'>
+                                <i class='bi {$item['icon']} me-2'></i>{$item['text']}
+                            </button>
+                        </h2>
+                        <div id='{$itemId}' class='accordion-collapse collapse'>
+                            <div class='accordion-body p-0'>
+                                <ul class='list-group list-group-flush'>
+                                    {$submenuItems}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>";
         }
 
-        return "<li class='nav-item'>
-                    <a class='nav-link {$activeClass}' {$ariaCurrent} href='{$item['link']}'>
-                        <i class='bi {$item['icon']} me-2'></i>{$item['text']}
-                    </a>
-                </li>";
+        return "<div class='accordion-item bg-transparent border-0'>
+                    <h2 class='accordion-header'>
+                        <a class='nav-link' href='{$item['link']}'>
+                            <i class='bi {$item['icon']} me-2'></i>{$item['text']}
+                        </a>
+                    </h2>
+                </div>";
     }
 
     private function renderDropdownItems()
     {
         $items = '';
         foreach ($this->dropdownItems as $item) {
-            $items .= "<li>
-                        <a class='dropdown-item' href='{$item['link']}'>
+            $items .= "<li class='list-group-item'>
+                        <a href='{$item['link']}'>
                             <i class='bi {$item['icon']} me-2'></i>{$item['text']}
                         </a>
                       </li>";
-            if ($item !== end($this->dropdownItems)) {
-                $items .= "<li><hr class='dropdown-divider'></li>";
-            }
         }
         return $items;
     }
@@ -136,45 +140,43 @@ class NavigationMenu
                         <span class='SII-MENU-PERSONAL d-md-none'>{$this->SII_short}</span>
                     </div>
                     <button class='navbar-toggler bg-light ms-auto' type='button' data-bs-toggle='offcanvas' 
-                            data-bs-target='#offcanvasNavbar' aria-controls='offcanvasNavbar' 
-                            aria-label='Toggle navigation'>
+                            data-bs-target='#offcanvasNavbar' aria-controls='offcanvasNavbar'>
                         <span class='navbar-toggler-icon'></span>
                     </button>
                     <div class='offcanvas offcanvas-end text-white' tabindex='-1' id='offcanvasNavbar' 
-                         aria-labelledby='offcanvasNavbarLabel' style='background-color: #1B396A;'>
+                         style='background-color: #1B396A;'>
                         <div class='offcanvas-header'>
-                            <h5 class='offcanvas-title text-white' id='offcanvasNavbarLabel'>
-                                {$this->brand}
-                            </h5>
-                            <button type='button' class='btn-close btn-close-white' data-bs-dismiss='offcanvas' 
-                                    aria-label='Close'></button>
+                            <h5 class='offcanvas-title text-white'>{$this->brand}</h5>
+                            <button type='button' class='btn-close btn-close-white' data-bs-dismiss='offcanvas'></button>
                         </div>
                         <div class='offcanvas-body'>
-                            <ul class='navbar-nav justify-content-end flex-grow-1 pe-3'>";
-
+                            <div class='accordion accordion-flush' id='navAccordion'>";
+        
         foreach ($this->menuItems as $item) {
             echo $this->renderMenuItem($item);
         }
 
-        echo "<li class='nav-item dropdown'>
-                <a class='nav-link dropdown-toggle' href='#' role='button' 
-                   data-bs-toggle='dropdown' aria-expanded='false'>
-                    <i class='bi bi-gear me-2'></i>Opciones
-                </a>
-                <ul class='dropdown-menu'>
-                    {$this->renderDropdownItems()}
-                </ul>
-              </li>
-            </ul>
+        // Opciones como acordeón
+        echo "<div class='accordion-item bg-transparent border-0'>
+                <h2 class='accordion-header'>
+                    <button class='accordion-button bg-transparent text-white collapsed' type='button' 
+                            data-bs-toggle='collapse' data-bs-target='#optionsAccordion'>
+                        <i class='bi bi-gear me-2'></i>Opciones
+                    </button>
+                </h2>
+                <div id='optionsAccordion' class='accordion-collapse collapse'>
+                    <div class='accordion-body p-0'>
+                        <ul class='list-group list-group-flush'>
+                            {$this->renderDropdownItems()}
+                        </ul>
+                    </div>
+                </div>
+              </div>
+            </div>
             <br>
             <form class='d-flex ms-1' role='search'>
-                <input class='form-control me-2 bg-light text-dark' 
-                       type='search' 
-                       placeholder='Buscar' 
-                       aria-label='Search' >
-                <button class='btn btn-light' type='submit'>
-                    <i class='bi bi-search'></i>
-                </button>
+                <input class='form-control me-2 bg-light text-dark' type='search' placeholder='Buscar' aria-label='Search'>
+                <button class='btn btn-light' type='submit'><i class='bi bi-search'></i></button>
             </form>
             </div>
             </div>
@@ -192,9 +194,35 @@ class NavigationMenu
                 min-height: 60px;
             }
             
-            .sii-title {
-                font-size: 1.1rem;
-                font-weight: 500;
+            .accordion-button::after {
+                filter: brightness(0) invert(1);
+            }
+            
+            .accordion-button:not(.collapsed) {
+                color: white;
+                background-color: rgba(255, 255, 255, 0.1);
+            }
+            
+            .accordion-button:focus {
+                box-shadow: none;
+            }
+            
+            .list-group-item {
+                background-color: transparent;
+                border: none;
+                padding: 0.5rem 1rem;
+            }
+            
+            .list-group-item a {
+                color: white;
+                text-decoration: none;
+                display: block;
+                padding: 0.5rem;
+                border-radius: 0.25rem;
+            }
+            
+            .list-group-item a:hover {
+                background-color: rgba(255, 255, 255, 0.1);
             }
             
             @media (max-width: 768px) {
