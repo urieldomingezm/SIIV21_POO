@@ -1,18 +1,122 @@
 <?php
 class NavigationMenu
 {
-    private $brand = 'Menu principal';
-    private $SII = 'Sistema integral de la información | Alumno';
-    private $SII_short = 'SII | Alumno';
-    private $menuItems = [];
-    private $dropdownItems = [];
+    private $brand;
+    private $SII;
+    private $SII_short;
+    private $menuItems;
+    private $dropdownItems;
 
     public function __construct()
     {
+        $this->brand = 'Menu principal';
+        $this->SII = 'Sistema integral de la información | Alumno';
+        $this->SII_short = 'SII | Alumno';
         $this->initializeMenuItems();
-        $this->dropdownItems = [
-            ['text' => 'Cerrar Sesión', 'link' => '?page=logout', 'icon' => 'bi-box-arrow-right']
-        ];
+        $this->dropdownItems = array(
+            array('text' => 'Cerrar Sesión', 'link' => '?page=logout', 'icon' => 'bi-box-arrow-right')
+        );
+    }
+
+    private function initializeMenuItems()
+    {
+        $this->menuItems = array(
+            array('text' => 'Inicio', 'link' => '?page=Inicio', 'active' => true, 'icon' => 'bi-house-door-fill'),
+            array(
+                'text' => 'Información Académica',
+                'link' => '#',
+                'icon' => 'bi-journal-text',
+                'submenu' => array(
+                    array('text' => 'Horario', 'link' => '?page=horario', 'icon' => 'bi-calendar3'),
+                    array('text' => 'Calificaciones', 'link' => '?page=calificaciones', 'icon' => 'bi-list-check'),
+                    array('text' => 'Kardex', 'link' => '?page=kardex', 'icon' => 'bi-file-earmark-text')
+                )
+            ),
+            array(
+                'text' => 'Inscripciones',
+                'link' => '#',
+                'icon' => 'bi-pencil-square',
+                'submenu' => array(
+                    array('text' => 'Carga Académica', 'link' => '?page=carga-academica', 'icon' => 'bi-calendar-plus'),
+                    array('text' => 'Reinscripción', 'link' => '?page=reinscripcion', 'icon' => 'bi-arrow-repeat'),
+                    array('text' => 'Historial', 'link' => '?page=historial-inscripcion', 'icon' => 'bi-clock-history')
+                )
+            ),
+            array(
+                'text' => 'Servicios',
+                'link' => '#',
+                'icon' => 'bi-gear',
+                'submenu' => array(
+                    array('text' => 'Constancias', 'link' => '?page=constancias', 'icon' => 'bi-file-earmark-text'),
+                    array('text' => 'Evaluación Docente', 'link' => '?page=evaluacion-docente', 'icon' => 'bi-star'),
+                    array('text' => 'Biblioteca Digital', 'link' => '?page=biblioteca', 'icon' => 'bi-book')
+                )
+            ),
+            array(
+                'text' => 'Pagos',
+                'link' => '#',
+                'icon' => 'bi-credit-card',
+                'submenu' => array(
+                    array('text' => 'Estado de Cuenta', 'link' => '?page=estado-cuenta', 'icon' => 'bi-receipt'),
+                    array('text' => 'Realizar Pago', 'link' => '?page=realizar-pago', 'icon' => 'bi-cash'),
+                    array('text' => 'Historial de Pagos', 'link' => '?page=historial-pagos', 'icon' => 'bi-clock-history')
+                )
+            )
+        );
+    }
+
+    private function renderMenuItem($item)
+    {
+        $currentPage = isset($_GET['page']) ? $_GET['page'] : 'inicio';
+        $activeClass = ($currentPage === str_replace('?page=', '', $item['link'])) ? 'active' : '';
+        $ariaCurrent = $activeClass ? 'aria-current="page"' : '';
+
+        if (isset($item['submenu'])) {
+            $submenuItems = '';
+            $itemId = 'accordion_' . str_replace(' ', '_', strtolower($item['text']));
+            
+            foreach ($item['submenu'] as $submenu) {
+                $submenuItems .= "<div class='accordion-body py-0'>
+                                    <a class='nav-link compact-link' href='{$submenu['link']}'>
+                                        <i class='bi {$submenu['icon']} me-2'></i>{$submenu['text']}
+                                    </a>
+                                </div>";
+            }
+
+            return "<div class='accordion-item bg-transparent border-0'>
+                        <h2 class='accordion-header'>
+                            <button class='accordion-button py-2 collapsed bg-transparent text-white' type='button' 
+                                    data-bs-toggle='collapse' data-bs-target='#{$itemId}' 
+                                    aria-expanded='false' aria-controls='{$itemId}'>
+                                <i class='bi {$item['icon']} me-2'></i>{$item['text']}
+                            </button>
+                        </h2>
+                        <div id='{$itemId}' class='accordion-collapse collapse' data-bs-parent='#menuAccordion'>
+                            <div class='accordion-body p-0'>
+                                {$submenuItems}
+                            </div>
+                        </div>
+                    </div>";
+        }
+
+        return "<div class='accordion-item bg-transparent border-0'>
+                    <div class='accordion-body py-0'>
+                        <a class='nav-link compact-link {$activeClass}' {$ariaCurrent} href='{$item['link']}'>
+                            <i class='bi {$item['icon']} me-2'></i>{$item['text']}
+                        </a>
+                    </div>
+                </div>";
+    }
+
+    private function renderDropdownItems()
+    {
+        $items = '';
+        foreach ($this->dropdownItems as $item) {
+            $items .= "<a class='nav-link' href='{$item['link']}'>
+                        <i class='bi {$item['icon']} me-2'></i>{$item['text']}
+                      </a>";
+        }
+        return $items;
     }
 
     public function render()
@@ -33,33 +137,39 @@ class NavigationMenu
                          aria-labelledby='offcanvasNavbarLabel' style='background-color: #1B396A;'>
                         <div class='offcanvas-header'>
                             <h5 class='offcanvas-title text-white' id='offcanvasNavbarLabel'>
-                    {$this->brand}
+                                {$this->brand}
                             </h5>
                             <button type='button' class='btn-close btn-close-white' data-bs-dismiss='offcanvas' 
                                     aria-label='Close'></button>
                         </div>
                         <div class='offcanvas-body'>
-                            <ul class='navbar-nav justify-content-end flex-grow-1 pe-3'>";
+                            <div class='accordion' id='menuAccordion'>";
 
         foreach ($this->menuItems as $item) {
             echo $this->renderMenuItem($item);
         }
 
-        echo "<li class='nav-item dropdown'>
-                <a class='nav-link dropdown-toggle' href='#' role='button' 
-                   data-bs-toggle='dropdown' aria-expanded='false'>
-                    <i class='bi bi-gear me-2'></i>Opciones
-                </a>
-                <ul class='dropdown-menu'>
-                    {$this->renderDropdownItems()}
-                </ul>
-            </ul>
+        echo "<div class='accordion-item bg-transparent'>
+                <h2 class='accordion-header'>
+                    <button class='accordion-button collapsed bg-transparent text-white' type='button' 
+                            data-bs-toggle='collapse' data-bs-target='#optionsAccordion' 
+                            aria-expanded='false' aria-controls='optionsAccordion'>
+                        <i class='bi bi-gear me-2'></i>Opciones
+                    </button>
+                </h2>
+                <div id='optionsAccordion' class='accordion-collapse collapse' data-bs-parent='#menuAccordion'>
+                    <div class='accordion-body p-0'>
+                        {$this->renderDropdownItems()}
+                    </div>
+                </div>
+              </div>
+            </div>
             <br>
             <form class='d-flex ms-1' role='search'>
                 <input class='form-control me-2 bg-light text-dark' 
                        type='search' 
                        placeholder='Buscar' 
-                       aria-label='Search' >
+                       aria-label='Search'>
                 <button class='btn btn-light' type='submit'>
                     <i class='bi bi-search'></i>
                 </button>
@@ -85,6 +195,63 @@ class NavigationMenu
                 font-weight: 500;
             }
             
+            .accordion {
+                margin: 0 -1rem;
+            }
+            
+            .accordion-button {
+                padding: 0.5rem 1.5rem;
+                min-height: 45px;
+                font-weight: 500;
+            }
+            
+            .accordion-button::after {
+                filter: invert(1);
+                width: 1rem;
+                height: 1rem;
+                background-size: 1rem;
+                margin-left: auto;
+            }
+            
+            .accordion-button:not(.collapsed) {
+                color: white;
+                background-color: rgba(255, 255, 255, 0.1);
+            }
+            
+            .accordion-button:focus {
+                box-shadow: none;
+                border-color: transparent;
+            }
+            
+            .nav-link {
+                color: white;
+                padding: 0.5rem 1.5rem;
+                transition: all 0.2s ease;
+            }
+            
+            .compact-link {
+                padding: 0.35rem 2rem;
+                font-size: 0.95rem;
+            }
+            
+            .nav-link:hover {
+                background-color: rgba(255, 255, 255, 0.1);
+                color: white;
+                transform: translateX(5px);
+            }
+            
+            .accordion-body {
+                padding: 0;
+            }
+            
+            .accordion-collapse {
+                background-color: rgba(0, 0, 0, 0.1);
+            }
+            
+            .offcanvas-body {
+                padding: 1rem;
+            }
+            
             @media (max-width: 768px) {
                 .container-fluid {
                     padding: 0.5rem 1rem;
@@ -95,94 +262,6 @@ class NavigationMenu
                 }
             }
         </style>";
-    }
-
-    private function initializeMenuItems()
-    {
-        $this->menuItems = [
-            ['text' => 'Inicio', 'link' => '?page=inicio', 'active' => true, 'icon' => 'bi-house-door-fill'],
-            [
-                'text' => 'Selección de Materias',
-                'link' => '#',
-                'icon' => 'bi-journal-plus',
-                'submenu' => [
-                    ['text' => 'Materias Disponibles', 'link' => '?page=materias-disponibles', 'icon' => 'bi-list-check'],
-                    ['text' => 'Horarios', 'link' => '?page=horarios-materias', 'icon' => 'bi-calendar3'],
-                    ['text' => 'Carga Académica', 'link' => '?page=carga-academica', 'icon' => 'bi-journal-text']
-                ]
-            ],
-            [
-                'text' => 'Calificaciones',
-                'link' => '#',
-                'icon' => 'bi-card-checklist',
-                'submenu' => [
-                    ['text' => 'Parciales', 'link' => '?page=calificaciones-parciales', 'icon' => 'bi-123'],
-                    ['text' => 'Kardex', 'link' => '?page=kardex', 'icon' => 'bi-file-text'],
-                    ['text' => 'Boleta', 'link' => '?page=boleta', 'icon' => 'bi-file-earmark-pdf']
-                ]
-            ],
-            ['text' => 'Ficha de Pago', 'link' => '?page=pagos', 'icon' => 'bi-cash-stack'],
-            ['text' => 'Biblioteca', 'link' => '?page=biblioteca', 'icon' => 'bi-book'],
-            [
-                'text' => 'Quejas y Sugerencias',
-                'link' => '#',
-                'icon' => 'bi-chat-right-text-fill',
-                'submenu' => [
-                    ['text' => 'Nueva Queja', 'link' => '?page=nueva-queja', 'icon' => 'bi-exclamation-circle'],
-                    ['text' => 'Nueva Sugerencia', 'link' => '?page=nueva-sugerencia', 'icon' => 'bi-lightbulb'],
-                ]
-            ]
-        ];
-    }
-
-    private function renderMenuItem($item)
-    {
-        $currentPage = $_GET['page'] ?? 'inicio';
-        $activeClass = ($currentPage === str_replace('?page=', '', $item['link'])) ? 'active' : '';
-        $ariaCurrent = $activeClass ? 'aria-current="page"' : '';
-
-        if (isset($item['submenu'])) {
-            $submenuItems = '';
-            foreach ($item['submenu'] as $submenu) {
-                $submenuItems .= "<li>
-                                    <a class='dropdown-item' href='{$submenu['link']}'>
-                                        <i class='bi {$submenu['icon']} me-2'></i>{$submenu['text']}
-                                    </a>
-                                </li>";
-            }
-
-            return "<li class='nav-item dropdown'>
-                        <a class='nav-link dropdown-toggle {$activeClass}' href='#' role='button' 
-                           data-bs-toggle='dropdown' aria-expanded='false'>
-                            <i class='bi {$item['icon']} me-2'></i>{$item['text']}
-                        </a>
-                        <ul class='dropdown-menu'>
-                            {$submenuItems}
-                        </ul>
-                    </li>";
-        }
-
-        return "<li class='nav-item'>
-                    <a class='nav-link {$activeClass}' {$ariaCurrent} href='{$item['link']}'>
-                        <i class='bi {$item['icon']} me-2'></i>{$item['text']}
-                    </a>
-                </li>";
-    }
-
-    private function renderDropdownItems()
-    {
-        $items = '';
-        foreach ($this->dropdownItems as $item) {
-            $items .= "<li>
-                        <a class='dropdown-item' href='{$item['link']}'>
-                            <i class='bi {$item['icon']} me-2'></i>{$item['text']}
-                        </a>
-                      </li>";
-            if ($item !== end($this->dropdownItems)) {
-                $items .= "<li><hr class='dropdown-divider'></li>";
-            }
-        }
-        return $items;
     }
 }
 
