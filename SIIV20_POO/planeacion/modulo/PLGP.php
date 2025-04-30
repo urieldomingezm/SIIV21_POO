@@ -210,8 +210,9 @@ class GestionPagos {
                                 background-color: #1B396A !important;
                                 color: white !important;
                                 border-bottom: none !important;
-                                position: relative !important;
-                                padding: 12px 25px 12px 12px !important;
+                                padding: 15px !important;
+                                font-weight: 500 !important;
+                                font-size: 14px !important;
                             }
 
                             /* Contenedor de la tabla */
@@ -220,51 +221,33 @@ class GestionPagos {
                             }
 
                             /* Estilos para los iconos de ordenamiento */
-                            .datatable-table th .datatable-sorter {
-                                display: inline-flex !important;
-                                align-items: center !important;
-                                justify-content: center !important;
-                                position: absolute !important;
-                                right: 8px !important;
-                                top: 50% !important;
-                                transform: translateY(-50%) !important;
-                                cursor: pointer !important;
+                            .datatable-sorter {
+                                float: right !important;
+                                margin-left: 8px !important;
                             }
 
-                            /* Reemplazar los triángulos con iconos de Bootstrap */
-                            .datatable-table th .datatable-sorter::after {
-                                content: "↑↓" !important;
-                                font-size: 14px !important;
+                            /* Icono de ordenamiento */
+                            .datatable-sorter::after {
+                                content: "⇅" !important;
                                 color: white !important;
                                 opacity: 0.7 !important;
+                                font-size: 16px !important;
                             }
 
-                            /* Estado activo ascendente */
-                            .datatable-ascending th .datatable-sorter::after {
+                            /* Estados de ordenamiento */
+                            .datatable-ascending .datatable-sorter::after {
                                 content: "↑" !important;
                                 opacity: 1 !important;
                             }
 
-                            /* Estado activo descendente */
-                            .datatable-descending th .datatable-sorter::after {
+                            .datatable-descending .datatable-sorter::after {
                                 content: "↓" !important;
                                 opacity: 1 !important;
-                            }
-
-                            /* Eliminar los triángulos originales */
-                            .datatable-sorter::before,
-                            .datatable-sorter::after {
-                                border: none !important;
                             }
 
                             /* Hover en el encabezado */
                             .datatable-table > thead > tr > th:hover {
                                 background-color: #152d54 !important;
-                            }
-
-                            /* Estilo para la fila seleccionada */
-                            .datatable-table tbody tr:hover {
-                                background-color: rgba(27, 57, 106, 0.05) !important;
                             }
                         </style>
                         <div class="table-responsive">
