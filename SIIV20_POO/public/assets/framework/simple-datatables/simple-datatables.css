@@ -167,26 +167,26 @@
 
 .datatable-sorter::before,
 .datatable-sorter::after {
-	content: "";
-	height: 0;
-	width: 0;
-	position: absolute;
-	right: 4px;
-	border-left: 4px solid transparent;
-	border-right: 4px solid transparent;
-	opacity: 0.2;
-}
-
-
-.datatable-sorter::before {
-	border-top: 4px solid #000;
-	bottom: 0px;
+    content: none !important;
 }
 
 .datatable-sorter::after {
-	border-bottom: 4px solid #000;
-	border-top: 4px solid transparent;
-	top: 0px;
+    content: "⇅" !important;
+    color: white !important;
+    opacity: 0.7 !important;
+    font-size: 16px !important;
+    position: absolute;
+    right: 4px;
+}
+
+.datatable-ascending .datatable-sorter::after {
+    content: "↑" !important;
+    opacity: 1 !important;
+}
+
+.datatable-descending .datatable-sorter::after {
+    content: "↓" !important;
+    opacity: 1 !important;
 }
 
 .datatable-ascending .datatable-sorter::after,
