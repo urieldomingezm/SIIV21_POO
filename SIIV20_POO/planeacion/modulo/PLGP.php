@@ -209,18 +209,44 @@ class GestionPagos {
                                 background-color: #1B396A !important;
                                 color: white !important;
                                 border-bottom: none !important;
+                                position: relative !important;
+                                padding-right: 25px !important;
                             }
+
+                            .datatable-sorter {
+                                position: absolute !important;
+                                right: 6px !important;
+                                top: 50% !important;
+                                transform: translateY(-50%) !important;
+                                height: 20px !important;
+                                width: 20px !important;
+                            }
+
                             .datatable-sorter::before,
                             .datatable-sorter::after {
-                                border-left: 4px solid white !important;
-                                border-right: 4px solid white !important;
-                                opacity: 0.8 !important;
+                                content: "" !important;
+                                position: absolute !important;
+                                right: 0 !important;
+                                width: 0 !important;
+                                height: 0 !important;
+                                border-left: 5px solid transparent !important;
+                                border-right: 5px solid transparent !important;
+                                opacity: 0.5 !important;
                             }
+
                             .datatable-sorter::before {
-                                border-top: 4px solid white !important;
+                                bottom: 0 !important;
+                                border-top: 5px solid white !important;
                             }
+
                             .datatable-sorter::after {
-                                border-bottom: 4px solid white !important;
+                                top: 0 !important;
+                                border-bottom: 5px solid white !important;
+                            }
+
+                            .datatable-ascending .datatable-sorter::after,
+                            .datatable-descending .datatable-sorter::before {
+                                opacity: 1 !important;
                             }
                         </style>
                         <div class="table-responsive">
