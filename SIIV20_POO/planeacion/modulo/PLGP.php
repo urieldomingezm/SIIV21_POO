@@ -210,9 +210,11 @@ class GestionPagos {
                                 background-color: #1B396A !important;
                                 color: white !important;
                                 border-bottom: none !important;
-                                padding: 15px !important;
+                                padding: 12px 30px 12px 12px !important;
                                 font-weight: 500 !important;
                                 font-size: 14px !important;
+                                position: relative !important;
+                                white-space: nowrap !important;
                             }
 
                             /* Contenedor de la tabla */
@@ -222,8 +224,13 @@ class GestionPagos {
 
                             /* Estilos para los iconos de ordenamiento */
                             .datatable-sorter {
-                                float: right !important;
-                                margin-left: 8px !important;
+                                position: absolute !important;
+                                right: 10px !important;
+                                top: 50% !important;
+                                transform: translateY(-50%) !important;
+                                display: inline-block !important;
+                                width: 20px !important;
+                                text-align: center !important;
                             }
 
                             /* Icono de ordenamiento */
@@ -231,7 +238,8 @@ class GestionPagos {
                                 content: "⇅" !important;
                                 color: white !important;
                                 opacity: 0.7 !important;
-                                font-size: 16px !important;
+                                font-size: 14px !important;
+                                line-height: 1 !important;
                             }
 
                             /* Estados de ordenamiento */
