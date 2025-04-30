@@ -205,48 +205,66 @@ class GestionPagos {
                     </div>
                     <div class="card-body">
                         <style>
+                            /* Estilos para el encabezado de la tabla */
                             .datatable-table > thead > tr > th {
                                 background-color: #1B396A !important;
                                 color: white !important;
                                 border-bottom: none !important;
                                 position: relative !important;
-                                padding-right: 25px !important;
+                                padding: 12px 25px 12px 12px !important;
                             }
 
-                            .datatable-sorter {
+                            /* Contenedor de la tabla */
+                            .datatable-container {
+                                border: none !important;
+                            }
+
+                            /* Estilos para los iconos de ordenamiento */
+                            .datatable-table th .datatable-sorter {
+                                display: inline-flex !important;
+                                align-items: center !important;
+                                justify-content: center !important;
                                 position: absolute !important;
-                                right: 6px !important;
+                                right: 8px !important;
                                 top: 50% !important;
                                 transform: translateY(-50%) !important;
-                                height: 20px !important;
-                                width: 20px !important;
+                                cursor: pointer !important;
                             }
 
+                            /* Reemplazar los triángulos con iconos de Bootstrap */
+                            .datatable-table th .datatable-sorter::after {
+                                content: "↑↓" !important;
+                                font-size: 14px !important;
+                                color: white !important;
+                                opacity: 0.7 !important;
+                            }
+
+                            /* Estado activo ascendente */
+                            .datatable-ascending th .datatable-sorter::after {
+                                content: "↑" !important;
+                                opacity: 1 !important;
+                            }
+
+                            /* Estado activo descendente */
+                            .datatable-descending th .datatable-sorter::after {
+                                content: "↓" !important;
+                                opacity: 1 !important;
+                            }
+
+                            /* Eliminar los triángulos originales */
                             .datatable-sorter::before,
                             .datatable-sorter::after {
-                                content: "" !important;
-                                position: absolute !important;
-                                right: 0 !important;
-                                width: 0 !important;
-                                height: 0 !important;
-                                border-left: 5px solid transparent !important;
-                                border-right: 5px solid transparent !important;
-                                opacity: 0.5 !important;
+                                border: none !important;
                             }
 
-                            .datatable-sorter::before {
-                                bottom: 0 !important;
-                                border-top: 5px solid white !important;
+                            /* Hover en el encabezado */
+                            .datatable-table > thead > tr > th:hover {
+                                background-color: #152d54 !important;
                             }
 
-                            .datatable-sorter::after {
-                                top: 0 !important;
-                                border-bottom: 5px solid white !important;
-                            }
-
-                            .datatable-ascending .datatable-sorter::after,
-                            .datatable-descending .datatable-sorter::before {
-                                opacity: 1 !important;
+                            /* Estilo para la fila seleccionada */
+                            .datatable-table tbody tr:hover {
+                                background-color: rgba(27, 57, 106, 0.05) !important;
                             }
                         </style>
                         <div class="table-responsive">
