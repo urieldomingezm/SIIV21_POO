@@ -204,9 +204,28 @@ class GestionPagos {
                         </div>
                     </div>
                     <div class="card-body">
+                        <style>
+                            .datatable-table > thead > tr > th {
+                                background-color: #1B396A !important;
+                                color: white !important;
+                                border-bottom: none !important;
+                            }
+                            .datatable-sorter::before,
+                            .datatable-sorter::after {
+                                border-left: 4px solid white !important;
+                                border-right: 4px solid white !important;
+                                opacity: 0.8 !important;
+                            }
+                            .datatable-sorter::before {
+                                border-top: 4px solid white !important;
+                            }
+                            .datatable-sorter::after {
+                                border-bottom: 4px solid white !important;
+                            }
+                        </style>
                         <div class="table-responsive">
                             <table class="table table-striped table-hover" id="tablaPagos">
-                                <thead class="table-dark" style="background-color: #1B396A !important;">
+                                <thead>
                                     <tr>
                                         <th>ID</th>
                                         <th>Número de Control</th>
