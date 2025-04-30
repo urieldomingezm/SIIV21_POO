@@ -206,7 +206,7 @@ class GestionPagos {
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-striped table-hover" id="tablaPagos">
-                                <thead>
+                                <thead class="table-dark" style="background-color: #1B396A !important;">
                                     <tr>
                                         <th>ID</th>
                                         <th>Número de Control</th>
