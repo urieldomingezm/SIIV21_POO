@@ -204,52 +204,7 @@ class GestionPagos {
                         </div>
                     </div>
                     <div class="card-body">
-                        <style>
-                            /* Estilos para el encabezado de la tabla */
-                            .datatable-table > thead > tr > th {
-                                background-color: #1B396A !important;
-                                color: white !important;
-                                border-bottom: none !important;
-                                padding: 15px !important;
-                                font-weight: 500 !important;
-                                font-size: 14px !important;
-                            }
-
-                            /* Contenedor de la tabla */
-                            .datatable-container {
-                                border: none !important;
-                            }
-
-                            /* Estilos para los iconos de ordenamiento */
-                            .datatable-sorter {
-                                float: right !important;
-                                margin-left: 8px !important;
-                            }
-
-                            /* Icono de ordenamiento */
-                            .datatable-sorter::after {
-                                content: "⇅" !important;
-                                color: white !important;
-                                opacity: 0.7 !important;
-                                font-size: 16px !important;
-                            }
-
-                            /* Estados de ordenamiento */
-                            .datatable-ascending .datatable-sorter::after {
-                                content: "↑" !important;
-                                opacity: 1 !important;
-                            }
-
-                            .datatable-descending .datatable-sorter::after {
-                                content: "↓" !important;
-                                opacity: 1 !important;
-                            }
-
-                            /* Hover en el encabezado */
-                            .datatable-table > thead > tr > th:hover {
-                                background-color: #152d54 !important;
-                            }
-                        </style>
+                        
                         <div class="table-responsive">
                             <table class="table table-striped table-hover" id="tablaPagos">
                                 <thead>
