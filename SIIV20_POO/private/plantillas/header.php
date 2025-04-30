@@ -121,16 +121,6 @@ class Header
         echo '<title>' . $this->title . '</title>';
         echo '<link rel="icon" href="/public/assets/img/TEC_VICTORIA.PNG">';
 
-        // Google Tag Manager
-        echo '<!-- Google tag (gtag.js) -->';
-        echo '<script async src="https://www.googletagmanager.com/gtag/js?id=G-32NSVX1ZQD"></script>';
-        echo '<script>';
-        echo '  window.dataLayer = window.dataLayer || [];';
-        echo '  function gtag(){dataLayer.push(arguments);}';
-        echo '  gtag(\'js\', new Date());';
-        echo '  gtag(\'config\', \'G-32NSVX1ZQD\');';
-        echo '</script>';
-
         $this->renderResources();
 
         echo '</head>';
