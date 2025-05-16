@@ -13,140 +13,168 @@
                         <form id="formulario_primera_vez_aspirantes_registro" class="rounded" method="POST">
                             <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
                             <input type="hidden" name="form_type" value="aspirante_registro">
-                            <br>
+
                             <div class="row g-3">
-                                <!-- Column 1 -->
-                                <div class="col-12 col-md-6 col-lg-4">
-                                    <!-- Apellido Paterno -->
-                                    <div class="mb-3">
-                                        <label for="primera_vez_apellido_paterno" class="form-label">APELLIDO PATERNO</label>
-                                        <input type="text" class="form-control form-control-lg" id="primera_vez_apellido_paterno" name="primera_vez_apellido_paterno">
-                                        <div class="invalid-feedback" style="display: block;"></div>
-                                    </div>
-
-                                    <!-- Fecha de Nacimiento -->
-                                    <div class="mb-3">
-                                        <label for="primera_vez_fecha_nacimiento" class="form-label">FECHA NACIMIENTO</label>
-                                        <input type="date" class="form-control form-control-lg" id="primera_vez_fecha_nacimiento" name="primera_vez_fecha_nacimiento" value="2003-01-01">
-                                        <div class="invalid-feedback" style="display: block;"></div>
-                                    </div>
-                                </div>
-
-                                <!-- Column 2 -->
-                                <div class="col-12 col-md-6 col-lg-4">
-                                    <!-- Apellido Materno -->
-                                    <div class="mb-3">
-                                        <label for="primera_vez_apellido_materno" class="form-label">APELLIDO MATERNO</label>
-                                        <input type="text" class="form-control form-control-lg" id="primera_vez_apellido_materno" name="primera_vez_apellido_materno">
-                                        <div class="invalid-feedback" style="display: block;"></div>
-                                    </div>
-
-                                    <!-- Sexo -->
-                                    <div class="mb-3">
-                                        <label for="primera_vez_sexo" class="form-label">SEXO</label>
-                                        <select class="form-select form-select-lg" id="primera_vez_sexo" name="primera_vez_sexo">
-                                            <option value="" disabled selected>Selecciona</option>
-                                            <option value="H">Masculino</option>
-                                            <option value="F">Femenino</option>
-                                        </select>
-                                        <div class="invalid-feedback" style="display: block;"></div>
-                                    </div>
-                                </div>
-
-                                <!-- Column 3 -->
-                                <div class="col-12 col-md-6 col-lg-4">
-                                    <!-- Nombre -->
-                                    <div class="mb-3">
-                                        <label for="primera_vez_nombre" class="form-label">NOMBRE(S)</label>
-                                        <input type="text" class="form-control form-control-lg" id="primera_vez_nombre" name="primera_vez_nombre">
-                                        <div class="invalid-feedback" style="display: block;"></div>
-                                    </div>
-
-                                    <!-- Entidad Federativa -->
-                                    <div class="mb-3">
-                                        <label for="primera_vez_entidad" class="form-label">ESTADO</label>
-                                        <select class="form-select form-select-lg" id="primera_vez_entidad" name="primera_vez_entidad">
-                                            <option value="TS">Tamaulipas</option>
-                                            <option value="AS">Aguascalientes</option>
-                                            <option value="BC">Baja California</option>
-                                            <option value="BS">Baja California Sur</option>
-                                            <option value="CC">Campeche</option>
-                                            <option value="CL">Coahuila</option>
-                                            <option value="CM">Colima</option>
-                                            <option value="CS">Chiapas</option>
-                                            <option value="CH">Chihuahua</option>
-                                            <option value="DF">Ciudad de México</option>
-                                            <option value="DG">Durango</option>
-                                            <option value="GT">Guanajuato</option>
-                                            <option value="GR">Guerrero</option>
-                                            <option value="HG">Hidalgo</option>
-                                            <option value="JC">Jalisco</option>
-                                            <option value="MC">Estado de México</option>
-                                            <option value="MN">Michoacán</option>
-                                            <option value="MS">Morelos</option>
-                                            <option value="NT">Nayarit</option>
-                                            <option value="NL">Nuevo León</option>
-                                            <option value="OC">Oaxaca</option>
-                                            <option value="PL">Puebla</option>
-                                            <option value="QT">Querétaro</option>
-                                            <option value="QR">Quintana Roo</option>
-                                            <option value="SP">San Luis Potosí</option>
-                                            <option value="SL">Sinaloa</option>
-                                            <option value="SR">Sonora</option>
-                                            <option value="TC">Tabasco</option>
-                                            <option value="TL">Tlaxcala</option>
-                                            <option value="VZ">Veracruz</option>
-                                            <option value="YN">Yucatán</option>
-                                            <option value="ZS">Zacatecas</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row justify-content-center">
-                                <!-- CURP -->
-                                <div class="col-lg-3 mb-4">
-                                    <label for="primera_vez_curp" class="form-label">CURP</label>
-                                    <input type="text" class="form-control form-control-lg" id="primera_vez_curp" name="primera_vez_curp" maxlength="18">
-                                    <div class="invalid-feedback" style="display: block;"></div>
-                                </div>
-
-                                <!-- Celular -->
-                                <div class="col-lg-3 mb-4">
-                                    <label for="primera_vez_celular" class="form-label">CELULAR</label>
-                                    <input type="text" class="form-control form-control-lg" id="primera_vez_celular" name="primera_vez_celular" maxlength="10">
-                                    <div class="invalid-feedback" style="display: block;"></div>
-                                </div>
-
-                                <!-- Email -->
-                                <div class="col-lg-4 mb-4">
-                                    <label for="primera_vez_email" class="form-label">EMAIL</label>
-                                    <input type="email" class="form-control form-control-lg" id="primera_vez_email" name="primera_vez_email">
-                                    <div class="invalid-feedback" style="display: block;"></div>
-                                </div>
-                            </div>
-
-                            <div class="row justify-content-center">
-                                <!-- CAPTCHA -->
-                                <div class="col-lg-4 mb-4">
-                                    <label for="primera_vez_aspirante_registro_captcha" class="form-label">CAPTCHA</label>
-                                    <div class="d-flex align-items-center">
-                                        <div class="flex-grow-1 position-relative">
-                                            <input type="text" class="form-control form-control-lg captchaInput" id="primera_vez_aspirante_registro_captcha" name="primera_vez_aspirante_registro_captcha" maxlength="5">
-                                            <div class="invalid-feedback" style="display: block;"></div>
+                                <div class="col-md-6">
+                                    <div class="card mb-3">
+                                        <div class="card-header bg-primary text-white">
+                                            <h5 class="card-title mb-0">Datos Personales</h5>
                                         </div>
-                                        <canvas class="captchaCanvas" width="128" height="44" class="ms-2"></canvas>
-                                        <button type="button" class="btn btn-secondary me-1 ms-2" onclick="generateCaptcha('formulario_primera_vez_aspirantes_registro')">
-                                            <i class="bi bi-arrow-clockwise"></i>
-                                        </button>
+                                        <div class="card-body">
+                                            <div class="row g-2">
+                                                <div class="col-md-4">
+                                                    <div class="mb-2">
+                                                        <label for="primera_vez_apellido_paterno" class="form-label">APELLIDO PATERNO</label>
+                                                        <input type="text" class="form-control form-control-sm" id="primera_vez_apellido_paterno" name="primera_vez_apellido_paterno">
+                                                        <div class="invalid-feedback" style="display: block; font-size: 0.8rem;"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="mb-2">
+                                                        <label for="primera_vez_apellido_materno" class="form-label">APELLIDO MATERNO</label>
+                                                        <input type="text" class="form-control form-control-sm" id="primera_vez_apellido_materno" name="primera_vez_apellido_materno">
+                                                        <div class="invalid-feedback" style="display: block; font-size: 0.8rem;"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="mb-2">
+                                                        <label for="primera_vez_nombre" class="form-label">NOMBRE(S)</label>
+                                                        <input type="text" class="form-control form-control-sm" id="primera_vez_nombre" name="primera_vez_nombre">
+                                                        <div class="invalid-feedback" style="display: block; font-size: 0.8rem;"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Información Adicional -->
+                                <div class="col-md-6">
+                                    <div class="card mb-3">
+                                        <div class="card-header bg-primary text-white">
+                                            <h5 class="card-title mb-0">Información Adicional</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row g-2">
+                                                <div class="col-md-4">
+                                                    <div class="mb-2">
+                                                        <label for="primera_vez_fecha_nacimiento" class="form-label">FECHA NACIMIENTO</label>
+                                                        <input type="date" class="form-control form-control-sm" id="primera_vez_fecha_nacimiento" name="primera_vez_fecha_nacimiento" value="2003-01-01">
+                                                        <div class="invalid-feedback" style="display: block; font-size: 0.8rem;"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="mb-2">
+                                                        <label for="primera_vez_sexo" class="form-label">SEXO</label>
+                                                        <select class="form-select form-select-sm" id="primera_vez_sexo" name="primera_vez_sexo">
+                                                            <option value="" disabled selected>Selecciona</option>
+                                                            <option value="H">Masculino</option>
+                                                            <option value="F">Femenino</option>
+                                                        </select>
+                                                        <div class="invalid-feedback" style="display: block; font-size: 0.8rem;"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="mb-2">
+                                                        <label for="primera_vez_entidad" class="form-label">ESTADO</label>
+                                                        <select class="form-select form-select-sm" id="primera_vez_entidad" name="primera_vez_entidad">
+                                                            <option value="TS">Tamaulipas</option>
+                                                            <option value="AS">Aguascalientes</option>
+                                                            <option value="BC">Baja California</option>
+                                                            <option value="BS">Baja California Sur</option>
+                                                            <option value="CC">Campeche</option>
+                                                            <option value="CL">Coahuila</option>
+                                                            <option value="CM">Colima</option>
+                                                            <option value="CS">Chiapas</option>
+                                                            <option value="CH">Chihuahua</option>
+                                                            <option value="DF">Ciudad de México</option>
+                                                            <option value="DG">Durango</option>
+                                                            <option value="GT">Guanajuato</option>
+                                                            <option value="GR">Guerrero</option>
+                                                            <option value="HG">Hidalgo</option>
+                                                            <option value="JC">Jalisco</option>
+                                                            <option value="MC">Estado de México</option>
+                                                            <option value="MN">Michoacán</option>
+                                                            <option value="MS">Morelos</option>
+                                                            <option value="NT">Nayarit</option>
+                                                            <option value="NL">Nuevo León</option>
+                                                            <option value="OC">Oaxaca</option>
+                                                            <option value="PL">Puebla</option>
+                                                            <option value="QT">Querétaro</option>
+                                                            <option value="QR">Quintana Roo</option>
+                                                            <option value="SP">San Luis Potosí</option>
+                                                            <option value="SL">Sinaloa</option>
+                                                            <option value="SR">Sonora</option>
+                                                            <option value="TC">Tabasco</option>
+                                                            <option value="TL">Tlaxcala</option>
+                                                            <option value="VZ">Veracruz</option>
+                                                            <option value="YN">Yucatán</option>
+                                                            <option value="ZS">Zacatecas</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <br>
-                            <div class="d-flex justify-content-center">
-                                <button type="button" id="vaciar_aspirantes_registrados" class="btn btn-secondary btn-dos me-2">Vaciar</button>
-                                <button type="submit" class="btn btn-primary btn-dos">Registrarse</button>
+                            <div class="card mb-3">
+                                <div class="card-header bg-primary text-white">
+                                    <h5 class="card-title mb-0">Información de Contacto</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row g-2">
+                                        <!-- CURP -->
+                                        <div class="col-md-3">
+                                            <div class="mb-2">
+                                                <label for="primera_vez_curp" class="form-label">CURP</label>
+                                                <input type="text" class="form-control form-control-sm" id="primera_vez_curp" name="primera_vez_curp" maxlength="18">
+                                                <div class="invalid-feedback" style="display: block; font-size: 0.8rem;"></div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Celular -->
+                                        <div class="col-md-3">
+                                            <div class="mb-2">
+                                                <label for="primera_vez_celular" class="form-label">CELULAR</label>
+                                                <input type="text" class="form-control form-control-sm" id="primera_vez_celular" name="primera_vez_celular" maxlength="10">
+                                                <div class="invalid-feedback" style="display: block; font-size: 0.8rem;"></div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Email -->
+                                        <div class="col-md-3">
+                                            <div class="mb-2">
+                                                <label for="primera_vez_email" class="form-label">EMAIL</label>
+                                                <input type="email" class="form-control form-control-sm" id="primera_vez_email" name="primera_vez_email">
+                                                <div class="invalid-feedback" style="display: block; font-size: 0.8rem;"></div>
+                                            </div>
+                                        </div>
+
+                                        <!-- CAPTCHA -->
+                                        <div class="col-md-3">
+                                            <div class="mb-2">
+                                                <label for="primera_vez_aspirante_registro_captcha" class="form-label">CAPTCHA</label>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="flex-grow-1 position-relative">
+                                                        <input type="text" class="form-control form-control-sm captchaInput" id="primera_vez_aspirante_registro_captcha" name="primera_vez_aspirante_registro_captcha" maxlength="5">
+                                                        <div class="invalid-feedback" style="display: block; font-size: 0.8rem;"></div>
+                                                    </div>
+                                                    <canvas class="captchaCanvas" width="128" height="44" class="ms-2"></canvas>
+                                                    <button type="button" class="btn btn-secondary btn-sm me-1 ms-2" onclick="generateCaptcha('formulario_primera_vez_aspirantes_registro')">
+                                                        <i class="bi bi-arrow-clockwise"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex justify-content-center mt-3">
+                                        <button type="button" id="vaciar_aspirantes_registrados" class="btn btn-secondary btn-sm me-2">Vaciar</button>
+                                        <button type="submit" class="btn btn-primary btn-sm">Registrarse</button>
+                                    </div>
+                                </div>
                             </div>
                         </form>
                     </div>
@@ -174,75 +202,65 @@
                         </div>
                     </div>
 
-                    <form id="formulario_iniciar_session_aspirante" method="POST" class="rounded">
-                        <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
-                        <input type="hidden" name="form_type" value="aspirante_login">
-                        <br>
-                        <div class="row justify-content-center">
-                            <!-- CURP -->
-                            <div class="col-lg-3 mb-4">
-                                <label for="iniciar_session_aspirante_curp" class="form-label">CURP</label>
-                                <input
-                                    type="text"
-                                    class="form-control form-control-lg"
-                                    id="iniciar_session_aspirante_curp"
-                                    name="iniciar_session_aspirante_curp"
-                                    maxlength="18">
-                                <div class="invalid-feedback" style="display: block;"></div>
-                            </div>
-
-                            <!-- Contraseña (NIP) -->
-                            <div class="col-lg-3 mb-4">
-                                <label for="iniciar_session_aspirante_password" class="form-label">NIP</label>
-                                <div class="d-flex align-items-center">
-                                    <div class="flex-grow-1 position-relative">
-                                        <input
-                                            type="password"
-                                            class="form-control form-control-lg passwordInput"
-                                            id="iniciar_session_aspirante_password"
-                                            name="iniciar_session_aspirante_password"
-                                            maxlength="4">
-                                        <div class="invalid-feedback" style="display: block;"></div>
-                                    </div>
-                                    <button
-                                        type="button"
-                                        class="btn btn-secondary ms-2 togglePassword"
-                                        onclick="togglePasswordVisibility('iniciar_session_aspirante_password', this)">
-                                        <i class="bi bi-eye-slash"></i>
-                                    </button>
-                                </div>
-                            </div>
-
-                            <!-- CAPTCHA -->
-                            <div class="col-lg-4 mb-3">
-                                <label for="iniciar_session_aspirante_captcha" class="form-label">CAPTCHA</label>
-                                <div class="d-flex align-items-center">
-                                    <div class="flex-grow-1 position-relative">
-                                        <input
-                                            type="text"
-                                            class="form-control form-control-lg captchaInput"
-                                            id="iniciar_session_aspirante_captcha"
-                                            name="iniciar_session_aspirante_captcha"
-                                            maxlength="5">
-                                        <div class="invalid-feedback" style="display: block;"></div>
-                                    </div>
-                                    <canvas class="captchaCanvas" width="128" height="44" class="ms-2"></canvas>
-                                    <button
-                                        type="button"
-                                        class="btn btn-secondary me-1 ms-2"
-                                        onclick="generateCaptcha('formulario_iniciar_session_aspirante')">
-                                        <i class="bi bi-arrow-clockwise"></i>
-                                    </button>
-                                </div>
-                            </div>
+                    <div class="card mb-3">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="card-title mb-0">Iniciar Sesión</h5>
                         </div>
+                        <div class="card-body">
+                            <form id="formulario_iniciar_session_aspirante" method="POST" class="rounded">
+                                <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+                                <input type="hidden" name="form_type" value="aspirante_login">
+                                
+                                <div class="row g-2">
+                                    <!-- CURP -->
+                                    <div class="col-md-4">
+                                        <div class="mb-2">
+                                            <label for="iniciar_session_aspirante_curp" class="form-label">CURP</label>
+                                            <input type="text" class="form-control form-control-sm" id="iniciar_session_aspirante_curp" name="iniciar_session_aspirante_curp" maxlength="18">
+                                            <div class="invalid-feedback" style="display: block; font-size: 0.8rem;"></div>
+                                        </div>
+                                    </div>
 
-                        <br>
-                        <div class="d-flex justify-content-center">
-                            <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+                                    <!-- Contraseña (NIP) -->
+                                    <div class="col-md-4">
+                                        <div class="mb-2">
+                                            <label for="iniciar_session_aspirante_password" class="form-label">NIP</label>
+                                            <div class="d-flex align-items-center">
+                                                <div class="flex-grow-1 position-relative">
+                                                    <input type="password" class="form-control form-control-sm passwordInput" id="iniciar_session_aspirante_password" name="iniciar_session_aspirante_password" maxlength="4">
+                                                    <div class="invalid-feedback" style="display: block; font-size: 0.8rem;"></div>
+                                                </div>
+                                                <button type="button" class="btn btn-secondary btn-sm ms-2 togglePassword" onclick="togglePasswordVisibility('iniciar_session_aspirante_password', this)">
+                                                    <i class="bi bi-eye-slash"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- CAPTCHA -->
+                                    <div class="col-md-4">
+                                        <div class="mb-2">
+                                            <label for="iniciar_session_aspirante_captcha" class="form-label">CAPTCHA</label>
+                                            <div class="d-flex align-items-center">
+                                                <div class="flex-grow-1 position-relative">
+                                                    <input type="text" class="form-control form-control-sm captchaInput" id="iniciar_session_aspirante_captcha" name="iniciar_session_aspirante_captcha" maxlength="5">
+                                                    <div class="invalid-feedback" style="display: block; font-size: 0.8rem;"></div>
+                                                </div>
+                                                <canvas class="captchaCanvas" width="128" height="44" class="ms-2"></canvas>
+                                                <button type="button" class="btn btn-secondary btn-sm me-1 ms-2" onclick="generateCaptcha('formulario_iniciar_session_aspirante')">
+                                                    <i class="bi bi-arrow-clockwise"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex justify-content-center mt-3">
+                                    <button type="submit" class="btn btn-primary btn-sm">Iniciar Sesión</button>
+                                </div>
+                            </form>
                         </div>
-                    </form>
-
+                    </div>
                 </div>
             </div>
         </div>
@@ -251,96 +269,146 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-    // Configuración común para ambas validaciones
-    const commonConfig = {
-        errorFieldCssClass: 'is-invalid',
-        successFieldCssClass: 'is-valid',
-        focusInvalidField: true,
-        lockForm: true,
-        tooltip: { position: 'bottom' }
-    };
-
-    // Reglas comunes
-    const requiredRule = { rule: 'required', errorMessage: 'Campo requerido' };
-    const captchaRules = [
-        requiredRule,
-        { rule: 'minLength', value: 5, errorMessage: 'Debe tener 5 caracteres' },
-        { rule: 'maxLength', value: 5, errorMessage: 'Debe tener 5 caracteres' }
-    ];
-
-    // Validación para registro
-    const validationRegistro = new JustValidate('#formulario_primera_vez_aspirantes_registro', commonConfig);
-    
-    const registroFields = {
-        '#primera_vez_apellido_paterno': [requiredRule, { rule: 'minLength', value: 2, errorMessage: 'Mínimo 2 caracteres' }],
-        '#primera_vez_apellido_materno': [requiredRule, { rule: 'minLength', value: 2, errorMessage: 'Mínimo 2 caracteres' }],
-        '#primera_vez_nombre': [requiredRule, { rule: 'minLength', value: 2, errorMessage: 'Mínimo 2 caracteres' }],
-        '#primera_vez_fecha_nacimiento': [requiredRule],
-        '#primera_vez_sexo': [requiredRule],
-        '#primera_vez_curp': [requiredRule, { rule: 'minLength', value: 18, errorMessage: '18 caracteres' }],
-        '#primera_vez_celular': [requiredRule, { rule: 'number', errorMessage: 'Solo números' }, { rule: 'minLength', value: 10, errorMessage: '10 dígitos' }],
-        '#primera_vez_email': [requiredRule, { rule: 'email', errorMessage: 'Email inválido' }],
-        '#primera_vez_aspirante_registro_captcha': captchaRules
-    };
-
-    Object.entries(registroFields).forEach(([field, rules]) => {
-        validationRegistro.addField(field, rules);
-    });
-
-    // Validación para login
-    const validationLogin = new JustValidate('#formulario_iniciar_session_aspirante', commonConfig);
-    
-    const loginFields = {
-        '#iniciar_session_aspirante_curp': [requiredRule, { rule: 'minLength', value: 18, errorMessage: '18 caracteres' }],
-        '#iniciar_session_aspirante_password': [requiredRule, { rule: 'number', errorMessage: 'Solo números' }, { rule: 'minLength', value: 4, errorMessage: '4 dígitos' }],
-        '#iniciar_session_aspirante_captcha': captchaRules
-    };
-
-    Object.entries(loginFields).forEach(([field, rules]) => {
-        validationLogin.addField(field, rules);
-    });
-
-    // Manejadores de éxito
-    const handleSuccess = (formId) => (event) => {
-        if (!verifyCaptcha(formId)) {
-            event.preventDefault();
-            return;
-        }
-        
-        fetch(window.location.href, {
-            method: 'POST',
-            body: new FormData(event.target)
-        })
-        .then(response => response.json())
-        .then(data => {
-            const modalTitle = document.getElementById('registroModalLabel');
-            const modalBody = document.getElementById('modal-body-content');
-            
-            modalTitle.textContent = data.title;
-            modalBody.innerHTML = data.message;
-            modalBody.classList.toggle('text-success', data.status === 'success');
-            modalBody.classList.toggle('text-danger', data.status !== 'success');
-            
-            const modal = new bootstrap.Modal(document.getElementById('registroModal'));
-            modal.show();
-            
-            if (data.status === 'success' && data.redirect) {
-                setTimeout(() => window.location.href = data.redirect, 2000);
-            } else {
-                generateCaptcha(formId);
+        // Configuración común para ambas validaciones
+        const commonConfig = {
+            errorFieldCssClass: 'is-invalid',
+            successFieldCssClass: 'is-valid',
+            focusInvalidField: true,
+            lockForm: true,
+            tooltip: {
+                position: 'bottom'
             }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            const modalBody = document.getElementById('modal-body-content');
-            modalBody.innerHTML = 'Error en el sistema. Por favor, intente más tarde.';
-            modalBody.classList.add('text-danger');
-            const modal = new bootstrap.Modal(document.getElementById('registroModal'));
-            modal.show();
-        });
-    };
+        };
 
-    validationRegistro.onSuccess(handleSuccess('formulario_primera_vez_aspirantes_registro'));
-    validationLogin.onSuccess(handleSuccess('formulario_iniciar_session_aspirante'));
-});
+        // Reglas comunes
+        const requiredRule = {
+            rule: 'required',
+            errorMessage: 'Campo requerido'
+        };
+        const captchaRules = [
+            requiredRule,
+            {
+                rule: 'minLength',
+                value: 5,
+                errorMessage: 'Debe tener 5 caracteres'
+            },
+            {
+                rule: 'maxLength',
+                value: 5,
+                errorMessage: 'Debe tener 5 caracteres'
+            }
+        ];
+
+        // Validación para registro
+        const validationRegistro = new JustValidate('#formulario_primera_vez_aspirantes_registro', commonConfig);
+
+        const registroFields = {
+            '#primera_vez_apellido_paterno': [requiredRule, {
+                rule: 'minLength',
+                value: 2,
+                errorMessage: 'Mínimo 2 caracteres'
+            }],
+            '#primera_vez_apellido_materno': [requiredRule, {
+                rule: 'minLength',
+                value: 2,
+                errorMessage: 'Mínimo 2 caracteres'
+            }],
+            '#primera_vez_nombre': [requiredRule, {
+                rule: 'minLength',
+                value: 2,
+                errorMessage: 'Mínimo 2 caracteres'
+            }],
+            '#primera_vez_fecha_nacimiento': [requiredRule],
+            '#primera_vez_sexo': [requiredRule],
+            '#primera_vez_curp': [requiredRule, {
+                rule: 'minLength',
+                value: 18,
+                errorMessage: '18 caracteres'
+            }],
+            '#primera_vez_celular': [requiredRule, {
+                rule: 'number',
+                errorMessage: 'Solo números'
+            }, {
+                rule: 'minLength',
+                value: 10,
+                errorMessage: '10 dígitos'
+            }],
+            '#primera_vez_email': [requiredRule, {
+                rule: 'email',
+                errorMessage: 'Email inválido'
+            }],
+            '#primera_vez_aspirante_registro_captcha': captchaRules
+        };
+
+        Object.entries(registroFields).forEach(([field, rules]) => {
+            validationRegistro.addField(field, rules);
+        });
+
+        // Validación para login
+        const validationLogin = new JustValidate('#formulario_iniciar_session_aspirante', commonConfig);
+
+        const loginFields = {
+            '#iniciar_session_aspirante_curp': [requiredRule, {
+                rule: 'minLength',
+                value: 18,
+                errorMessage: '18 caracteres'
+            }],
+            '#iniciar_session_aspirante_password': [requiredRule, {
+                rule: 'number',
+                errorMessage: 'Solo números'
+            }, {
+                rule: 'minLength',
+                value: 4,
+                errorMessage: '4 dígitos'
+            }],
+            '#iniciar_session_aspirante_captcha': captchaRules
+        };
+
+        Object.entries(loginFields).forEach(([field, rules]) => {
+            validationLogin.addField(field, rules);
+        });
+
+        // Manejadores de éxito
+        const handleSuccess = (formId) => (event) => {
+            if (!verifyCaptcha(formId)) {
+                event.preventDefault();
+                return;
+            }
+
+            fetch(window.location.href, {
+                    method: 'POST',
+                    body: new FormData(event.target)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    const modalTitle = document.getElementById('registroModalLabel');
+                    const modalBody = document.getElementById('modal-body-content');
+
+                    modalTitle.textContent = data.title;
+                    modalBody.innerHTML = data.message;
+                    modalBody.classList.toggle('text-success', data.status === 'success');
+                    modalBody.classList.toggle('text-danger', data.status !== 'success');
+
+                    const modal = new bootstrap.Modal(document.getElementById('registroModal'));
+                    modal.show();
+
+                    if (data.status === 'success' && data.redirect) {
+                        setTimeout(() => window.location.href = data.redirect, 2000);
+                    } else {
+                        generateCaptcha(formId);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    const modalBody = document.getElementById('modal-body-content');
+                    modalBody.innerHTML = 'Error en el sistema. Por favor, intente más tarde.';
+                    modalBody.classList.add('text-danger');
+                    const modal = new bootstrap.Modal(document.getElementById('registroModal'));
+                    modal.show();
+                });
+        };
+
+        validationRegistro.onSuccess(handleSuccess('formulario_primera_vez_aspirantes_registro'));
+        validationLogin.onSuccess(handleSuccess('formulario_iniciar_session_aspirante'));
+    });
 </script>

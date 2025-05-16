@@ -25,7 +25,7 @@
 }
 
 .tabs dd {
-    background: #f7fcff;
+    background: #f7fcff; /* Cambiado de rgb(226, 232, 235) */
     border: 2px solid #1B396A;
     display: block;
     flex: 1;
@@ -41,7 +41,7 @@
 }
 
 .tabs dd:hover {
-    background: #e8f7ff;
+    background: #e8f7ff; /* Cambiado de rgb(226, 232, 235) */
     transform: translateY(-3px);
     box-shadow: 0 4px 15px rgba(27, 57, 106, 0.15);
 }
