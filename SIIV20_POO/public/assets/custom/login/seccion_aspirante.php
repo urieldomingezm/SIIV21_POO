@@ -203,9 +203,7 @@
                     </div>
 
                     <div class="card mb-3">
-                        <div class="card-header bg-primary text-white">
-                            <h5 class="card-title mb-0">Iniciar Sesión</h5>
-                        </div>
+
                         <div class="card-body">
                             <form id="formulario_iniciar_session_aspirante" method="POST" class="rounded">
                                 <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">

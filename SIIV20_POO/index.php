@@ -25,11 +25,6 @@ class LoginController {
     private function renderMainSection() {
         echo '<section class="accordion-demo">
             <div class="container mt-1">
-                <div class="text-center mb-3">
-                    <a href="/pruebas/plantilla.php" class="btn btn-info">
-                        <i class="bi bi-bug"></i> Ambiente de Pruebas
-                    </a>
-                </div>
 
                 <h3 class="text-center">INICIO DE SESIÓN GENERAL</h3>
 
@@ -45,7 +40,7 @@ class LoginController {
                     </dd>
                 </div>
 
-                <div class="tabs-content mt-3">';
+                <div class="tabs-content mt-3" >';
         
         $this->renderLoginSections();
 
