@@ -62,58 +62,32 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Configuración común
-        const validation = new JustValidate('#formulario_alumno', {
+        const validator = new JustValidate('#formulario_alumno', {
             errorFieldCssClass: 'is-invalid',
             successFieldCssClass: 'is-valid',
             focusInvalidField: true,
             lockForm: true,
-            tooltip: {
-                position: 'bottom', // Cambiado de 'top' a 'bottom'
-                showOnFocus: true,
-                hideOnBlur: true,
-                style: {
-                    fontSize: window.innerWidth < 768 ? '12px' : '14px',
-                    padding: window.innerWidth < 768 ? '5px 10px' : '8px 16px'
-                }
+            messages: {
+                required: 'Campo requerido',
+                minLength: 'Mínimo {value} caracteres',
+                maxLength: 'Máximo {value} caracteres',
+                number: 'Solo números'
             }
         });
 
-        // Reglas comunes
-        const requiredRule = {
-            rule: 'required',
-            errorMessage: 'Campo requerido'
-        };
-
-        // Validaciones de campos
-        validation
+        validator
             .addField('#alumno_numero_control', [
-                requiredRule,
-                {
-                    rule: 'minLength',
-                    value: 8,
-                    errorMessage: '8 caracteres'
-                }
+                { rule: 'required', errorMessage: 'Ingrese número de control' },
+                { rule: 'minLength', value: 8, errorMessage: 'Mínimo 8 caracteres' }
             ])
             .addField('#alumno_password', [
-                requiredRule,
-                {
-                    rule: 'minLength',
-                    value: 4,
-                    errorMessage: '4 dígitos'
-                },
-                {
-                    rule: 'number',
-                    errorMessage: 'Solo números'
-                }
+                { rule: 'required', errorMessage: 'Ingrese NIP' },
+                { rule: 'minLength', value: 4, errorMessage: 'Mínimo 4 dígitos' },
+                { rule: 'number', errorMessage: 'Solo números' }
             ])
             .addField('#alumno_captcha', [
-                requiredRule,
-                {
-                    rule: 'minLength',
-                    value: 5,
-                    errorMessage: '5 caracteres'
-                }
+                { rule: 'required', errorMessage: 'Ingrese CAPTCHA' },
+                { rule: 'minLength', value: 5, errorMessage: 'Debe tener 5 caracteres' }
             ])
             .onSuccess((event) => {
                 if (!verifyCaptcha('formulario_alumno')) {

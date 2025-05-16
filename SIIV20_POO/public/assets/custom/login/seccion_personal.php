@@ -62,80 +62,71 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-    // Configuración común
-    const validation = new JustValidate('#formulario_personal', {
-        errorFieldCssClass: 'is-invalid',
-        successFieldCssClass: 'is-valid',
-        focusInvalidField: true,
-        lockForm: true,
-        tooltip: {
-            position: 'bottom', // Cambiado de 'top' a 'bottom'
-            showOnFocus: true,
-            hideOnBlur: true,
-            style: {
-                fontSize: window.innerWidth < 768 ? '12px' : '14px',
-                padding: window.innerWidth < 768 ? '5px 10px' : '8px 16px'
+        const validador = new JustValidate('#formulario_personal', {
+            errorFieldCssClass: 'is-invalid',
+            successFieldCssClass: 'is-valid',
+            focusInvalidField: true,
+            lockForm: true,
+            messages: {
+                required: 'Campo requerido',
+                minLength: 'Mínimo {value} caracteres',
+                maxLength: 'Máximo {value} caracteres'
             }
-        }
-    });
-
-    // Reglas comunes
-    const requiredRule = { rule: 'required', errorMessage: 'Campo requerido' };
-
-    // Validaciones de campos
-    validation
-        .addField('#personal_usuario', [
-            requiredRule,
-            { rule: 'minLength', value: 3, errorMessage: 'Mínimo 3 caracteres' },
-            { rule: 'maxLength', value: 20, errorMessage: 'Máximo 20 caracteres' }
-        ])
-        .addField('#personal_password', [
-            requiredRule,
-            { rule: 'minLength', value: 6, errorMessage: 'Mínimo 6 caracteres' }
-        ])
-        .addField('#personal_captcha', [
-            requiredRule,
-            { rule: 'minLength', value: 5, errorMessage: '5 caracteres' }
-        ])
-        .onSuccess((event) => {
-            if (!verifyCaptcha('formulario_personal')) {
-                event.preventDefault();
-                return;
-            }
-            
-            const formData = new FormData(event.target);
-            
-            fetch(window.location.href, {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                const modalTitle = document.getElementById('registroModalLabel');
-                const modalBody = document.getElementById('modal-body-content');
-                
-                modalTitle.textContent = data.title;
-                modalBody.innerHTML = data.message;
-                modalBody.classList.toggle('text-success', data.status === 'success');
-                modalBody.classList.toggle('text-danger', data.status !== 'success');
-                
-                const modal = new bootstrap.Modal(document.getElementById('registroModal'));
-                modal.show();
-                
-                if (data.status === 'success' && data.redirect) {
-                    setTimeout(() => window.location.href = data.redirect, 2000);
-                } else {
-                    generateCaptcha('formulario_personal');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                const modalBody = document.getElementById('modal-body-content');
-                modalBody.innerHTML = 'Error en el sistema. Por favor, intente más tarde.';
-                modalBody.classList.add('text-danger');
-                const modal = new bootstrap.Modal(document.getElementById('registroModal'));
-                modal.show();
-            });
         });
-});
+
+        validador
+            .addField('#personal_usuario', [
+                { rule: 'required', errorMessage: 'Ingrese usuario' },
+                { rule: 'minLength', value: 3, errorMessage: 'Mínimo 3 caracteres' },
+                { rule: 'maxLength', value: 20, errorMessage: 'Máximo 20 caracteres' }
+            ])
+            .addField('#personal_password', [
+                { rule: 'required', errorMessage: 'Ingrese contraseña' },
+                { rule: 'minLength', value: 6, errorMessage: 'Mínimo 6 caracteres' }
+            ])
+            .addField('#personal_captcha', [
+                { rule: 'required', errorMessage: 'Ingrese CAPTCHA' },
+                { rule: 'minLength', value: 5, errorMessage: 'Debe tener 5 caracteres' }
+            ])
+            .onSuccess((evento) => {
+                if (!verifyCaptcha('formulario_personal')) {
+                    evento.preventDefault();
+                    return;
+                }
+
+                const datos = new FormData(evento.target);
+
+                fetch(window.location.href, {
+                    method: 'POST',
+                    body: datos
+                })
+                .then(respuesta => respuesta.json())
+                .then(datos => {
+                    const titulo = document.getElementById('registroModalLabel');
+                    const cuerpo = document.getElementById('modal-body-content');
+
+                    titulo.textContent = datos.title;
+                    cuerpo.innerHTML = datos.message;
+                    cuerpo.classList.toggle('text-success', datos.status === 'success');
+                    cuerpo.classList.toggle('text-danger', datos.status !== 'success');
+
+                    const modal = new bootstrap.Modal(document.getElementById('registroModal'));
+                    modal.show();
+
+                    if (datos.status === 'success' && datos.redirect) {
+                        setTimeout(() => window.location.href = datos.redirect, 2000);
+                    } else {
+                        generateCaptcha('formulario_personal');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    const cuerpo = document.getElementById('modal-body-content');
+                    cuerpo.innerHTML = 'Error del sistema';
+                    cuerpo.classList.add('text-danger');
+                    const modal = new bootstrap.Modal(document.getElementById('registroModal'));
+                    modal.show();
+                });
+            });
+    });
 </script>
