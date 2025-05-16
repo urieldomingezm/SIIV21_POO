@@ -1,6 +1,8 @@
 <div class="content" id="Alumnos">
     <div class="card mb-3">
-
+        <div class="card-header bg-primary text-white">
+            <h5 class="card-title mb-0">Alumno</h5>
+        </div>
         <div class="card-body">
             <form id="formulario_alumno" method="POST" class="rounded">
                 <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
