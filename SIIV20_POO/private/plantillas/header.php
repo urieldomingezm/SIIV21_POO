@@ -131,11 +131,6 @@ class Header
             <section id="topbar" class="d-flex align-items-center">
                 <div class="d-flex justify-content-center w-100">
                     <div class="social-links d-none d-md-block">
-                        <a class="text-white" href="https://www.gob.mx/" target="_blank" id="pleca_1">
-                            <img style="height: auto; min-width: 230px; max-width: 230px"
-                                src="/public/assets/img/png/gobierno_mexico.png"
-                                alt="Gobierno de México" />
-                        </a>
                         <a class="text-white" href="https://www.gob.mx/sep" target="_blank" id="pleca_2">
                             <img style="height: auto; min-width: 250px; max-width: 250px"
                                 src="/public/assets/img/png/sep.png"

@@ -122,156 +122,169 @@ class GestionPagos
 
         <body>
             <div class="container-fluid py-4">
-                <!-- Tarjetas de estadísticas con diseño mejorado -->
-                <div class="row g-3 mb-4">
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="card h-100 border-0 shadow-sm">
-                            <div class="card-body">
-                                <div class="d-flex align-items-start justify-content-between">
-                                    <div>
-                                        <h6 class="card-title text-muted mb-1">Total Alumnos</h6>
-                                        <h2 class="mb-2"><?php echo $totalAlumnos; ?></h2>
-                                        <p class="card-text text-success mb-0">
-                                            <i class="bi bi-arrow-up me-1"></i>
-                                            <span>12% incremento</span>
-                                        </p>
+                <div class="accordion" id="estadisticasAccordion">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingEstadisticas">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEstadisticas" aria-expanded="true" aria-controls="collapseEstadisticas">
+                                Estadísticas y Gráficas
+                            </button>
+                        </h2>
+                        <div id="collapseEstadisticas" class="accordion-collapse collapse show" aria-labelledby="headingEstadisticas" data-bs-parent="#estadisticasAccordion">
+                            <div class="accordion-body">
+                                <!-- Tarjetas de estadísticas con diseño mejorado -->
+                                <div class="row g-3 mb-4">
+                                    <div class="col-sm-6 col-lg-3">
+                                        <div class="card h-100 border-0 shadow-sm">
+                                            <div class="card-body">
+                                                <div class="d-flex align-items-start justify-content-between">
+                                                    <div>
+                                                        <h6 class="card-title text-muted mb-1">Total Alumnos</h6>
+                                                        <h2 class="mb-2"><?php echo $totalAlumnos; ?></h2>
+                                                        <p class="card-text text-success mb-0">
+                                                            <i class="bi bi-arrow-up me-1"></i>
+                                                            <span>12% incremento</span>
+                                                        </p>
+                                                    </div>
+                                                    <div class="p-2 bg-primary bg-opacity-10 rounded">
+                                                        <i class="bi bi-people-fill text-primary fs-3"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="p-2 bg-primary bg-opacity-10 rounded">
-                                        <i class="bi bi-people-fill text-primary fs-3"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="card h-100 border-0 shadow-sm">
-                            <div class="card-body">
-                                <div class="d-flex align-items-start justify-content-between">
-                                    <div>
-                                        <h6 class="card-title text-muted mb-1">Alumnos Pagados</h6>
-                                        <h2 class="mb-2"><?php echo $alumnosPagados; ?></h2>
-                                        <p class="card-text text-success mb-0">
-                                            <i class="bi bi-arrow-up me-1"></i>
-                                            <span>8% incremento</span>
-                                        </p>
+                                    <div class="col-sm-6 col-lg-3">
+                                        <div class="card h-100 border-0 shadow-sm">
+                                            <div class="card-body">
+                                                <div class="d-flex align-items-start justify-content-between">
+                                                    <div>
+                                                        <h6 class="card-title text-muted mb-1">Alumnos Pagados</h6>
+                                                        <h2 class="mb-2"><?php echo $alumnosPagados; ?></h2>
+                                                        <p class="card-text text-success mb-0">
+                                                            <i class="bi bi-arrow-up me-1"></i>
+                                                            <span>8% incremento</span>
+                                                        </p>
+                                                    </div>
+                                                    <div class="p-2 bg-success bg-opacity-10 rounded">
+                                                        <i class="bi bi-check-circle text-success fs-3"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="p-2 bg-success bg-opacity-10 rounded">
-                                        <i class="bi bi-check-circle text-success fs-3"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="card h-100 border-0 shadow-sm">
-                            <div class="card-body">
-                                <div class="d-flex align-items-start justify-content-between">
-                                    <div>
-                                        <h6 class="card-title text-muted mb-1">Total Recaudado</h6>
-                                        <h2 class="mb-2">$<?php echo number_format($totalRecaudado, 2); ?></h2>
-                                        <p class="card-text text-danger mb-0">
-                                            <i class="bi bi-arrow-down me-1"></i>
-                                            <span>3% decremento</span>
-                                        </p>
+                                    <div class="col-sm-6 col-lg-3">
+                                        <div class="card h-100 border-0 shadow-sm">
+                                            <div class="card-body">
+                                                <div class="d-flex align-items-start justify-content-between">
+                                                    <div>
+                                                        <h6 class="card-title text-muted mb-1">Total Recaudado</h6>
+                                                        <h2 class="mb-2">$<?php echo number_format($totalRecaudado, 2); ?></h2>
+                                                        <p class="card-text text-danger mb-0">
+                                                            <i class="bi bi-arrow-down me-1"></i>
+                                                            <span>3% decremento</span>
+                                                        </p>
+                                                    </div>
+                                                    <div class="p-2 bg-info bg-opacity-10 rounded">
+                                                        <i class="bi bi-currency-dollar text-info fs-3"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="p-2 bg-info bg-opacity-10 rounded">
-                                        <i class="bi bi-currency-dollar text-info fs-3"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="card h-100 border-0 shadow-sm">
-                            <div class="card-body">
-                                <div class="d-flex align-items-start justify-content-between">
-                                    <div>
-                                        <h6 class="card-title text-muted mb-1">Promedio Descuentos</h6>
-                                        <h2 class="mb-2"><?php echo number_format($totalDescuentos / $totalAlumnos, 1); ?>%</h2>
-                                        <p class="card-text text-success mb-0">
-                                            <i class="bi bi-arrow-up me-1"></i>
-                                            <span>15% incremento</span>
-                                        </p>
-                                    </div>
-                                    <div class="p-2 bg-warning bg-opacity-10 rounded">
-                                        <i class="bi bi-percent text-warning fs-3"></i>
+                                    <div class="col-sm-6 col-lg-3">
+                                        <div class="card h-100 border-0 shadow-sm">
+                                            <div class="card-body">
+                                                <div class="d-flex align-items-start justify-content-between">
+                                                    <div>
+                                                        <h6 class="card-title text-muted mb-1">Promedio Descuentos</h6>
+                                                        <h2 class="mb-2"><?php echo number_format($totalDescuentos / $totalAlumnos, 1); ?>%</h2>
+                                                        <p class="card-text text-success mb-0">
+                                                            <i class="bi bi-arrow-up me-1"></i>
+                                                            <span>15% incremento</span>
+                                                        </p>
+                                                    </div>
+                                                    <div class="p-2 bg-warning bg-opacity-10 rounded">
+                                                        <i class="bi bi-percent text-warning fs-3"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- Gráficas y Actividades -->
-                <div class="row g-4 mb-4">
+                                <!-- Gráficas y Actividades -->
+                                <div class="row g-4 mb-4">
 
-                    <!-- Gráfica de Estado de Pagos -->
-                    <div class="col-md-4">
-                        <div class="card border-0 shadow-sm h-100">
-                            <div class="card-body">
-                                <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <h6 class="card-subtitle text-muted">Estado de Pagos</h6>
-                                    <div class="dropdown">
-                                        <button class="btn btn-sm btn-link text-muted" type="button" data-bs-toggle="dropdown">
-                                            <i class="bi bi-three-dots-vertical"></i>
-                                        </button>
-                                        <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" href="#">Detalles</a></li>
-                                            <li><a class="dropdown-item" href="#">Exportar</a></li>
-                                        </ul>
+                                    <!-- Gráfica de Estado de Pagos -->
+                                    <div class="col-md-4">
+                                        <div class="card border-0 shadow-sm h-100">
+                                            <div class="card-body">
+                                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                                    <h6 class="card-subtitle text-muted">Estado de Pagos</h6>
+                                                    <div class="dropdown">
+                                                        <button class="btn btn-sm btn-link text-muted" type="button" data-bs-toggle="dropdown">
+                                                            <i class="bi bi-three-dots-vertical"></i>
+                                                        </button>
+                                                        <ul class="dropdown-menu">
+                                                            <li><a class="dropdown-item" href="#">Detalles</a></li>
+                                                            <li><a class="dropdown-item" href="#">Exportar</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="chart-container" style="position: relative; height: 200px;">
+                                                    <canvas id="pagosPieChart"></canvas>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="chart-container" style="position: relative; height: 200px;">
-                                    <canvas id="pagosPieChart"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Gráfica de Descuentos -->
-                    <div class="col-md-4">
-                        <div class="card border-0 shadow-sm h-100">
-                            <div class="card-body">
-                                <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <h6 class="card-subtitle text-muted">Distribución de Descuentos</h6>
-                                    <div class="dropdown">
-                                        <button class="btn btn-sm btn-link text-muted" type="button" data-bs-toggle="dropdown">
-                                            <i class="bi bi-three-dots-vertical"></i>
-                                        </button>
-                                        <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" href="#">Detalles</a></li>
-                                            <li><a class="dropdown-item" href="#">Exportar</a></li>
-                                        </ul>
+
+                                    <!-- Gráfica de Descuentos -->
+                                    <div class="col-md-4">
+                                        <div class="card border-0 shadow-sm h-100">
+                                            <div class="card-body">
+                                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                                    <h6 class="card-subtitle text-muted">Distribución de Descuentos</h6>
+                                                    <div class="dropdown">
+                                                        <button class="btn btn-sm btn-link text-muted" type="button" data-bs-toggle="dropdown">
+                                                            <i class="bi bi-three-dots-vertical"></i>
+                                                        </button>
+                                                        <ul class="dropdown-menu">
+                                                            <li><a class="dropdown-item" href="#">Detalles</a></li>
+                                                            <li><a class="dropdown-item" href="#">Exportar</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="chart-container" style="position: relative; height: 200px;">
+                                                    <canvas id="descuentosChart"></canvas>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="chart-container" style="position: relative; height: 200px;">
-                                    <canvas id="descuentosChart"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Gráfica de Pagos por Carrera -->
-                    <div class="col-md-4">
-                        <div class="card border-0 shadow-sm h-100">
-                            <div class="card-body">
-                                <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <h6 class="card-subtitle text-muted">Pagos por Carrera</h6>
-                                    <div class="dropdown">
-                                        <button class="btn btn-sm btn-link text-muted" type="button" data-bs-toggle="dropdown">
-                                            <i class="bi bi-three-dots-vertical"></i>
-                                        </button>
-                                        <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" href="#">Detalles</a></li>
-                                            <li><a class="dropdown-item" href="#">Exportar</a></li>
-                                        </ul>
+
+                                    <!-- Gráfica de Pagos por Carrera -->
+                                    <div class="col-md-4">
+                                        <div class="card border-0 shadow-sm h-100">
+                                            <div class="card-body">
+                                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                                    <h6 class="card-subtitle text-muted">Pagos por Carrera</h6>
+                                                    <div class="dropdown">
+                                                        <button class="btn btn-sm btn-link text-muted" type="button" data-bs-toggle="dropdown">
+                                                            <i class="bi bi-three-dots-vertical"></i>
+                                                        </button>
+                                                        <ul class="dropdown-menu">
+                                                            <li><a class="dropdown-item" href="#">Detalles</a></li>
+                                                            <li><a class="dropdown-item" href="#">Exportar</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="chart-container" style="position: relative; height: 200px;">
+                                                    <canvas id="carrerasChart"></canvas>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="chart-container" style="position: relative; height: 200px;">
-                                    <canvas id="carrerasChart"></canvas>
                                 </div>
                             </div>
                         </div>
@@ -355,7 +368,6 @@ class GestionPagos
 
             <script>
                 document.addEventListener('DOMContentLoaded', function() {
-                    // Configuración de DataTable
                     const dataTable = new simpleDatatables.DataTable("#tablaPagos", {
                         searchable: true,
                         fixedHeight: true,
@@ -367,13 +379,90 @@ class GestionPagos
                         }
                     });
 
-                    // Agregar evento para calcular total al editar
+                    // Modal Registrar
+                    const modalRegistrar = new bootstrap.Modal(document.getElementById('modalRegistrar'));
+                    document.getElementById('btnRegistrar').addEventListener('click', function() {
+                        document.getElementById('formRegistrar').reset();
+                        modalRegistrar.show();
+                    });
+
+                    // Calcular total al cambiar descuento en registro
+                    document.getElementById('descuento').addEventListener('input', function() {
+                        const descuento = parseFloat(this.value) || 0;
+                        const precioBase = <?php echo self::PRECIO_BASE; ?>;
+                        const total = precioBase - (precioBase * (descuento / 100));
+                        document.getElementById('total').value = `$${total.toFixed(2)} MXN`;
+                    });
+
+                    // Modal Editar
                     document.querySelectorAll('.editar-registro').forEach(btn => {
                         btn.addEventListener('click', function() {
-                            const descuento = parseFloat(this.dataset.descuento);
-                            const precioBase = <?php echo self::PRECIO_BASE; ?>;
-                            const total = precioBase - (precioBase * (descuento / 100));
-                            // Aquí puedes agregar la lógica para actualizar el total en la base de datos
+                            const modal = new bootstrap.Modal(document.getElementById('modalEditar'));
+                            const form = document.getElementById('formEditar');
+
+                            // Obtener datos del botón
+                            const id = this.dataset.id;
+                            const descuento = this.dataset.descuento;
+                            const total = this.dataset.total;
+                            const nombreCompleto = this.closest('tr').querySelector('td:nth-child(3)').textContent.trim();
+
+                            // Llenar el formulario
+                            form.querySelector('[name="id"]').value = id;
+                            form.querySelector('[name="descuento"]').value = descuento;
+                            form.querySelector('[name="total"]').value = `$${parseFloat(total).toFixed(2)} MXN`;
+                            document.getElementById('nombreAlumno').textContent = nombreCompleto;
+
+                            // Verificar estado de pago
+                            const estadoPago = this.closest('tr').querySelector('td:nth-child(9) .badge').classList.contains('bg-success');
+                            document.getElementById('checkPagado').checked = estadoPago;
+
+                            modal.show();
+                        });
+                    });
+
+                    // Calcular total al cambiar descuento en edición
+                    document.getElementById('editDescuento').addEventListener('input', function() {
+                        const descuento = parseFloat(this.value) || 0;
+                        const precioBase = <?php echo self::PRECIO_BASE; ?>;
+                        const total = precioBase - (precioBase * (descuento / 100));
+                        document.getElementById('editTotal').value = `$${total.toFixed(2)} MXN`;
+                    });
+
+                    // Modal Eliminar
+                    document.querySelectorAll('.eliminar-registro').forEach(btn => {
+                        btn.addEventListener('click', function() {
+                            const modal = new bootstrap.Modal(document.getElementById('modalEliminar'));
+                            const id = this.dataset.id;
+                            const fila = this.closest('tr');
+                            const nombreCompleto = fila.querySelector('td:nth-child(3)').textContent.trim();
+                            const total = fila.querySelector('td:nth-child(8)').textContent.trim();
+
+                            // Llenar datos en el modal
+                            document.getElementById('eliminarId').value = id;
+                            document.getElementById('eliminarNombre').textContent = nombreCompleto;
+                            document.getElementById('eliminarTotal').textContent = total;
+
+                            modal.show();
+                        });
+                    });
+
+                    // Manejador para confirmación de eliminación
+                    document.getElementById('btnConfirmarEliminar').addEventListener('click', function() {
+                        const id = document.getElementById('eliminarId').value;
+                        // Aquí agregarías la lógica para eliminar el registro
+                        console.log(`Eliminando registro ${id}`);
+                        bootstrap.Modal.getInstance(document.getElementById('modalEliminar')).hide();
+                    });
+
+                    // Validación de formularios
+                    const forms = document.querySelectorAll('.needs-validation');
+                    forms.forEach(form => {
+                        form.addEventListener('submit', function(event) {
+                            if (!form.checkValidity()) {
+                                event.preventDefault();
+                                event.stopPropagation();
+                            }
+                            form.classList.add('was-validated');
                         });
                     });
 
@@ -472,6 +561,13 @@ class GestionPagos
                 });
             </script>
         </body>
+
+        <!-- Incluir los modales al final del body -->
+        <?php
+        require_once('modales/modal_registrar.php');
+        require_once('modales/modal_editar.php');
+        require_once('modales/modal_eliminar.php');
+        ?>
 <?php
     }
 }
