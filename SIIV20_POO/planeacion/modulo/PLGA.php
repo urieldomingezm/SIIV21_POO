@@ -1,10 +1,12 @@
 <?php
 require_once(CONFIG_PATH . 'bd.php');
 
-class GestionAcademica {
+class GestionAcademica
+{
     private $db;
 
-    public function __construct() {
+    public function __construct()
+    {
         // Verificar sesión
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
@@ -24,7 +26,8 @@ class GestionAcademica {
         }
     }
 
-    private function obtenerDatos() {
+    private function obtenerDatos()
+    {
         $query = "SELECT 
                     aia.academica_id,
                     aia.academica_alumno_id,
@@ -40,40 +43,41 @@ class GestionAcademica {
             $stmt = $this->db->prepare($query);
             $stmt->execute();
             return $stmt;
-        } catch(PDOException $e) {
+        } catch (PDOException $e) {
             error_log("Error en la consulta: " . $e->getMessage());
             return false;
         }
     }
 
-    private function obtenerEstadisticas($resultado) {
+    private function obtenerEstadisticas($resultado)
+    {
         $totalAlumnos = 0;
         $alumnosPorSemestre = [];
         $alumnosPorCarrera = [];
         $promedioGeneral = 0;
         $totalPromedios = 0;
 
-        while($fila = $resultado->fetch(PDO::FETCH_ASSOC)) {
+        while ($fila = $resultado->fetch(PDO::FETCH_ASSOC)) {
             $totalAlumnos++;
             $totalPromedios += $fila['academica_promedio'];
-            
+
             // Conteo por semestre
             $semestre = $fila['academica_semestre'];
-            if(!isset($alumnosPorSemestre[$semestre])) {
+            if (!isset($alumnosPorSemestre[$semestre])) {
                 $alumnosPorSemestre[$semestre] = 0;
             }
             $alumnosPorSemestre[$semestre]++;
-            
+
             // Conteo por carrera
             $carrera = $fila['carrera_nombre_completo'];
-            if(!isset($alumnosPorCarrera[$carrera])) {
+            if (!isset($alumnosPorCarrera[$carrera])) {
                 $alumnosPorCarrera[$carrera] = 0;
             }
             $alumnosPorCarrera[$carrera]++;
         }
 
         $promedioGeneral = $totalAlumnos > 0 ? round($totalPromedios / $totalAlumnos, 2) : 0;
-        
+
         return [
             'totalAlumnos' => $totalAlumnos,
             'alumnosPorSemestre' => $alumnosPorSemestre,
@@ -82,7 +86,8 @@ class GestionAcademica {
         ];
     }
 
-    public function renderizar() {
+    public function renderizar()
+    {
         $resultado = $this->obtenerDatos();
         if (!$resultado) {
             echo "<div class='alert alert-danger'>Error al obtener los datos académicos.</div>";
@@ -92,7 +97,8 @@ class GestionAcademica {
         // Obtener estadísticas
         $estadisticas = $this->obtenerEstadisticas($resultado);
         $resultado->execute(); // Reiniciar el cursor para la tabla
-        ?>
+?>
+
         <body>
             <div class="container mt-5">
                 <!-- Dashboard -->
@@ -131,7 +137,7 @@ class GestionAcademica {
                             <div class="card-body">
                                 <h6 class="card-title">Alumnos por Semestre</h6>
                                 <div style="max-height: 100px; overflow-y: auto;">
-                                    <?php foreach($estadisticas['alumnosPorSemestre'] as $semestre => $cantidad): ?>
+                                    <?php foreach ($estadisticas['alumnosPorSemestre'] as $semestre => $cantidad): ?>
                                         <div class="d-flex justify-content-between align-items-center mb-1">
                                             <small>Semestre <?php echo $semestre; ?></small>
                                             <span class="badge bg-white text-info"><?php echo $cantidad; ?></span>
@@ -147,7 +153,7 @@ class GestionAcademica {
                             <div class="card-body">
                                 <h6 class="card-title">Alumnos por Carrera</h6>
                                 <div style="max-height: 100px; overflow-y: auto;">
-                                    <?php foreach($estadisticas['alumnosPorCarrera'] as $carrera => $cantidad): ?>
+                                    <?php foreach ($estadisticas['alumnosPorCarrera'] as $carrera => $cantidad): ?>
                                         <div class="d-flex justify-content-between align-items-center mb-1">
                                             <small><?php echo substr($carrera, 0, 20) . '...'; ?></small>
                                             <span class="badge bg-white text-warning"><?php echo $cantidad; ?></span>
@@ -194,26 +200,26 @@ class GestionAcademica {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php while($fila = $resultado->fetch(PDO::FETCH_ASSOC)): ?>
-                                    <tr>
-                                        <td><?php echo htmlspecialchars($fila['academica_id']); ?></td>
-                                        <td><?php echo htmlspecialchars($fila['academica_alumno_id']); ?></td>
-                                        <td><?php echo htmlspecialchars($fila['alumno_numero_control']); ?></td>
-                                        <td><?php echo htmlspecialchars($fila['carrera_nombre_completo']); ?></td>
-                                        <td><?php echo htmlspecialchars($fila['academica_semestre']); ?></td>
-                                        <td><?php echo htmlspecialchars($fila['academica_periodo']); ?></td>
-                                        <td><?php echo htmlspecialchars($fila['academica_promedio']); ?></td>
-                                        <td>
-                                            <button class="btn btn-sm btn-warning editar-registro" 
+                                    <?php while ($fila = $resultado->fetch(PDO::FETCH_ASSOC)): ?>
+                                        <tr>
+                                            <td><?php echo htmlspecialchars($fila['academica_id']); ?></td>
+                                            <td><?php echo htmlspecialchars($fila['academica_alumno_id']); ?></td>
+                                            <td><?php echo htmlspecialchars($fila['alumno_numero_control']); ?></td>
+                                            <td><?php echo htmlspecialchars($fila['carrera_nombre_completo']); ?></td>
+                                            <td><?php echo htmlspecialchars($fila['academica_semestre']); ?></td>
+                                            <td><?php echo htmlspecialchars($fila['academica_periodo']); ?></td>
+                                            <td><?php echo htmlspecialchars($fila['academica_promedio']); ?></td>
+                                            <td>
+                                                <button class="btn btn-sm btn-warning editar-registro"
                                                     data-id="<?php echo $fila['academica_id']; ?>">
-                                                <i class="bi bi-pencil"></i>
-                                            </button>
-                                            <button class="btn btn-sm btn-danger eliminar-registro" 
+                                                    <i class="bi bi-pencil"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-danger eliminar-registro"
                                                     data-id="<?php echo $fila['academica_id']; ?>">
-                                                <i class="bi bi-trash"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
                                     <?php endwhile; ?>
                                 </tbody>
                             </table>
@@ -222,11 +228,6 @@ class GestionAcademica {
                 </div>
             </div>
 
-            <!-- Simple DataTables CSS -->
-            <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" type="text/css">
-            <!-- Simple DataTables JS -->
-            <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest"></script>
-            
             <script>
                 document.addEventListener('DOMContentLoaded', function() {
                     const dataTable = new simpleDatatables.DataTable("#tablaAcademica", {
@@ -242,7 +243,7 @@ class GestionAcademica {
                 });
             </script>
         </body>
-        <?php
+<?php
     }
 }
 

@@ -1,4 +1,3 @@
-
 <?php
 class NavigationMenu
 {
@@ -28,8 +27,17 @@ class NavigationMenu
                 'link' => '#',
                 'icon' => 'bi-journal-text',
                 'submenu' => array(
-                    array('text' => 'Gestion de usuarios', 'link' => '?page=Gestion de alumnos', 'icon' => 'bi-people-fill'),
-                    array('text' => 'Gestion de pagos', 'link' => '?page=Gestion de pagos', 'icon' => 'bi-cash-coin'),
+                    array(
+                        'text' => 'Gestión de usuarios',
+                        'link' => '#',
+                        'icon' => 'bi-people-fill',
+                        'submenu' => array(
+                            array('text' => 'Alumnos', 'link' => '?page=gestion-alumnos', 'icon' => 'bi-mortarboard-fill'),
+                            array('text' => 'Docentes', 'link' => '?page=gestion-docentes', 'icon' => 'bi-person-workspace'),
+                            array('text' => 'Administrativos', 'link' => '?page=gestion-admin', 'icon' => 'bi-person-badge')
+                        )
+                    ),
+                    array('text' => 'Gestión de pagos', 'link' => '?page=Gestion de pagos', 'icon' => 'bi-cash-coin'),
                 )
             ),
             array(
@@ -86,11 +94,40 @@ class NavigationMenu
             $itemId = 'accordion_' . str_replace(' ', '_', strtolower($item['text']));
             
             foreach ($item['submenu'] as $submenu) {
-                $submenuItems .= "<div class='accordion-body py-0'>
-                                    <a class='nav-link compact-link' href='{$submenu['link']}'>
-                                        <i class='bi {$submenu['icon']} me-2'></i>{$submenu['text']}
-                                    </a>
-                                </div>";
+                if (isset($submenu['submenu'])) {
+                    // Tercer nivel
+                    $thirdLevelId = 'accordion_' . str_replace(' ', '_', strtolower($submenu['text']));
+                    $thirdLevelItems = '';
+                    
+                    foreach ($submenu['submenu'] as $thirdLevel) {
+                        $thirdLevelItems .= "<div class='accordion-body py-0'>
+                            <a class='nav-link compact-link ms-4' href='{$thirdLevel['link']}'>
+                                <i class='bi {$thirdLevel['icon']} me-2'></i>{$thirdLevel['text']}
+                            </a>
+                        </div>";
+                    }
+
+                    $submenuItems .= "<div class='accordion-item bg-transparent border-0'>
+                        <h2 class='accordion-header'>
+                            <button class='accordion-button py-2 collapsed bg-transparent text-white' type='button' 
+                                    data-bs-toggle='collapse' data-bs-target='#{$thirdLevelId}' 
+                                    aria-expanded='false' aria-controls='{$thirdLevelId}'>
+                                <i class='bi {$submenu['icon']} me-2'></i>{$submenu['text']}
+                            </button>
+                        </h2>
+                        <div id='{$thirdLevelId}' class='accordion-collapse collapse' data-bs-parent='#{$itemId}'>
+                            <div class='accordion-body p-0'>
+                                {$thirdLevelItems}
+                            </div>
+                        </div>
+                    </div>";
+                } else {
+                    $submenuItems .= "<div class='accordion-body py-0'>
+                        <a class='nav-link compact-link' href='{$submenu['link']}'>
+                            <i class='bi {$submenu['icon']} me-2'></i>{$submenu['text']}
+                        </a>
+                    </div>";
+                }
             }
 
             return "<div class='accordion-item bg-transparent border-0'>
