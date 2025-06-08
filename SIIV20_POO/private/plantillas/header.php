@@ -132,7 +132,7 @@ class Header
                 right: 0;
                 z-index: 1000;
                 background-color: white;
-                padding: 12px 0;
+                padding: 10px 0;
                 box-shadow: 0 2px 4px rgba(0,0,0,0.1);
             }
 
@@ -145,7 +145,7 @@ class Header
             }
 
             .topbar-image {
-                height: 50px; /* Aumentado de 40px a 50px */
+                height: 55px; /* Aumentado de 40px a 50px */
                 width: auto;
                 transition: transform 0.2s ease;
             }
@@ -160,11 +160,11 @@ class Header
                 }
                 
                 .topbar-images {
-                    gap: 30px; /* Aumentado para móviles también */
+                    gap: 40px; /* Aumentado para móviles también */
                 }
                 
                 .topbar-image {
-                    height: 35px; /* Aumentado de 30px a 35px */
+                    height: 45px; /* Aumentado de 30px a 35px */
                 }
             }
         </style>';
@@ -176,7 +176,7 @@ class Header
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12">
-                        <div class="topbar-images">
+                        <div class="topbar-images d-flex align-items-center" style="gap: 6px;">
                             <img src="/public/assets/img/png/plecaa.png" alt="Topbar Image 1" class="topbar-image">
                             <img src="/public/assets/img/png/plecab.png" alt="Topbar Image 2" class="topbar-image">
                             <img src="/public/assets/img/png/plecac.png" alt="Topbar Image 3" class="topbar-image">
