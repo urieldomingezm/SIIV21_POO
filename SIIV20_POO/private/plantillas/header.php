@@ -123,38 +123,71 @@ class Header
 
         $this->renderResources();
 
-        echo '</head>';
-        echo '<body class="d-flex flex-column min-vh-100 bg-light">';
+        echo '<style>
+            /* Topbar styles */
+            .topbar {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 1000;
+                background-color: white;
+                padding: 12px 0;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
 
-        echo '<!--LOGOTIPOS-->
-        <header class="fixed-top" style="background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity));">
-            <section id="topbar" class="d-flex align-items-center">
-                <div class="d-flex justify-content-center w-100">
-                    <div class="social-links d-none d-md-block">
-                        <a class="text-white" href="https://www.gob.mx/sep" target="_blank" id="pleca_2">
-                            <img style="height: auto; min-width: 250px; max-width: 250px"
-                                src="/public/assets/img/png/sep.png"
-                                alt="Educación" />
-                        </a>
-                    </div>
-                    <div class="contact-info d-flex align-items-center">
-                        <a class="text-white" href="https://www.tecnm.mx/" id="pleca_3">
-                            <img style="height: auto; min-width: 120px; max-width: 120px"
-                                src="/public/assets/img/png/tecnm.png"
-                                alt="TecNM" />
-                        </a>
-                        <a href="https://www.cdvictoria.tecnm.mx" id="pleca_3" class="text-white">
-                            <img style="height: auto; min-width: 80px; max-width: 80px"
-                                src="/public/assets/img/png/tecnologico_cdvictoria.png"
-                                alt="ITVictoria" />
-                        </a>
+            .topbar-images {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 60px; /* Aumentado de 30px a 60px */
+                padding: 0 20px;
+            }
+
+            .topbar-image {
+                height: 50px; /* Aumentado de 40px a 50px */
+                width: auto;
+                transition: transform 0.2s ease;
+            }
+
+            .topbar-image:hover {
+                transform: scale(1.05);
+            }
+
+            @media (max-width: 767.98px) {
+                .topbar {
+                    padding: 10px 0;
+                }
+                
+                .topbar-images {
+                    gap: 30px; /* Aumentado para móviles también */
+                }
+                
+                .topbar-image {
+                    height: 35px; /* Aumentado de 30px a 35px */
+                }
+            }
+        </style>';
+
+        echo '</head>';
+        echo '<body class="d-flex flex-column min-vh-100 bg-light" style="padding-top: 74px;">'; /* Ajustado para el header más grande */
+
+        echo '<div class="topbar">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="topbar-images">
+                            <img src="/public/assets/img/png/plecaa.png" alt="Topbar Image 1" class="topbar-image">
+                            <img src="/public/assets/img/png/plecab.png" alt="Topbar Image 2" class="topbar-image">
+                            <img src="/public/assets/img/png/plecac.png" alt="Topbar Image 3" class="topbar-image">
+                        </div>
                     </div>
                 </div>
-            </section>
-        </header>';
+            </div>
+        </div>';
     }
 }
 
-$header = new Header('SII :: Portal de alumnos');
+$header = new Header("SII :: Portal de alumnos");
 $header->render();
 ?>

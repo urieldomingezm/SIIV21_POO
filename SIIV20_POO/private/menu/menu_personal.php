@@ -172,14 +172,35 @@ class NavigationMenu
         echo "<nav class='navbar text-white shadow-sm' style='background-color: #1B396A;'>
                 <div class='container-fluid px-md-4'>
                     <div class='d-flex align-items-center text-white'>
-                        <span class='SII-MENU-PERSONAL d-none d-md-inline'>{$this->SII}</span>
-                        <span class='SII-MENU-PERSONAL d-md-none'>{$this->SII_short}</span>
+                        <div class='d-flex align-items-center justify-content-center justify-content-md-start'>
+                            <img src='/public/assets/img/png/logo1.png' alt='Logo' class='me-2' height='30'>
+                            <span class='SII-MENU-PERSONAL d-none d-md-inline'>{$this->SII}</span>
+                            <span class='SII-MENU-PERSONAL d-md-none'>{$this->SII_short}</span>
+                        </div>
                     </div>
-                    <button class='navbar-toggler bg-light ms-auto' type='button' data-bs-toggle='offcanvas' 
-                            data-bs-target='#offcanvasNavbar' aria-controls='offcanvasNavbar' 
-                            aria-label='Toggle navigation'>
-                        <span class='navbar-toggler-icon'></span>
-                    </button>
+                    
+                    <div class='d-flex align-items-center'>
+                        <div class='d-flex align-items-center justify-content-center justify-content-md-end header-buttons-container me-2'>
+                            <div class='dropdown'>
+                                <button class='btn btn-outline-secondary dropdown-toggle' type='button' id='userDropdown' data-bs-toggle='dropdown' aria-expanded='false'>
+                                    <i class='bi bi-person-circle'></i> Servicios escolares
+                                </button>
+                                <ul class='dropdown-menu dropdown-menu-end user-dropdown-menu' aria-labelledby='userDropdown'>
+                                    <li><a class='dropdown-item' href='#'><i class='bi bi-person'></i> Profile</a></li>
+                                    <li><a class='dropdown-item' href='#'><i class='bi bi-gear'></i> Settings</a></li>
+                                    <li><hr class='dropdown-divider'></li>
+                                    <li><a class='dropdown-item' href='#'><i class='bi bi-box-arrow-right'></i> Logout</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <button class='navbar-toggler p-2 bg-light' type='button' data-bs-toggle='offcanvas' 
+                                data-bs-target='#offcanvasNavbar' aria-controls='offcanvasNavbar' 
+                                aria-label='Toggle navigation'>
+                            <span class='navbar-toggler-icon'></span>
+                        </button>
+                    </div>
+                    
                     <div class='offcanvas offcanvas-end text-white' tabindex='-1' id='offcanvasNavbar' 
                          aria-labelledby='offcanvasNavbarLabel' style='background-color: #1B396A;'>
                         <div class='offcanvas-header'>
@@ -221,7 +242,6 @@ class NavigationMenu
                     <i class='bi bi-search'></i>
                 </button>
             </form>
-            </div>
             </div>
             </div>
             </nav>";
@@ -299,13 +319,30 @@ class NavigationMenu
                 padding: 1rem;
             }
             
+            .header-buttons-container .btn {
+                padding: 0.375rem 0.75rem;
+                font-size: 0.875rem;
+            }
+            
+            .navbar-toggler {
+                width: 40px;
+                height: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
             @media (max-width: 768px) {
                 .container-fluid {
                     padding: 0.5rem 1rem;
                 }
                 
                 .navbar-toggler {
-                    margin-left: 1rem;
+                    margin-left: 0.5rem;
+                }
+                
+                .header-buttons-container {
+                    margin-right: 0.5rem !important;
                 }
             }
         </style>";

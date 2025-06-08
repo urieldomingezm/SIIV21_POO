@@ -285,3 +285,42 @@ body {
 .offcanvas {
     border: none !important;
 }
+
+/* Topbar styles */
+.topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1030;
+    background-color: white;
+    padding: 8px 0;
+    border-bottom: 1px solid #e62d9f;
+}
+
+.topbar-images {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.topbar-image {
+    height: 40px;
+    width: auto;
+    transition: transform 0.2s ease;
+}
+
+.topbar-image:hover {
+    transform: scale(1.05);
+}
+
+@media (max-width: 767.98px) {
+    .topbar {
+        padding: 5px 0;
+    }
+    
+    .topbar-image {
+        height: 30px;
+    }
+}
