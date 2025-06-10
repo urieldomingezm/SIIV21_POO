@@ -183,13 +183,13 @@ class NavigationMenu
                         <div class='d-flex align-items-center justify-content-center justify-content-md-end header-buttons-container me-2'>
                             <div class='dropdown'>
                                 <button class='btn btn-outline-secondary dropdown-toggle' type='button' id='userDropdown' data-bs-toggle='dropdown' aria-expanded='false'>
-                                    <i class='bi bi-person-circle'></i> Servicios escolares
+                                    <i class='bi bi-person-circle'></i> Alumno
                                 </button>
                                 <ul class='dropdown-menu dropdown-menu-end user-dropdown-menu' aria-labelledby='userDropdown'>
-                                    <li><a class='dropdown-item' href='#'><i class='bi bi-person'></i> Profile</a></li>
-                                    <li><a class='dropdown-item' href='#'><i class='bi bi-gear'></i> Settings</a></li>
+                                    <li><a class='dropdown-item' href='#'><i class='bi bi-person'></i> Perfil</a></li>
+                                    <li><a class='dropdown-item' href='#'><i class='bi bi-gear'></i> Configuracion</a></li>
                                     <li><hr class='dropdown-divider'></li>
-                                    <li><a class='dropdown-item' href='?page=logout'><i class='bi bi-box-arrow-right'></i> Logout</a></li>
+                                    <li><a class='dropdown-item' href='?page=logout'><i class='bi bi-box-arrow-right'></i> Cerrar session</a></li>
                                 </ul>
                             </div>
                         </div>

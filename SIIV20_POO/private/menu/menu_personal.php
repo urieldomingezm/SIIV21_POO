@@ -186,10 +186,10 @@ class NavigationMenu
                                     <i class='bi bi-person-circle'></i> Servicios escolares
                                 </button>
                                 <ul class='dropdown-menu dropdown-menu-end user-dropdown-menu' aria-labelledby='userDropdown'>
-                                    <li><a class='dropdown-item' href='#'><i class='bi bi-person'></i> Profile</a></li>
-                                    <li><a class='dropdown-item' href='#'><i class='bi bi-gear'></i> Settings</a></li>
+                                    <li><a class='dropdown-item' href='#'><i class='bi bi-person'></i> Perfil</a></li>
+                                    <li><a class='dropdown-item' href='#'><i class='bi bi-gear'></i> Configuracion</a></li>
                                     <li><hr class='dropdown-divider'></li>
-                                    <li><a class='dropdown-item' href='?page=logout'><i class='bi bi-box-arrow-right'></i> Logout</a></li>
+                                    <li><a class='dropdown-item' href='?page=logout'><i class='bi bi-box-arrow-right'></i> Cerrar session</a></li>
                                 </ul>
                             </div>
                         </div>
