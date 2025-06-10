@@ -1,5 +1,8 @@
 <?php
 require_once(CONFIG_PATH . 'bd.php');
+require_once(GESTION_PAGOS_PATH. 'pago_editar.php');
+require_once(GESTION_PAGOS_PATH. 'pago_registrar.php');
+require_once(GESTION_PAGOS_PATH. 'pago_eliminar.php');
 
 class GestionPagos
 {
