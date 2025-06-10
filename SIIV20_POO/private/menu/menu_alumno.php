@@ -23,43 +23,61 @@ class NavigationMenu
         $this->menuItems = array(
             array('text' => 'Inicio', 'link' => '?page=Inicio', 'active' => true, 'icon' => 'bi-house-door-fill'),
             array(
-                'text' => 'Información Académica',
+                'text' => 'Gestión Académica',
                 'link' => '#',
                 'icon' => 'bi-journal-text',
                 'submenu' => array(
-                    array('text' => 'Horario', 'link' => '?page=horario', 'icon' => 'bi-calendar3'),
-                    array('text' => 'Calificaciones', 'link' => '?page=calificaciones', 'icon' => 'bi-list-check'),
-                    array('text' => 'Kardex', 'link' => '?page=kardex', 'icon' => 'bi-file-earmark-text')
+                    array(
+                        'text' => 'Gestión de usuarios',
+                        'link' => '#',
+                        'icon' => 'bi-people-fill',
+                        'submenu' => array(
+                            array('text' => 'Alumnos', 'link' => '?page=gestion-alumnos', 'icon' => 'bi-mortarboard-fill'),
+                            array('text' => 'Docentes', 'link' => '?page=gestion-docentes', 'icon' => 'bi-person-workspace'),
+                            array('text' => 'Administrativos', 'link' => '?page=gestion-admin', 'icon' => 'bi-person-badge')
+                        )
+                    ),
+                    array('text' => 'Gestión de pagos', 'link' => '?page=Gestion de pagos', 'icon' => 'bi-cash-coin'),
                 )
             ),
             array(
-                'text' => 'Inscripciones',
+                'text' => 'Evaluaciones',
                 'link' => '#',
-                'icon' => 'bi-pencil-square',
+                'icon' => 'bi-clipboard-check',
                 'submenu' => array(
-                    array('text' => 'Carga Académica', 'link' => '?page=carga-academica', 'icon' => 'bi-calendar-plus'),
-                    array('text' => 'Reinscripción', 'link' => '?page=reinscripcion', 'icon' => 'bi-arrow-repeat'),
-                    array('text' => 'Historial', 'link' => '?page=historial-inscripcion', 'icon' => 'bi-clock-history')
+                    array('text' => 'Captura de Calificaciones', 'link' => '?page=captura-calificaciones', 'icon' => 'bi-pencil-square'),
+                    array('text' => 'Historial de Evaluaciones', 'link' => '?page=historial-evaluaciones', 'icon' => 'bi-clock-history'),
+                    array('text' => 'Reportes Académicos', 'link' => '?page=reportes', 'icon' => 'bi-file-earmark-text')
                 )
             ),
             array(
-                'text' => 'Servicios',
+                'text' => 'Planeación Docente',
                 'link' => '#',
-                'icon' => 'bi-gear',
+                'icon' => 'bi-calendar2-week',
                 'submenu' => array(
-                    array('text' => 'Constancias', 'link' => '?page=constancias', 'icon' => 'bi-file-earmark-text'),
-                    array('text' => 'Evaluación Docente', 'link' => '?page=evaluacion-docente', 'icon' => 'bi-star'),
-                    array('text' => 'Biblioteca Digital', 'link' => '?page=biblioteca', 'icon' => 'bi-book')
+                    array('text' => 'Plan de Trabajo', 'link' => '?page=plan-trabajo', 'icon' => 'bi-file-earmark-text'),
+                    array('text' => 'Instrumentaciones', 'link' => '?page=instrumentaciones', 'icon' => 'bi-file-earmark-ruled'),
+                    array('text' => 'Material Didáctico', 'link' => '?page=material-didactico', 'icon' => 'bi-folder2-open')
                 )
             ),
             array(
-                'text' => 'Pagos',
+                'text' => 'Recursos',
                 'link' => '#',
-                'icon' => 'bi-credit-card',
+                'icon' => 'bi-tools',
                 'submenu' => array(
-                    array('text' => 'Estado de Cuenta', 'link' => '?page=estado-cuenta', 'icon' => 'bi-receipt'),
-                    array('text' => 'Realizar Pago', 'link' => '?page=realizar-pago', 'icon' => 'bi-cash'),
-                    array('text' => 'Historial de Pagos', 'link' => '?page=historial-pagos', 'icon' => 'bi-clock-history')
+                    array('text' => 'Biblioteca Digital', 'link' => '?page=biblioteca', 'icon' => 'bi-book'),
+                    array('text' => 'Recursos Educativos', 'link' => '?page=recursos', 'icon' => 'bi-collection'),
+                    array('text' => 'Sala Virtual', 'link' => '?page=sala-virtual', 'icon' => 'bi-camera-video')
+                )
+            ),
+            array(
+                'text' => 'Comunicación',
+                'link' => '#',
+                'icon' => 'bi-chat-dots',
+                'submenu' => array(
+                    array('text' => 'Mensajes', 'link' => '?page=mensajes', 'icon' => 'bi-envelope'),
+                    array('text' => 'Avisos Académicos', 'link' => '?page=avisos', 'icon' => 'bi-bell'),
+                    array('text' => 'Reuniones', 'link' => '?page=reuniones', 'icon' => 'bi-people')
                 )
             )
         );
@@ -76,11 +94,40 @@ class NavigationMenu
             $itemId = 'accordion_' . str_replace(' ', '_', strtolower($item['text']));
             
             foreach ($item['submenu'] as $submenu) {
-                $submenuItems .= "<div class='accordion-body py-0'>
-                                    <a class='nav-link compact-link' href='{$submenu['link']}'>
-                                        <i class='bi {$submenu['icon']} me-2'></i>{$submenu['text']}
-                                    </a>
-                                </div>";
+                if (isset($submenu['submenu'])) {
+                    // Tercer nivel
+                    $thirdLevelId = 'accordion_' . str_replace(' ', '_', strtolower($submenu['text']));
+                    $thirdLevelItems = '';
+                    
+                    foreach ($submenu['submenu'] as $thirdLevel) {
+                        $thirdLevelItems .= "<div class='accordion-body py-0'>
+                            <a class='nav-link compact-link ms-4' href='{$thirdLevel['link']}'>
+                                <i class='bi {$thirdLevel['icon']} me-2'></i>{$thirdLevel['text']}
+                            </a>
+                        </div>";
+                    }
+
+                    $submenuItems .= "<div class='accordion-item bg-transparent border-0'>
+                        <h2 class='accordion-header'>
+                            <button class='accordion-button py-2 collapsed bg-transparent text-white' type='button' 
+                                    data-bs-toggle='collapse' data-bs-target='#{$thirdLevelId}' 
+                                    aria-expanded='false' aria-controls='{$thirdLevelId}'>
+                                <i class='bi {$submenu['icon']} me-2'></i>{$submenu['text']}
+                            </button>
+                        </h2>
+                        <div id='{$thirdLevelId}' class='accordion-collapse collapse' data-bs-parent='#{$itemId}'>
+                            <div class='accordion-body p-0'>
+                                {$thirdLevelItems}
+                            </div>
+                        </div>
+                    </div>";
+                } else {
+                    $submenuItems .= "<div class='accordion-body py-0'>
+                        <a class='nav-link compact-link' href='{$submenu['link']}'>
+                            <i class='bi {$submenu['icon']} me-2'></i>{$submenu['text']}
+                        </a>
+                    </div>";
+                }
             }
 
             return "<div class='accordion-item bg-transparent border-0'>
@@ -125,14 +172,35 @@ class NavigationMenu
         echo "<nav class='navbar text-white shadow-sm' style='background-color: #1B396A;'>
                 <div class='container-fluid px-md-4'>
                     <div class='d-flex align-items-center text-white'>
-                        <span class='SII-MENU-ALUMNO d-none d-md-inline'>{$this->SII}</span>
-                        <span class='SII-MENU-ALUMNO d-md-none'>{$this->SII_short}</span>
+                        <div class='d-flex align-items-center justify-content-center justify-content-md-start'>
+                            <img src='/public/assets/img/png/logo1.png' alt='Logo' class='me-2' height='40'>
+                            <span class='SII-MENU-ALUMNO d-none d-md-inline'>{$this->SII}</span>
+                            <span class='SII-MENU-ALUMNO d-md-none'>{$this->SII_short}</span>
+                        </div>
                     </div>
-                    <button class='navbar-toggler bg-light ms-auto' type='button' data-bs-toggle='offcanvas' 
-                            data-bs-target='#offcanvasNavbar' aria-controls='offcanvasNavbar' 
-                            aria-label='Toggle navigation'>
-                        <span class='navbar-toggler-icon'></span>
-                    </button>
+                    
+                    <div class='d-flex align-items-center'>
+                        <div class='d-flex align-items-center justify-content-center justify-content-md-end header-buttons-container me-2'>
+                            <div class='dropdown'>
+                                <button class='btn btn-outline-secondary dropdown-toggle' type='button' id='userDropdown' data-bs-toggle='dropdown' aria-expanded='false'>
+                                    <i class='bi bi-person-circle'></i> Servicios escolares
+                                </button>
+                                <ul class='dropdown-menu dropdown-menu-end user-dropdown-menu' aria-labelledby='userDropdown'>
+                                    <li><a class='dropdown-item' href='#'><i class='bi bi-person'></i> Profile</a></li>
+                                    <li><a class='dropdown-item' href='#'><i class='bi bi-gear'></i> Settings</a></li>
+                                    <li><hr class='dropdown-divider'></li>
+                                    <li><a class='dropdown-item' href='?page=logout'><i class='bi bi-box-arrow-right'></i> Logout</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <button class='navbar-toggler p-2 bg-light' type='button' data-bs-toggle='offcanvas' 
+                                data-bs-target='#offcanvasNavbar' aria-controls='offcanvasNavbar' 
+                                aria-label='Toggle navigation'>
+                            <span class='navbar-toggler-icon'></span>
+                        </button>
+                    </div>
+                    
                     <div class='offcanvas offcanvas-end text-white' tabindex='-1' id='offcanvasNavbar' 
                          aria-labelledby='offcanvasNavbarLabel' style='background-color: #1B396A;'>
                         <div class='offcanvas-header'>
@@ -174,7 +242,6 @@ class NavigationMenu
                     <i class='bi bi-search'></i>
                 </button>
             </form>
-            </div>
             </div>
             </div>
             </nav>";
@@ -252,13 +319,30 @@ class NavigationMenu
                 padding: 1rem;
             }
             
+            .header-buttons-container .btn {
+                padding: 0.375rem 0.75rem;
+                font-size: 0.875rem;
+            }
+            
+            .navbar-toggler {
+                width: 40px;
+                height: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
             @media (max-width: 768px) {
                 .container-fluid {
                     padding: 0.5rem 1rem;
                 }
                 
                 .navbar-toggler {
-                    margin-left: 1rem;
+                    margin-left: 0.5rem;
+                }
+                
+                .header-buttons-container {
+                    margin-right: 0.5rem !important;
                 }
             }
         </style>";
@@ -267,7 +351,4 @@ class NavigationMenu
 
 $navigation = new NavigationMenu();
 $navigation->render();
-
-
 ?>
-<br>
