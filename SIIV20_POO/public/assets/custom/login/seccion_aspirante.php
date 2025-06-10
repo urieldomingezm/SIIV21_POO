@@ -8,40 +8,35 @@
                 </button>
             </h2>
             <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                <div class="accordion-body">
+                <div class="accordion-body bg-white">
                     <div id="container">
                         <form id="formulario_primera_vez_aspirantes_registro" class="rounded" method="POST">
                             <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
                             <input type="hidden" name="form_type" value="aspirante_registro">
-
+<br>
                             <div class="row g-3">
                                 <div class="col-md-6">
-                                    <div class="card mb-3">
-                                        <div class="card-header bg-primary text-white">
-                                            <h5 class="card-title mb-0">Datos Personales</h5>
-                                        </div>
-                                        <div class="card-body">
-                                            <div class="row g-2">
-                                                <div class="col-md-4">
-                                                    <div class="mb-2">
-                                                        <label for="primera_vez_apellido_paterno" class="form-label">APELLIDO PATERNO</label>
-                                                        <input type="text" class="form-control form-control-sm" id="primera_vez_apellido_paterno" name="primera_vez_apellido_paterno">
-                                                        <div class="invalid-feedback" style="display: block; font-size: 0.8rem;"></div>
-                                                    </div>
+                                    <div class="mb-3">
+                                        <div class="row g-2">
+                                            <div class="col-md-4">
+                                                <div class="mb-2">
+                                                    <label for="primera_vez_apellido_paterno" class="form-label">APELLIDO PATERNO</label>
+                                                    <input type="text" class="form-control" id="primera_vez_apellido_paterno" name="primera_vez_apellido_paterno">
+                                                    <div class="invalid-feedback" style="display: block; font-size: 0.8rem;"></div>
                                                 </div>
-                                                <div class="col-md-4">
-                                                    <div class="mb-2">
-                                                        <label for="primera_vez_apellido_materno" class="form-label">APELLIDO MATERNO</label>
-                                                        <input type="text" class="form-control form-control-sm" id="primera_vez_apellido_materno" name="primera_vez_apellido_materno">
-                                                        <div class="invalid-feedback" style="display: block; font-size: 0.8rem;"></div>
-                                                    </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="mb-2">
+                                                    <label for="primera_vez_apellido_materno" class="form-label">APELLIDO MATERNO</label>
+                                                    <input type="text" class="form-control" id="primera_vez_apellido_materno" name="primera_vez_apellido_materno">
+                                                    <div class="invalid-feedback" style="display: block; font-size: 0.8rem;"></div>
                                                 </div>
-                                                <div class="col-md-4">
-                                                    <div class="mb-2">
-                                                        <label for="primera_vez_nombre" class="form-label">NOMBRE(S)</label>
-                                                        <input type="text" class="form-control form-control-sm" id="primera_vez_nombre" name="primera_vez_nombre">
-                                                        <div class="invalid-feedback" style="display: block; font-size: 0.8rem;"></div>
-                                                    </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="mb-2">
+                                                    <label for="primera_vez_nombre" class="form-label">NOMBRE(S)</label>
+                                                    <input type="text" class="form-control" id="primera_vez_nombre" name="primera_vez_nombre">
+                                                    <div class="invalid-feedback" style="display: block; font-size: 0.8rem;"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -50,68 +45,63 @@
 
                                 <!-- Información Adicional -->
                                 <div class="col-md-6">
-                                    <div class="card mb-3">
-                                        <div class="card-header bg-primary text-white">
-                                            <h5 class="card-title mb-0">Información Adicional</h5>
-                                        </div>
-                                        <div class="card-body">
-                                            <div class="row g-2">
-                                                <div class="col-md-4">
-                                                    <div class="mb-2">
-                                                        <label for="primera_vez_fecha_nacimiento" class="form-label">FECHA NACIMIENTO</label>
-                                                        <input type="date" class="form-control form-control-sm" id="primera_vez_fecha_nacimiento" name="primera_vez_fecha_nacimiento" value="2003-01-01">
-                                                        <div class="invalid-feedback" style="display: block; font-size: 0.8rem;"></div>
-                                                    </div>
+                                    <div class="mb-3">
+                                        <div class="row g-2">
+                                            <div class="col-md-4">
+                                                <div class="mb-2">
+                                                    <label for="primera_vez_fecha_nacimiento" class="form-label">FECHA NACIMIENTO</label>
+                                                    <input type="date" class="form-control" id="primera_vez_fecha_nacimiento" name="primera_vez_fecha_nacimiento" value="2003-01-01">
+                                                    <div class="invalid-feedback" style="display: block; font-size: 0.8rem;"></div>
                                                 </div>
-                                                <div class="col-md-4">
-                                                    <div class="mb-2">
-                                                        <label for="primera_vez_sexo" class="form-label">SEXO</label>
-                                                        <select class="form-select form-select-sm" id="primera_vez_sexo" name="primera_vez_sexo">
-                                                            <option value="" disabled selected>Selecciona</option>
-                                                            <option value="H">Masculino</option>
-                                                            <option value="F">Femenino</option>
-                                                        </select>
-                                                        <div class="invalid-feedback" style="display: block; font-size: 0.8rem;"></div>
-                                                    </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="mb-2">
+                                                    <label for="primera_vez_sexo" class="form-label">SEXO</label>
+                                                    <select class="form-select" id="primera_vez_sexo" name="primera_vez_sexo">
+                                                        <option value="" disabled selected>Selecciona</option>
+                                                        <option value="H">Masculino</option>
+                                                        <option value="F">Femenino</option>
+                                                    </select>
+                                                    <div class="invalid-feedback" style="display: block; font-size: 0.8rem;"></div>
                                                 </div>
-                                                <div class="col-md-4">
-                                                    <div class="mb-2">
-                                                        <label for="primera_vez_entidad" class="form-label">ESTADO</label>
-                                                        <select class="form-select form-select-sm" id="primera_vez_entidad" name="primera_vez_entidad">
-                                                            <option value="TS">Tamaulipas</option>
-                                                            <option value="AS">Aguascalientes</option>
-                                                            <option value="BC">Baja California</option>
-                                                            <option value="BS">Baja California Sur</option>
-                                                            <option value="CC">Campeche</option>
-                                                            <option value="CL">Coahuila</option>
-                                                            <option value="CM">Colima</option>
-                                                            <option value="CS">Chiapas</option>
-                                                            <option value="CH">Chihuahua</option>
-                                                            <option value="DF">Ciudad de México</option>
-                                                            <option value="DG">Durango</option>
-                                                            <option value="GT">Guanajuato</option>
-                                                            <option value="GR">Guerrero</option>
-                                                            <option value="HG">Hidalgo</option>
-                                                            <option value="JC">Jalisco</option>
-                                                            <option value="MC">Estado de México</option>
-                                                            <option value="MN">Michoacán</option>
-                                                            <option value="MS">Morelos</option>
-                                                            <option value="NT">Nayarit</option>
-                                                            <option value="NL">Nuevo León</option>
-                                                            <option value="OC">Oaxaca</option>
-                                                            <option value="PL">Puebla</option>
-                                                            <option value="QT">Querétaro</option>
-                                                            <option value="QR">Quintana Roo</option>
-                                                            <option value="SP">San Luis Potosí</option>
-                                                            <option value="SL">Sinaloa</option>
-                                                            <option value="SR">Sonora</option>
-                                                            <option value="TC">Tabasco</option>
-                                                            <option value="TL">Tlaxcala</option>
-                                                            <option value="VZ">Veracruz</option>
-                                                            <option value="YN">Yucatán</option>
-                                                            <option value="ZS">Zacatecas</option>
-                                                        </select>
-                                                    </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="mb-2">
+                                                    <label for="primera_vez_entidad" class="form-label">ESTADO</label>
+                                                    <select class="form-select" id="primera_vez_entidad" name="primera_vez_entidad">
+                                                        <option value="TS">Tamaulipas</option>
+                                                        <option value="AS">Aguascalientes</option>
+                                                        <option value="BC">Baja California</option>
+                                                        <option value="BS">Baja California Sur</option>
+                                                        <option value="CC">Campeche</option>
+                                                        <option value="CL">Coahuila</option>
+                                                        <option value="CM">Colima</option>
+                                                        <option value="CS">Chiapas</option>
+                                                        <option value="CH">Chihuahua</option>
+                                                        <option value="DF">Ciudad de México</option>
+                                                        <option value="DG">Durango</option>
+                                                        <option value="GT">Guanajuato</option>
+                                                        <option value="GR">Guerrero</option>
+                                                        <option value="HG">Hidalgo</option>
+                                                        <option value="JC">Jalisco</option>
+                                                        <option value="MC">Estado de México</option>
+                                                        <option value="MN">Michoacán</option>
+                                                        <option value="MS">Morelos</option>
+                                                        <option value="NT">Nayarit</option>
+                                                        <option value="NL">Nuevo León</option>
+                                                        <option value="OC">Oaxaca</option>
+                                                        <option value="PL">Puebla</option>
+                                                        <option value="QT">Querétaro</option>
+                                                        <option value="QR">Quintana Roo</option>
+                                                        <option value="SP">San Luis Potosí</option>
+                                                        <option value="SL">Sinaloa</option>
+                                                        <option value="SR">Sonora</option>
+                                                        <option value="TC">Tabasco</option>
+                                                        <option value="TL">Tlaxcala</option>
+                                                        <option value="VZ">Veracruz</option>
+                                                        <option value="YN">Yucatán</option>
+                                                        <option value="ZS">Zacatecas</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
@@ -119,61 +109,56 @@
                                 </div>
                             </div>
 
-                            <div class="card mb-3">
-                                <div class="card-header bg-primary text-white">
-                                    <h5 class="card-title mb-0">Información de Contacto</h5>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row g-2">
-                                        <!-- CURP -->
-                                        <div class="col-md-3">
-                                            <div class="mb-2">
-                                                <label for="primera_vez_curp" class="form-label">CURP</label>
-                                                <input type="text" class="form-control form-control-sm" id="primera_vez_curp" name="primera_vez_curp" maxlength="18">
-                                                <div class="invalid-feedback" style="display: block; font-size: 0.8rem;"></div>
-                                            </div>
+                            <div class="mb-3">
+                                <div class="row g-2">
+                                    <!-- CURP -->
+                                    <div class="col-md-3">
+                                        <div class="mb-2">
+                                            <label for="primera_vez_curp" class="form-label">CURP</label>
+                                            <input type="text" class="form-control" id="primera_vez_curp" name="primera_vez_curp" maxlength="18">
+                                            <div class="invalid-feedback" style="display: block; font-size: 0.8rem;"></div>
                                         </div>
+                                    </div>
 
-                                        <!-- Celular -->
-                                        <div class="col-md-3">
-                                            <div class="mb-2">
-                                                <label for="primera_vez_celular" class="form-label">CELULAR</label>
-                                                <input type="text" class="form-control form-control-sm" id="primera_vez_celular" name="primera_vez_celular" maxlength="10">
-                                                <div class="invalid-feedback" style="display: block; font-size: 0.8rem;"></div>
-                                            </div>
+                                    <!-- Celular -->
+                                    <div class="col-md-3">
+                                        <div class="mb-2">
+                                            <label for="primera_vez_celular" class="form-label">CELULAR</label>
+                                            <input type="text" class="form-control" id="primera_vez_celular" name="primera_vez_celular" maxlength="10">
+                                            <div class="invalid-feedback" style="display: block; font-size: 0.8rem;"></div>
                                         </div>
+                                    </div>
 
-                                        <!-- Email -->
-                                        <div class="col-md-3">
-                                            <div class="mb-2">
-                                                <label for="primera_vez_email" class="form-label">EMAIL</label>
-                                                <input type="email" class="form-control form-control-sm" id="primera_vez_email" name="primera_vez_email">
-                                                <div class="invalid-feedback" style="display: block; font-size: 0.8rem;"></div>
-                                            </div>
+                                    <!-- Email -->
+                                    <div class="col-md-3">
+                                        <div class="mb-2">
+                                            <label for="primera_vez_email" class="form-label">EMAIL</label>
+                                            <input type="email" class="form-control" id="primera_vez_email" name="primera_vez_email">
+                                            <div class="invalid-feedback" style="display: block; font-size: 0.8rem;"></div>
                                         </div>
+                                    </div>
 
-                                        <!-- CAPTCHA -->
-                                        <div class="col-md-3">
-                                            <div class="mb-2">
-                                                <label for="primera_vez_aspirante_registro_captcha" class="form-label">CAPTCHA</label>
-                                                <div class="d-flex align-items-center">
-                                                    <div class="flex-grow-1 position-relative">
-                                                        <input type="text" class="form-control form-control-sm captchaInput" id="primera_vez_aspirante_registro_captcha" name="primera_vez_aspirante_registro_captcha" maxlength="5">
-                                                        <div class="invalid-feedback" style="display: block; font-size: 0.8rem;"></div>
-                                                    </div>
-                                                    <canvas class="captchaCanvas" width="128" height="44" class="ms-2"></canvas>
-                                                    <button type="button" class="btn btn-secondary btn-sm me-1 ms-2" onclick="generateCaptcha('formulario_primera_vez_aspirantes_registro')">
-                                                        <i class="bi bi-arrow-clockwise"></i>
-                                                    </button>
+                                    <!-- CAPTCHA -->
+                                    <div class="col-md-3">
+                                        <div class="mb-2">
+                                            <label for="primera_vez_aspirante_registro_captcha" class="form-label">CAPTCHA</label>
+                                            <div class="d-flex align-items-center">
+                                                <div class="flex-grow-1 position-relative">
+                                                    <input type="text" class="form-control captchaInput" id="primera_vez_aspirante_registro_captcha" name="primera_vez_aspirante_registro_captcha" maxlength="5">
+                                                    <div class="invalid-feedback" style="display: block; font-size: 0.8rem;"></div>
                                                 </div>
+                                                <canvas class="captchaCanvas ms-2" width="128" height="44"></canvas>
+                                                <button type="button" class="btn btn-secondary btn-sm me-1 ms-2" onclick="generateCaptcha('formulario_primera_vez_aspirantes_registro')">
+                                                    <i class="bi bi-arrow-clockwise"></i>
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
+                                </div>
 
-                                    <div class="d-flex justify-content-center mt-3">
-                                        <button type="button" id="vaciar_aspirantes_registrados" class="btn btn-secondary btn-sm me-2">Vaciar</button>
-                                        <button type="submit" class="btn btn-primary btn-sm">Registrarse</button>
-                                    </div>
+                                <div class="d-flex justify-content-center mt-3">
+                                    <button type="button" id="vaciar_aspirantes_registrados" class="btn btn-secondary btn-sm me-2">Vaciar</button>
+                                    <button type="submit" class="btn btn-primary btn-sm">Registrarse</button>
                                 </div>
                             </div>
                         </form>
@@ -191,7 +176,7 @@
                 </button>
             </h2>
             <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-                <div class="accordion-body">
+                <div class="accordion-body" style="background-color: white;">
                     <!-- Alert container for form messages -->
                     <div id="login-alerts" class="container mb-3">
                         <div class="row justify-content-center">
@@ -202,62 +187,79 @@
                         </div>
                     </div>
 
-                    <div class="card mb-3">
-
-                        <div class="card-body">
-                            <form id="formulario_iniciar_session_aspirante" method="POST" class="rounded">
-                                <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
-                                <input type="hidden" name="form_type" value="aspirante_login">
-                                
-                                <div class="row g-2">
-                                    <!-- CURP -->
-                                    <div class="col-md-4">
-                                        <div class="mb-2">
-                                            <label for="iniciar_session_aspirante_curp" class="form-label">CURP</label>
-                                            <input type="text" class="form-control form-control-sm" id="iniciar_session_aspirante_curp" name="iniciar_session_aspirante_curp" maxlength="18">
-                                            <div class="invalid-feedback" style="display: block; font-size: 0.8rem;"></div>
-                                        </div>
+                    <div class="aspirante-login">
+                        <form id="formulario_iniciar_session_aspirante" method="POST" class="needs-validation" novalidate>
+                            <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+                            <input type="hidden" name="form_type" value="aspirante_login">
+                            
+                            <div class="row g-3">
+                                <!-- CURP -->
+                                <div class="col-md-4">
+                                    <label for="iniciar_session_aspirante_curp" class="form-label">CURP</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">
+                                            <i class="bi bi-person"></i>
+                                        </span>
+                                        <input type="text" 
+                                               class="form-control" 
+                                               id="iniciar_session_aspirante_curp" 
+                                               name="iniciar_session_aspirante_curp" 
+                                               placeholder="Ingresa tu CURP"
+                                               maxlength="18">
                                     </div>
-
-                                    <!-- Contraseña (NIP) -->
-                                    <div class="col-md-4">
-                                        <div class="mb-2">
-                                            <label for="iniciar_session_aspirante_password" class="form-label">NIP</label>
-                                            <div class="d-flex align-items-center">
-                                                <div class="flex-grow-1 position-relative">
-                                                    <input type="password" class="form-control form-control-sm passwordInput" id="iniciar_session_aspirante_password" name="iniciar_session_aspirante_password" maxlength="4">
-                                                    <div class="invalid-feedback" style="display: block; font-size: 0.8rem;"></div>
-                                                </div>
-                                                <button type="button" class="btn btn-secondary btn-sm ms-2 togglePassword" onclick="togglePasswordVisibility('iniciar_session_aspirante_password', this)">
-                                                    <i class="bi bi-eye-slash"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- CAPTCHA -->
-                                    <div class="col-md-4">
-                                        <div class="mb-2">
-                                            <label for="iniciar_session_aspirante_captcha" class="form-label">CAPTCHA</label>
-                                            <div class="d-flex align-items-center">
-                                                <div class="flex-grow-1 position-relative">
-                                                    <input type="text" class="form-control form-control-sm captchaInput" id="iniciar_session_aspirante_captcha" name="iniciar_session_aspirante_captcha" maxlength="5">
-                                                    <div class="invalid-feedback" style="display: block; font-size: 0.8rem;"></div>
-                                                </div>
-                                                <canvas class="captchaCanvas" width="128" height="44" class="ms-2"></canvas>
-                                                <button type="button" class="btn btn-secondary btn-sm me-1 ms-2" onclick="generateCaptcha('formulario_iniciar_session_aspirante')">
-                                                    <i class="bi bi-arrow-clockwise"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <div class="error-container mt-1" id="error_iniciar_session_aspirante_curp"></div>
                                 </div>
 
-                                <div class="d-flex justify-content-center mt-3">
-                                    <button type="submit" class="btn btn-primary btn-sm">Iniciar Sesión</button>
+                                <!-- Contraseña (NIP) -->
+                                <div class="col-md-4">
+                                    <label for="iniciar_session_aspirante_password" class="form-label">NIP</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">
+                                            <i class="bi bi-lock"></i>
+                                        </span>
+                                        <input type="password" 
+                                               class="form-control" 
+                                               id="iniciar_session_aspirante_password" 
+                                               name="iniciar_session_aspirante_password" 
+                                               placeholder="Ingresa tu NIP"
+                                               maxlength="4">
+                                        <button class="btn btn-outline-secondary" type="button" onclick="togglePasswordVisibility('iniciar_session_aspirante_password', this)">
+                                            <i class="bi bi-eye-slash"></i>
+                                        </button>
+                                    </div>
+                                    <div class="error-container mt-1" id="error_iniciar_session_aspirante_password"></div>
                                 </div>
-                            </form>
-                        </div>
+
+                                <!-- CAPTCHA -->
+                                <div class="col-md-4">
+                                    <label for="iniciar_session_aspirante_captcha" class="form-label">Verificación de Seguridad</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">
+                                            <i class="bi bi-shield-lock"></i>
+                                        </span>
+                                        <input type="text" 
+                                               class="form-control" 
+                                               id="iniciar_session_aspirante_captcha" 
+                                               name="iniciar_session_aspirante_captcha" 
+                                               placeholder="Ingresa el código que ves en la imagen"
+                                               maxlength="5">
+                                        <canvas class="captcha-canvas" width="150" height="40"></canvas>
+                                        <button class="btn btn-outline-secondary" type="button" onclick="generateCaptcha('formulario_iniciar_session_aspirante')">
+                                            <i class="bi bi-arrow-clockwise"></i>
+                                        </button>
+                                    </div>
+                                    <div class="error-container mt-1" id="error_iniciar_session_aspirante_captcha"></div>
+                                </div>
+                            </div>
+
+                            <div class="row mt-4">
+                                <div class="col-12 text-center">
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="bi bi-box-arrow-in-right me-2"></i>Iniciar Sesión
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
