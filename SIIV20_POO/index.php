@@ -30,7 +30,7 @@ class LoginController {
 
                 <div class="tabs" role="tablist">
                     <dd data-target="#Aspirantes" role="tab">
-                        <a href="#">ASPIRANTE</a>
+                        <a href="#">ASPIRANTES</a>
                     </dd>
                     <dd data-target="#Alumnos" role="tab">
                         <a href="#">ALUMNOS</a>
@@ -44,12 +44,23 @@ class LoginController {
         
         $this->renderLoginSections();
 
-        echo '</div></div></section>';
+        echo '                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>';
     }
 
     private function renderLoginSections() {
-        foreach ($this->sections as $section) {
+        $sectionIds = ['Aspirantes', 'Alumnos', 'Personal']; // IDs correctos para las pestañas
+        foreach ($this->sections as $index => $section) {
+            $isActive = $index === 0 ? ' show active' : '';
+            echo "<div class='tab-pane fade{$isActive}' id='{$sectionIds[$index]}' role='tabpanel' aria-labelledby='{$section}-tab'>";
             require_once(CUSTOM_INDEX_LOGIN . "seccion_$section.php");
+            echo '</div>';
         }
     }
 
@@ -73,9 +84,6 @@ class LoginController {
     }
 
     private function includeResources() {
-        echo '<style>';
-        require_once(CUSTOM_INDEX_LOGIN . 'style.css');
-        echo '</style>';
         echo '<script>';
         require_once(CUSTOM_INDEX_LOGIN . 'script.js');
         echo '</script>';

@@ -1,63 +1,75 @@
-<div class="content" id="Personal">
-    <div class="card mb-3">
-        <div class="card-header bg-primary text-white">
-            <h5 class="card-title mb-0">Personal</h5>
-        </div>
-        <div class="card-body">
-            <form id="formulario_personal" method="POST" class="rounded">
-                <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
-                <input type="hidden" name="form_type" value="personal_login">
-                
-                <div class="row g-2">
-                    <!-- Usuario -->
-                    <div class="col-md-4">
-                        <div class="mb-2">
-                            <label for="personal_usuario" class="form-label">USUARIO</label>
-                            <input type="text" class="form-control form-control-sm" id="personal_usuario" maxlength="20" name="personal_usuario">
-                            <div class="invalid-feedback" style="display: block; font-size: 0.8rem;"></div>
-                        </div>
-                    </div>
+<div class="personal-login">
+    <form id="formulario_personal" method="POST" class="needs-validation" novalidate>
+        <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+        <input type="hidden" name="form_type" value="personal_login">
 
-                    <!-- Contraseña -->
-                    <div class="col-md-4">
-                        <div class="mb-2">
-                            <label for="personal_password" class="form-label">CONTRASEÑA</label>
-                            <div class="d-flex align-items-center">
-                                <div class="flex-grow-1 position-relative">
-                                    <input type="password" class="form-control form-control-sm passwordInput" id="personal_password" name="personal_password">
-                                    <div class="invalid-feedback" style="display: block; font-size: 0.8rem;"></div>
-                                </div>
-                                <button type="button" class="btn btn-secondary btn-sm ms-2 togglePassword" onclick="togglePasswordVisibility('personal_password', this)">
-                                    <i class="bi bi-eye-slash"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- CAPTCHA -->
-                    <div class="col-md-4">
-                        <div class="mb-2">
-                            <label for="personal_captcha" class="form-label">CAPTCHA</label>
-                            <div class="d-flex align-items-center">
-                                <div class="flex-grow-1 position-relative">
-                                    <input type="text" class="form-control form-control-sm captchaInput" id="personal_captcha" name="personal_captcha" maxlength="5">
-                                    <div class="invalid-feedback" style="display: block; font-size: 0.8rem;"></div>
-                                </div>
-                                <canvas class="captchaCanvas" width="128" height="44" class="ms-2"></canvas>
-                                <button type="button" class="btn btn-secondary btn-sm me-1 ms-2" onclick="generateCaptcha('formulario_personal')">
-                                    <i class="bi bi-arrow-clockwise"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+        <div class="row g-3">
+            <!-- Usuario -->
+            <div class="col-md-6">
+                <label class="form-label" for="personal_usuario">Usuario</label>
+                <div class="input-group">
+                    <span class="input-group-text">
+                        <i class="bi bi-person"></i>
+                    </span>
+                    <input type="text"
+                           class="form-control"
+                           id="personal_usuario"
+                           name="personal_usuario"
+                           placeholder="Ingresa tu usuario"
+                           maxlength="20">
                 </div>
+                <div class="error-container mt-1" id="error_personal_usuario"></div>
+            </div>
 
-                <div class="d-flex justify-content-center mt-3">
-                    <button type="submit" class="btn btn-primary btn-sm">Iniciar Sesión</button>
+            <!-- Contraseña -->
+            <div class="col-md-6">
+                <label class="form-label" for="personal_password">Contraseña</label>
+                <div class="input-group">
+                    <span class="input-group-text">
+                        <i class="bi bi-lock"></i>
+                    </span>
+                    <input type="password"
+                           class="form-control"
+                           id="personal_password"
+                           name="personal_password"
+                           placeholder="Ingresa tu contraseña">
+                    <button class="btn btn-outline-secondary" type="button" onclick="togglePasswordVisibility('personal_password', this)">
+                        <i class="bi bi-eye-slash"></i>
+                    </button>
                 </div>
-            </form>
+                <div class="error-container mt-1" id="error_personal_password"></div>
+            </div>
+
+            <!-- Captcha -->
+            <div class="col-12">
+                <label class="form-label" for="personal_captcha">Verificación de Seguridad</label>
+                <div class="input-group">
+                    <span class="input-group-text">
+                        <i class="bi bi-shield-lock"></i>
+                    </span>
+                    <input type="text"
+                           class="form-control"
+                           id="personal_captcha"
+                           name="personal_captcha"
+                           placeholder="Ingresa el código que ves en la imagen"
+                           maxlength="5">
+                    <canvas class="captcha-canvas" width="150" height="40"></canvas>
+                    <button class="btn btn-outline-secondary" type="button" onclick="generateCaptcha('formulario_personal')">
+                        <i class="bi bi-arrow-clockwise"></i>
+                    </button>
+                </div>
+                <div class="error-container mt-1" id="error_personal_captcha"></div>
+            </div>
         </div>
-    </div>
+
+        <div class="row mt-4">
+            <div class="col-12 text-center">
+                <button type="submit" class="btn btn-primary">
+                    <i class="bi bi-box-arrow-in-right me-2"></i>Iniciar Sesión
+                </button>
+            </div>
+        </div>
+    </form>
 </div>
 
 <script>
