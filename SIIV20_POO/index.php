@@ -23,25 +23,59 @@ class LoginController {
     }
 
     private function renderMainSection() {
-        echo '<section class="accordion-demo">
-            <div class="container mt-1">
+        echo '<section>
+            <div class="container py-5">
+                <div class="row justify-content-center">
+                    <div class="col-12 text-center mb-4">
+                        <h2 class="text-uppercase fw-bold">INICIO DE SESIÓN GENERAL</h2>
+                    </div>
+                    <div class="col-lg-10">
+                        <ul class="nav nav-pills nav-justified mb-4" id="loginTabs" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active border-dark border-2 rounded-top px-4 py-3 shadow text-dark fw-bold" 
+                                        id="aspirantes-tab" 
+                                        data-bs-toggle="tab" 
+                                        data-bs-target="#Aspirantes" 
+                                        type="button" 
+                                        role="tab" 
+                                        aria-controls="Aspirantes" 
+                                        aria-selected="true">
+                                    <i class="bi bi-person-plus-fill me-2"></i>
+                                    ASPIRANTES
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link border-dark border-2 rounded-top px-4 py-3 shadow text-dark fw-bold"
+                                        id="alumnos-tab"
+                                        data-bs-toggle="tab"
+                                        data-bs-target="#Alumnos"
+                                        type="button"
+                                        role="tab"
+                                        aria-controls="Alumnos"
+                                        aria-selected="false">
+                                    <i class="bi bi-mortarboard-fill me-2"></i>
+                                    ALUMNOS
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link border-dark border-2 rounded-top px-4 py-3 shadow text-dark fw-bold"
+                                        id="personal-tab"
+                                        data-bs-toggle="tab"
+                                        data-bs-target="#Personal"
+                                        type="button"
+                                        role="tab"
+                                        aria-controls="Personal"
+                                        aria-selected="false">
+                                    <i class="bi bi-person-badge-fill me-2"></i>
+                                    PERSONAL
+                                </button>
+                            </li>
+                        </ul>
 
-                <h3 class="text-center">INICIO DE SESIÓN GENERAL</h3>
+                        <div class="card shadow rounded">
+                            <div class="card-body p-4">
+                                <div class="tab-content" id="loginTabsContent">';
 
-                <div class="tabs" role="tablist">
-                    <dd data-target="#Aspirantes" role="tab">
-                        <a href="#">ASPIRANTES</a>
-                    </dd>
-                    <dd data-target="#Alumnos" role="tab">
-                        <a href="#">ALUMNOS</a>
-                    </dd>
-                    <dd data-target="#Personal" role="tab">
-                        <a href="#">PERSONAL</a>
-                    </dd>
-                </div>
-
-                <div class="tabs-content mt-3" >';
-        
         $this->renderLoginSections();
 
         echo '                </div>
