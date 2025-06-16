@@ -3,10 +3,12 @@ class PersonalController {
     private $defaultPage = 'PLBN.php';
     private $userType = 'personal';
     private $pageMapping;
+    private $breadcrumbMapping; // Nueva propiedad
 
     public function __construct() {
         session_start();
         $this->initializePageMapping();
+        $this->initializeBreadcrumbMapping(); // Nueva inicialización
         $this->loadDependencies();
         $this->checkUserAuthentication();
     }
@@ -17,6 +19,26 @@ class PersonalController {
             'Gestion de alumnos' => 'PLGA.php',
             'Gestion de pagos' => 'PLGP.php',
             'logout' => 'logout.php',
+        );
+    }
+
+    // Nueva función para mapear breadcrumbs
+    private function initializeBreadcrumbMapping() {
+        $this->breadcrumbMapping = array(
+            'Inicio' => array(
+                array('text' => 'Home', 'link' => '?page=Inicio', 'icon' => 'bi-house-door'),
+                array('text' => 'Dashboard', 'link' => '#', 'active' => true)
+            ),
+            'Gestion de alumnos' => array(
+                array('text' => 'Home', 'link' => '?page=Inicio', 'icon' => 'bi-house-door'),
+                array('text' => 'Gestión Académica', 'link' => '#'),
+                array('text' => 'Gestión de Alumnos', 'link' => '#', 'active' => true)
+            ),
+            'Gestion de pagos' => array(
+                array('text' => 'Home', 'link' => '?page=Inicio', 'icon' => 'bi-house-door'),
+                array('text' => 'Gestión Académica', 'link' => '#'),
+                array('text' => 'Gestión de Pagos', 'link' => '#', 'active' => true)
+            )
         );
     }
 
@@ -46,9 +68,37 @@ class PersonalController {
         </script>';
     }
 
+    // Nueva función para renderizar breadcrumb solo con Bootstrap
+    private function renderBreadcrumb($page) {
+        $breadcrumbs = isset($this->breadcrumbMapping[$page]) ? $this->breadcrumbMapping[$page] : $this->breadcrumbMapping['Inicio'];
+        
+        // Espaciado con br tags
+        echo '<br><br><br>';
+        
+        // Breadcrumb usando solo clases de Bootstrap
+        echo '<nav aria-label="breadcrumb" class="bg-light py-1 px-3 mb-1">';
+        echo '<ol class="breadcrumb mb-0">';
+        
+        foreach ($breadcrumbs as $breadcrumb) {
+            if (isset($breadcrumb['active']) && $breadcrumb['active']) {
+                echo '<li class="breadcrumb-item active" aria-current="page">' . $breadcrumb['text'] . '</li>';
+            } else {
+                $icon = isset($breadcrumb['icon']) ? '<i class="' . $breadcrumb['icon'] . '"></i> ' : '';
+                echo '<li class="breadcrumb-item"><a href="' . $breadcrumb['link'] . '" class="text-decoration-none">' . $icon . $breadcrumb['text'] . '</a></li>';
+            }
+        }
+        
+        echo '</ol>';
+        echo '</nav>';
+    }
+
     public function handleRequest() {
-        $page = isset($_GET['page']) ? $_GET['page'] : '';
-        if ($page !== '') {
+        $page = isset($_GET['page']) ? $_GET['page'] : 'Inicio';
+        
+        // Renderizar breadcrumb antes del contenido
+        $this->renderBreadcrumb($page);
+        
+        if ($page !== '' && $page !== 'Inicio') {
             $this->loadRequestedPage($page);
         } else {
             include $this->defaultPage;

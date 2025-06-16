@@ -158,8 +158,7 @@ class GestionAcademica
 ?>
 
 <div class="container py-4" style="max-width: 1400px;">
-    <br>
-    <br>
+
     <div class="card mb-4">
         <div class="card-header bg-primary text-white">
             <h5 class="mb-0">

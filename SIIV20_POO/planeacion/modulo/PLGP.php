@@ -116,8 +116,6 @@ class GestionPagos
 ?>
 
 <div class="container py-4">
-    <br>
-    <br>
     <div class="card mb-4">
         <div class="card-header bg-primary text-white">
             <h5 class="mb-0">
