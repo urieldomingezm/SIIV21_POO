@@ -84,9 +84,11 @@ class Header
                 '/public/assets/custom/aspirante/formulario_socioeconomicos/css/style.css',
             ],
             'js' => [
-
                 // CAPTURA DE DATOS SOCIOECONOMICOS ASPIRANTES (MUTI FORMULARIO)
                 '/public/assets/custom/aspirante/formulario_socioeconomicos/js/script.js',
+                
+                // FUNCIONES DE EXPORTACIÓN
+                '/public/assets/custom/exportacion/export-functions.js',
              ]
         ];
     }

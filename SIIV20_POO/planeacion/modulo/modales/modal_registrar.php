@@ -95,10 +95,10 @@
             </div>
             <div class="modal-footer bg-light">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                    <i class="bi bi-x-circle me-2"></i>Cancelar
+                    Cancelar
                 </button>
                 <button type="submit" class="btn btn-primary" form="formRegistrar">
-                    <i class="bi bi-save me-2"></i>Guardar
+                    Guardar
                 </button>
             </div>
         </div>

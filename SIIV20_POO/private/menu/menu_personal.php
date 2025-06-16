@@ -173,7 +173,7 @@ class NavigationMenu
                 <div class='container-fluid px-md-4'>
                     <div class='d-flex align-items-center text-white'>
                         <div class='d-flex align-items-center justify-content-center justify-content-md-start'>
-                            <img src='/public/assets/img/png/logo1.png' alt='Logo' class='me-2' height='40'>
+                            <img src='/public/assets/img/png/logo.png' alt='Logo' class='me-2' height='40'>
                             <span class='SII-MENU-PERSONAL d-none d-md-inline'>{$this->SII}</span>
                             <span class='SII-MENU-PERSONAL d-md-none'>{$this->SII_short}</span>
                         </div>
