@@ -1,9 +1,149 @@
 <div class="content" id="Aspirantes">
     <div class="accordion accordion-flush" id="accordionFlushExample">
+        <!-- Nuevo Acordeón: Proceso de Admisión -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingAdmision">
+                <button class="accordion-button" style="background-color:rgb(13, 110, 253); color: white; font-weight: bold;" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseAdmision" aria-expanded="true" aria-controls="flush-collapseAdmision">
+                    <i class="bi bi-info-circle-fill me-2"></i>
+                    <span class="d-none d-md-inline">Pasos y requisitos para aspirantes a nuevo ingreso</span>
+                    <span class="d-md-none">Proceso de admisión</span>
+                </button>
+            </h2>
+<div id="flush-collapseAdmision" class="accordion-collapse collapse show" 
+     aria-labelledby="flush-headingAdmision" 
+     data-bs-parent="#accordionFlushExample">
+    <div class="accordion-body bg-light p-2 p-md-3">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="text-center mb-3">
+                        <div class="badge bg-warning text-dark fs-6 mb-2">
+                            PERIODO DE ENTREGA DE FICHAS: 09 AL 27 DE JUNIO DE 2025
+                        </div>
+                    </div>
+
+                    <div class="row g-2">
+                        <!-- Paso 1 -->
+                        <div class="col-12 col-md-6 col-lg-4 mb-2">
+                            <div class="card h-100 border-primary">
+                                <div class="card-header bg-primary text-white text-center py-2">
+                                    <h6 class="card-title mb-0 fs-6">
+                                        <i class="bi bi-1-circle-fill me-1"></i>
+                                        Test Vocacional
+                                    </h6>
+                                </div>
+                                <div class="card-body p-2">
+                                    <p class="card-text small mb-2">Completa el test e imprime el resultado</p>
+                                    <a href="https://www.elegircarrera.net/test-vocacional/" 
+                                       target="_blank" 
+                                       class="btn btn-sm btn-outline-primary">
+                                        <i class="bi bi-link-45deg"></i> Ir al test
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Paso 2 -->
+                        <div class="col-12 col-md-6 col-lg-4 mb-2">
+                            <div class="card h-100 border-success">
+                                <div class="card-header bg-success text-white text-center py-2">
+                                    <h6 class="card-title mb-0 fs-6">
+                                        <i class="bi bi-2-circle-fill me-1"></i>
+                                        Registro de Datos
+                                    </h6>
+                                </div>
+                                <div class="card-body p-2">
+                                    <p class="card-text small mb-2">Accede con CURP y nip 0. Verifica teléfono y email.</p>
+                                    <a href="http://sii.cdvictoria.tecnm.mx/sistema//index.php" 
+                                       target="_blank" 
+                                       class="btn btn-sm btn-outline-success">
+                                        <i class="bi bi-link-45deg"></i> Registrarse
+                                    </a>
+                                    <p class="card-text small mt-2 text-muted">9 carreras presenciales + 2 a distancia disponibles</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Paso 3 -->
+                        <div class="col-12 col-md-6 col-lg-4 mb-2">
+                            <div class="card h-100 border-info">
+                                <div class="card-header bg-info text-white text-center py-2">
+                                    <h6 class="card-title mb-0 fs-6">
+                                        <i class="bi bi-3-circle-fill me-1"></i>
+                                        Pago de Ficha
+                                    </h6>
+                                </div>
+                                <div class="card-body p-2">
+                                    <p class="card-text small mb-1">Costo: <strong>$2,650.00</strong></p>
+                                    <p class="card-text small">4 opciones de pago. Guarda el recibo bancario.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Paso 4 -->
+                        <div class="col-12 col-md-6 mb-2">
+                            <div class="card h-100 border-warning">
+                                <div class="card-header bg-warning text-dark text-center py-2">
+                                    <h6 class="card-title mb-0 fs-6">
+                                        <i class="bi bi-4-circle-fill me-1"></i>
+                                        Entrega de Documentos
+                                    </h6>
+                                </div>
+                                <div class="card-body p-2">
+                                    <p class="card-text small mb-1"><strong>Horario:</strong> L-V 09:00-15:00 hrs</p>
+                                    <p class="card-text small mb-1"><strong>Documentos:</strong></p>
+                                    <ul class="small mb-0">
+                                        <li>Solicitud de aspirante</li>
+                                        <li>Test vocacional</li>
+                                        <li>Recibo de pago</li>
+                                        <li>Constancia de estudios</li>
+                                        <li>2 fotos infantil B/N</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Paso 5 -->
+                        <div class="col-12 col-md-6 mb-2">
+                            <div class="card h-100 border-danger">
+                                <div class="card-header bg-danger text-white text-center py-2">
+                                    <h6 class="card-title mb-0 fs-6">
+                                        <i class="bi bi-5-circle-fill me-1"></i>
+                                        Recibir Ficha
+                                    </h6>
+                                </div>
+                                <div class="card-body p-2">
+                                    <p class="card-text small mb-1">Servicios Escolares entrega la ficha física</p>
+                                    <p class="card-text small">Verifica que los datos estén correctos</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contacto -->
+                    <div class="row mt-3">
+                        <div class="col-12">
+                            <div class="alert alert-info text-center p-2">
+                                <h6 class="alert-heading fs-6 mb-1">
+                                    <i class="bi bi-telephone-fill me-1"></i>
+                                    Contacto
+                                </h6>
+                                <p class="mb-0 small">descolares@cdvictoria.tecnm.mx | Tel: 834 153 2000 ext. 285 o 205</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+        </div>
+        <br>
+
         <!-- Acordeón 1: Registro por primera vez -->
         <div class="accordion-item">
             <h2 class="accordion-header" id="flush-headingOne">
-                <button class="accordion-button collapsed" style="background-color:rgb(225, 231, 235); color: black;" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                <button class="accordion-button collapsed" style="background-color:rgb(58, 97, 74); color: white;" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
                     Registro por primera vez
                 </button>
             </h2>
@@ -13,7 +153,7 @@
                         <form id="formulario_primera_vez_aspirantes_registro" class="rounded" method="POST">
                             <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
                             <input type="hidden" name="form_type" value="aspirante_registro">
-<br>
+                            <br>
                             <div class="row g-3">
                                 <div class="col-md-6">
                                     <div class="mb-3">
@@ -171,7 +311,7 @@
         <!-- Acordeón 2: Iniciar sesión -->
         <div class="accordion-item">
             <h2 class="accordion-header" id="flush-headingTwo">
-                <button class="accordion-button collapsed" style="background-color:rgb(225, 231, 235); color: black;" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                <button class="accordion-button collapsed" style="background-color:rgb(58, 97, 74); color: white;" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
                     Iniciar sesión
                 </button>
             </h2>
@@ -191,7 +331,7 @@
                         <form id="formulario_iniciar_session_aspirante" method="POST" class="needs-validation" novalidate>
                             <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
                             <input type="hidden" name="form_type" value="aspirante_login">
-                            
+
                             <div class="row g-3">
                                 <!-- CURP -->
                                 <div class="col-md-4">
@@ -200,12 +340,12 @@
                                         <span class="input-group-text">
                                             <i class="bi bi-person"></i>
                                         </span>
-                                        <input type="text" 
-                                               class="form-control" 
-                                               id="iniciar_session_aspirante_curp" 
-                                               name="iniciar_session_aspirante_curp" 
-                                               placeholder="Ingresa tu CURP"
-                                               maxlength="18">
+                                        <input type="text"
+                                            class="form-control"
+                                            id="iniciar_session_aspirante_curp"
+                                            name="iniciar_session_aspirante_curp"
+                                            placeholder="Ingresa tu CURP"
+                                            maxlength="18">
                                     </div>
                                     <div class="error-container mt-1" id="error_iniciar_session_aspirante_curp"></div>
                                 </div>
@@ -217,12 +357,12 @@
                                         <span class="input-group-text">
                                             <i class="bi bi-lock"></i>
                                         </span>
-                                        <input type="password" 
-                                               class="form-control" 
-                                               id="iniciar_session_aspirante_password" 
-                                               name="iniciar_session_aspirante_password" 
-                                               placeholder="Ingresa tu NIP"
-                                               maxlength="4">
+                                        <input type="password"
+                                            class="form-control"
+                                            id="iniciar_session_aspirante_password"
+                                            name="iniciar_session_aspirante_password"
+                                            placeholder="Ingresa tu NIP"
+                                            maxlength="4">
                                         <button class="btn btn-outline-secondary" type="button" onclick="togglePasswordVisibility('iniciar_session_aspirante_password', this)">
                                             <i class="bi bi-eye-slash"></i>
                                         </button>
@@ -237,12 +377,12 @@
                                         <span class="input-group-text">
                                             <i class="bi bi-shield-lock"></i>
                                         </span>
-                                        <input type="text" 
-                                               class="form-control" 
-                                               id="iniciar_session_aspirante_captcha" 
-                                               name="iniciar_session_aspirante_captcha" 
-                                               placeholder="Ingresa el código que ves en la imagen"
-                                               maxlength="5">
+                                        <input type="text"
+                                            class="form-control"
+                                            id="iniciar_session_aspirante_captcha"
+                                            name="iniciar_session_aspirante_captcha"
+                                            placeholder="Ingresa el código que ves en la imagen"
+                                            maxlength="5">
                                         <canvas class="captcha-canvas" width="150" height="40"></canvas>
                                         <button class="btn btn-outline-secondary" type="button" onclick="generateCaptcha('formulario_iniciar_session_aspirante')">
                                             <i class="bi bi-arrow-clockwise"></i>
@@ -284,31 +424,60 @@
         });
 
         validatorRegistro
-            .addField('#primera_vez_apellido_paterno', [
-                { rule: 'required', errorMessage: 'Ingrese apellido paterno' }
+            .addField('#primera_vez_apellido_paterno', [{
+                rule: 'required',
+                errorMessage: 'Ingrese apellido paterno'
+            }])
+            .addField('#primera_vez_apellido_materno', [{
+                rule: 'required',
+                errorMessage: 'Ingrese apellido materno'
+            }])
+            .addField('#primera_vez_nombre', [{
+                rule: 'required',
+                errorMessage: 'Ingrese nombre(s)'
+            }])
+            .addField('#primera_vez_curp', [{
+                    rule: 'required',
+                    errorMessage: 'Ingrese CURP'
+                },
+                {
+                    rule: 'minLength',
+                    value: 18,
+                    errorMessage: 'Debe tener 18 caracteres'
+                }
             ])
-            .addField('#primera_vez_apellido_materno', [
-                { rule: 'required', errorMessage: 'Ingrese apellido materno' }
+            .addField('#primera_vez_celular', [{
+                    rule: 'required',
+                    errorMessage: 'Ingrese número celular'
+                },
+                {
+                    rule: 'minLength',
+                    value: 10,
+                    errorMessage: 'Debe tener 10 dígitos'
+                },
+                {
+                    rule: 'number',
+                    errorMessage: 'Solo números'
+                }
             ])
-            .addField('#primera_vez_nombre', [
-                { rule: 'required', errorMessage: 'Ingrese nombre(s)' }
+            .addField('#primera_vez_email', [{
+                    rule: 'required',
+                    errorMessage: 'Ingrese correo electrónico'
+                },
+                {
+                    rule: 'email',
+                    errorMessage: 'Ingrese un correo válido'
+                }
             ])
-            .addField('#primera_vez_curp', [
-                { rule: 'required', errorMessage: 'Ingrese CURP' },
-                { rule: 'minLength', value: 18, errorMessage: 'Debe tener 18 caracteres' }
-            ])
-            .addField('#primera_vez_celular', [
-                { rule: 'required', errorMessage: 'Ingrese número celular' },
-                { rule: 'minLength', value: 10, errorMessage: 'Debe tener 10 dígitos' },
-                { rule: 'number', errorMessage: 'Solo números' }
-            ])
-            .addField('#primera_vez_email', [
-                { rule: 'required', errorMessage: 'Ingrese correo electrónico' },
-                { rule: 'email', errorMessage: 'Ingrese un correo válido' }
-            ])
-            .addField('#primera_vez_aspirante_registro_captcha', [
-                { rule: 'required', errorMessage: 'Ingrese CAPTCHA' },
-                { rule: 'minLength', value: 5, errorMessage: 'Debe tener 5 caracteres' }
+            .addField('#primera_vez_aspirante_registro_captcha', [{
+                    rule: 'required',
+                    errorMessage: 'Ingrese CAPTCHA'
+                },
+                {
+                    rule: 'minLength',
+                    value: 5,
+                    errorMessage: 'Debe tener 5 caracteres'
+                }
             ]);
 
         // Validación para el formulario de inicio de sesión
@@ -326,18 +495,39 @@
         });
 
         validatorLogin
-            .addField('#iniciar_session_aspirante_curp', [
-                { rule: 'required', errorMessage: 'Ingrese CURP' },
-                { rule: 'minLength', value: 18, errorMessage: 'Debe tener 18 caracteres' }
+            .addField('#iniciar_session_aspirante_curp', [{
+                    rule: 'required',
+                    errorMessage: 'Ingrese CURP'
+                },
+                {
+                    rule: 'minLength',
+                    value: 18,
+                    errorMessage: 'Debe tener 18 caracteres'
+                }
             ])
-            .addField('#iniciar_session_aspirante_password', [
-                { rule: 'required', errorMessage: 'Ingrese NIP' },
-                { rule: 'minLength', value: 4, errorMessage: 'Mínimo 4 dígitos' },
-                { rule: 'number', errorMessage: 'Solo números' }
+            .addField('#iniciar_session_aspirante_password', [{
+                    rule: 'required',
+                    errorMessage: 'Ingrese NIP'
+                },
+                {
+                    rule: 'minLength',
+                    value: 4,
+                    errorMessage: 'Mínimo 4 dígitos'
+                },
+                {
+                    rule: 'number',
+                    errorMessage: 'Solo números'
+                }
             ])
-            .addField('#iniciar_session_aspirante_captcha', [
-                { rule: 'required', errorMessage: 'Ingrese CAPTCHA' },
-                { rule: 'minLength', value: 5, errorMessage: 'Debe tener 5 caracteres' }
+            .addField('#iniciar_session_aspirante_captcha', [{
+                    rule: 'required',
+                    errorMessage: 'Ingrese CAPTCHA'
+                },
+                {
+                    rule: 'minLength',
+                    value: 5,
+                    errorMessage: 'Debe tener 5 caracteres'
+                }
             ])
             .onSuccess((event) => {
                 if (!verifyCaptcha('formulario_iniciar_session_aspirante')) {

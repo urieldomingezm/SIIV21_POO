@@ -117,12 +117,12 @@ class GestionPagos
 
 <div class="container py-4">
     <div class="card mb-4">
-        <div class="card-header bg-primary text-white">
-            <h5 class="mb-0">
-                <button class="btn btn-link w-100 text-start text-white fw-bold text-decoration-none" type="button" data-bs-toggle="collapse" data-bs-target="#estadisticasCollapse">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="estadisticasHeader">
+                <button class="accordion-button bg-primary text-white fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#estadisticasCollapse" aria-expanded="true" aria-controls="estadisticasCollapse">
                     Estadísticas y Gráficas
                 </button>
-            </h5>
+            </h2>
         </div>
         <div id="estadisticasCollapse" class="collapse show">
             <div class="card-body">
