@@ -17,18 +17,29 @@
                     <input type="hidden" id="eliminarId" value="">
                 </div>
                 <div class="mt-3">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <dl>
-                                <dt>Alumno:</dt>
-                                <dd id="eliminarNombre"></dd>
-                            </dl>
+                    <div class="alert alert-info">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <strong>Nombre:</strong> <span id="eliminarNombre"></span><br>
+                                <strong>No. Control:</strong> <span id="eliminarNumeroControl"></span><br>
+                                <strong>Carrera:</strong> <span id="eliminarCarrera"></span>
+                            </div>
+                            <div class="col-md-6">
+                                <strong>Semestre:</strong> <span id="eliminarSemestre"></span><br>
+                                <strong>Periodo:</strong> <span id="eliminarPeriodo"></span>
+                            </div>
                         </div>
-                        <div class="col-md-6">
-                            <dl>
-                                <dt>Total:</dt>
-                                <dd id="eliminarTotal"></dd>
-                            </dl>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <strong>Descuento:</strong> <span id="eliminarDescuento"></span>
+                            </div>
+                            <div class="col-md-4">
+                                <strong>Total:</strong> <span id="eliminarTotal"></span>
+                            </div>
+                            <div class="col-md-4">
+                                <strong>Estado:</strong> <span id="eliminarEstado"></span>
+                            </div>
                         </div>
                     </div>
                 </div>

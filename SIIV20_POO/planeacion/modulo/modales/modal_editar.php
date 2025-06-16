@@ -16,7 +16,17 @@
                         <div class="col-12">
                             <div class="alert alert-info" role="alert">
                                 <i class="bi bi-info-circle me-2"></i>
-                                <strong>Alumno:</strong> <span id="nombreAlumno"></span>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <strong>Nombre:</strong> <span id="editNombreCompleto"></span><br>
+                                        <strong>No. Control:</strong> <span id="editNumeroControl"></span><br>
+                                        <strong>Carrera:</strong> <span id="editCarrera"></span>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <strong>Semestre:</strong> <span id="editSemestre"></span><br>
+                                        <strong>Periodo:</strong> <span id="editPeriodo"></span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
