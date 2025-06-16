@@ -68,14 +68,11 @@ class PersonalController {
         </script>';
     }
 
-    // Nueva función para renderizar breadcrumb solo con Bootstrap
     private function renderBreadcrumb($page) {
         $breadcrumbs = isset($this->breadcrumbMapping[$page]) ? $this->breadcrumbMapping[$page] : $this->breadcrumbMapping['Inicio'];
         
-        // Espaciado con br tags
         echo '<br><br><br>';
         
-        // Breadcrumb usando solo clases de Bootstrap
         echo '<nav aria-label="breadcrumb" class="bg-light py-1 px-3 mb-1">';
         echo '<ol class="breadcrumb mb-0">';
         

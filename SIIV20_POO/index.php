@@ -89,7 +89,7 @@ class LoginController {
     }
 
     private function renderLoginSections() {
-        $sectionIds = ['Aspirantes', 'Alumnos', 'Personal']; // IDs correctos para las pestañas
+        $sectionIds = ['Aspirantes', 'Alumnos', 'Personal'];
         foreach ($this->sections as $index => $section) {
             $isActive = $index === 0 ? ' show active' : '';
             echo "<div class='tab-pane fade{$isActive}' id='{$sectionIds[$index]}' role='tabpanel' aria-labelledby='{$section}-tab'>";

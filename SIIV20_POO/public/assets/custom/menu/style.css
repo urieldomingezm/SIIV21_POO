@@ -35,16 +35,17 @@
     border-color: #a8d1ff;
 }
 
-/* Add these new styles */
 .navbar {
     position: fixed !important;
-    top: 73px; /* Altura del header */
+    top: 73px;
     left: 0;
     right: 0;
     z-index: 1020;
-    height: 48px; /* Altura del botón hamburguesa */
-    min-height: 48px; /* Asegurar altura mínima */
-    padding: 0 !important; /* Eliminar padding */
+    height: 48px;
+    min-height: 48px;
+    padding: 0 !important;
+    background-color: #1B396A;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .navbar-toggler {
@@ -58,7 +59,6 @@
     height: 48px;
 }
 
-/* Ajustar el header para que se mantenga fijo */
 header {
     position: fixed !important;
     top: 0;
@@ -75,42 +75,23 @@ header {
     align-items: center;
 }
 
-/* Ajustar la navbar */
-.navbar {
-    position: fixed !important;
-    top: 73px; /* Altura del header */
-    left: 0;
-    right: 0;
-    z-index: 1020;
-    height: 48px; /* Altura del botón hamburguesa */
-    min-height: 48px; /* Asegurar altura mínima */
-    padding: 0 !important; /* Eliminar padding */
-    background-color: #1B396A;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.navbar-toggler {
-    height: 48px;
-    padding: 0.25rem 0.75rem;
-    margin: 0;
-}
-
-.navbar-container {
-    margin-top: 0;
-    height: 48px;
-}
-
-/* Ajustar el padding del body */
 body {
-    padding-top: 121px; /* 73px (header) + 48px (navbar) */
+    padding-top: 121px;
 }
 
 .offcanvas {
-    top: 160px; /* Adjust offcanvas position to account for fixed header and navbar */
+    top: 160px;
 }
 
-/* Responsive SII title */
 .sii-title {
+    visibility: visible;
+}
+
+.SII-MENU-ALUMNO {
+    visibility: visible;
+}
+
+.SII-MENU-PERSONAL {
     visibility: visible;
 }
 
@@ -130,15 +111,7 @@ body {
         overflow-x: hidden;
         width: 100%;
     }
-}
 
-
-/* Responsive SII title */
-.SII-MENU-ALUMNO {
-    visibility: visible;
-}
-
-@media (max-width: 767px) {
     .SII-MENU-ALUMNO::before {
         content: "SII | ALUMNO";
         display: inline-block;
@@ -150,41 +123,6 @@ body {
         visibility: hidden;
     }
 
-    .navbar-container {
-        overflow-x: hidden;
-        width: 100%;
-    }
-}
-
-/* Responsive SII title menu alumno */
-.SII-MENU-ALUMNO {
-    visibility: visible;
-}
-
-@media (max-width: 767px) {
-    .SII-MENU-ALUMNO::before {
-        content: "SII | ALUMNO";
-        display: inline-block;
-        visibility: visible;
-        position: absolute;
-    }
-
-    .SII-MENU-ALUMNO {
-        visibility: hidden;
-    }
-
-    .navbar-container {
-        overflow-x: hidden;
-        width: 100%;
-    }
-}
-
-/* Estilos para el menú de personal */
-.SII-MENU-PERSONAL {
-    visibility: visible;
-}
-
-@media (max-width: 767px) {
     .SII-MENU-PERSONAL::before {
         content: "SII | Personal";
         display: inline-block;
@@ -199,12 +137,16 @@ body {
 
 .accordion {
     margin: 0 -1rem;
+    --bs-accordion-border-color: transparent !important;
+    border: none !important;
 }
 
 .accordion-button {
     padding: 0.5rem 1.5rem;
     min-height: 45px;
     font-weight: 500;
+    border: none !important;
+    outline: none !important;
 }
 
 .accordion-button::after {
@@ -225,10 +167,24 @@ body {
     border-color: transparent;
 }
 
+.accordion-item {
+    border: none !important;
+}
+
+.accordion-collapse {
+    background-color: rgba(0, 0, 0, 0.1);
+    border: none !important;
+}
+
+.accordion-body {
+    padding: 0;
+}
+
 .nav-link {
     color: white;
     padding: 0.5rem 1.5rem;
     transition: all 0.2s ease;
+    border: none !important;
 }
 
 .compact-link {
@@ -242,51 +198,14 @@ body {
     transform: translateX(5px);
 }
 
-.accordion-body {
-    padding: 0;
-}
-
-.accordion-collapse {
-    background-color: rgba(0, 0, 0, 0.1);
-}
-
 .offcanvas-body {
     padding: 1rem;
-}
-
-/* Eliminar el borde del acordeón */
-.accordion {
-    --bs-accordion-border-color: transparent !important;
-    border: none !important;
-}
-
-.accordion-item {
-    border: none !important;
-}
-
-.accordion-button {
-    border: none !important;
-    outline: none !important;
-}
-
-.accordion-button:focus {
-    box-shadow: none !important;
-    border: none !important;
-}
-
-.accordion-collapse {
-    border: none !important;
-}
-
-.nav-link {
-    border: none !important;
 }
 
 .offcanvas {
     border: none !important;
 }
 
-/* Topbar styles */
 .topbar {
     position: fixed;
     top: 0;
@@ -305,7 +224,7 @@ body {
 }
 
 .topbar-image {
-    height: 40px;
+    height: 20px;
     width: auto;
     transition: transform 0.2s ease;
 }
