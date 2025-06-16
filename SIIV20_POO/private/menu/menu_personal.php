@@ -38,6 +38,7 @@ class NavigationMenu
                         )
                     ),
                     array('text' => 'Gestión de pagos', 'link' => '?page=Gestion de pagos', 'icon' => 'bi-cash-coin'),
+                    array('text' => 'Gestion de alumnos', 'link' => '?page=Gestion de alumnos', 'icon' => 'bi-mortarboard-fill'),
                 )
             ),
             array(
