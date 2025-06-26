@@ -43,7 +43,7 @@
             <!-- Captcha -->
             <div class="col-md-4">
                 <label class="form-label" for="personal_captcha">Verificación de Seguridad</label>
-                <div class="row">
+                <div class="row g-0">
                     <div class="col-6">
                         <div class="input-group">
                             <span class="input-group-text">
@@ -57,16 +57,18 @@
                                    maxlength="5">
                         </div>
                     </div>
-                    <div class="col-6 d-flex align-items-center">
+                    <div class="col-6 d-flex align-items-end">
                         <div class="input-group">
-                            <canvas class="captcha-canvas" width="100" height="38"></canvas>
-                            <button class="btn btn-outline-secondary" type="button" onclick="generateCaptcha('formulario_personal')">
+                            <canvas class="captcha-canvas rounded-start" width="80" height="38"></canvas>
+                            <button class="btn btn-outline-secondary rounded-end" type="button" onclick="generateCaptcha('formulario_personal')">
                                 <i class="bi bi-arrow-clockwise"></i>
                             </button>
                         </div>
                     </div>
+                    <div class="col-12">
+                        <div class="error-container mt-1" id="error_personal_captcha"></div>
+                    </div>
                 </div>
-                <div class="error-container mt-1" id="error_personal_captcha"></div>
             </div>
         </div>
 
