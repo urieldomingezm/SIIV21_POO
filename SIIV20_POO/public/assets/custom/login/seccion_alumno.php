@@ -59,7 +59,7 @@
                     </div>
                     <div class="col-6 d-flex align-items-end">
                         <div class="input-group">
-                            <canvas class="captcha-canvas border rounded-start" width="100" height="38"></canvas>
+                            <canvas class="captcha-canvas rounded-start" width="100" height="38"></canvas>
                             <button class="btn btn-outline-secondary rounded-end" type="button" onclick="generateCaptcha('formulario_alumno')">
                                 <i class="bi bi-arrow-clockwise"></i>
                             </button>
