@@ -332,65 +332,73 @@
                             <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
                             <input type="hidden" name="form_type" value="aspirante_login">
 
-                            <div class="row g-3">
-                                <!-- CURP -->
-                                <div class="col-md-4">
-                                    <label for="iniciar_session_aspirante_curp" class="form-label">CURP</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text">
-                                            <i class="bi bi-person"></i>
-                                        </span>
-                                        <input type="text"
-                                            class="form-control"
-                                            id="iniciar_session_aspirante_curp"
-                                            name="iniciar_session_aspirante_curp"
-                                            placeholder="Ingresa tu CURP"
-                                            maxlength="18">
-                                    </div>
-                                    <div class="error-container mt-1" id="error_iniciar_session_aspirante_curp"></div>
-                                </div>
+<div class="row g-3">
+    <!-- CURP -->
+    <div class="col-12 col-md-4">
+        <label for="iniciar_session_aspirante_curp" class="form-label">CURP</label>
+        <div class="input-group">
+            <span class="input-group-text">
+                <i class="bi bi-person"></i>
+            </span>
+            <input type="text"
+                class="form-control"
+                id="iniciar_session_aspirante_curp"
+                name="iniciar_session_aspirante_curp"
+                placeholder="Ingresa tu CURP"
+                maxlength="18">
+        </div>
+        <div class="error-container mt-1" id="error_iniciar_session_aspirante_curp"></div>
+    </div>
 
-                                <!-- Contraseña (NIP) -->
-                                <div class="col-md-4">
-                                    <label for="iniciar_session_aspirante_password" class="form-label">NIP</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text">
-                                            <i class="bi bi-lock"></i>
-                                        </span>
-                                        <input type="password"
-                                            class="form-control"
-                                            id="iniciar_session_aspirante_password"
-                                            name="iniciar_session_aspirante_password"
-                                            placeholder="Ingresa tu NIP"
-                                            maxlength="4">
-                                        <button class="btn btn-outline-secondary" type="button" onclick="togglePasswordVisibility('iniciar_session_aspirante_password', this)">
-                                            <i class="bi bi-eye-slash"></i>
-                                        </button>
-                                    </div>
-                                    <div class="error-container mt-1" id="error_iniciar_session_aspirante_password"></div>
-                                </div>
+    <!-- Contraseña (NIP) -->
+    <div class="col-12 col-md-4">
+        <label for="iniciar_session_aspirante_password" class="form-label">NIP</label>
+        <div class="input-group">
+            <span class="input-group-text">
+                <i class="bi bi-lock"></i>
+            </span>
+            <input type="password"
+                class="form-control"
+                id="iniciar_session_aspirante_password"
+                name="iniciar_session_aspirante_password"
+                placeholder="Ingresa tu NIP"
+                maxlength="4">
+            <button class="btn btn-outline-secondary" type="button" onclick="togglePasswordVisibility('iniciar_session_aspirante_password', this)">
+                <i class="bi bi-eye-slash"></i>
+            </button>
+        </div>
+        <div class="error-container mt-1" id="error_iniciar_session_aspirante_password"></div>
+    </div>
 
-                                <!-- CAPTCHA -->
-                                <div class="col-md-4">
-                                    <label for="iniciar_session_aspirante_captcha" class="form-label">Verificación de Seguridad</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text">
-                                            <i class="bi bi-shield-lock"></i>
-                                        </span>
-                                        <input type="text"
-                                            class="form-control"
-                                            id="iniciar_session_aspirante_captcha"
-                                            name="iniciar_session_aspirante_captcha"
-                                            placeholder="Ingresa el código que ves en la imagen"
-                                            maxlength="5">
-                                        <canvas class="captcha-canvas" width="150" height="40"></canvas>
-                                        <button class="btn btn-outline-secondary" type="button" onclick="generateCaptcha('formulario_iniciar_session_aspirante')">
-                                            <i class="bi bi-arrow-clockwise"></i>
-                                        </button>
-                                    </div>
-                                    <div class="error-container mt-1" id="error_iniciar_session_aspirante_captcha"></div>
-                                </div>
-                            </div>
+    <!-- CAPTCHA -->
+    <div class="col-12 col-md-4">
+        <label for="iniciar_session_aspirante_captcha" class="form-label">Verificación de Seguridad</label>
+        <div class="row g-2">
+            <div class="col-6">
+                <div class="input-group">
+                    <span class="input-group-text">
+                        <i class="bi bi-shield-lock"></i>
+                    </span>
+                    <input type="text"
+                        class="form-control"
+                        id="iniciar_session_aspirante_captcha"
+                        name="iniciar_session_aspirante_captcha"
+                        placeholder="Código"
+                        maxlength="5">
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="d-flex align-items-center h-100">
+                    <canvas class="captcha-canvas me-1" width="80" height="38"></canvas>
+                    <button class="btn btn-outline-secondary h-100" type="button" onclick="generateCaptcha('formulario_iniciar_session_aspirante')">
+                        <i class="bi bi-arrow-clockwise"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="error-container mt-1" id="error_iniciar_session_aspirante_captcha"></div>
+    </div>
+</div>
 
                             <div class="row mt-4">
                                 <div class="col-12 text-center">

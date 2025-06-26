@@ -5,7 +5,7 @@
 
         <div class="row g-3">
             <!-- Número de Control -->
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <label class="form-label" for="alumno_numero_control">Número de Control</label>
                 <div class="input-group">
                     <span class="input-group-text">
@@ -21,7 +21,7 @@
             </div>
 
             <!-- NIP -->
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <label class="form-label" for="alumno_password">NIP</label>
                 <div class="input-group">
                     <span class="input-group-text">
@@ -40,25 +40,35 @@
                 <div class="error-container mt-1" id="error_alumno_password"></div>
             </div>
 
-            <!-- Captcha -->
-            <div class="col-12">
+            <!-- Verification Code -->
+            <div class="col-md-4">
                 <label class="form-label" for="alumno_captcha">Verificación de Seguridad</label>
-                <div class="input-group">
-                    <span class="input-group-text">
-                        <i class="bi bi-shield-lock"></i>
-                    </span>
-                    <input type="text"
-                        class="form-control"
-                        id="alumno_captcha"
-                        name="alumno_captcha"
-                        placeholder="Ingresa el código que ves en la imagen"
-                        maxlength="5">
-                    <canvas class="captcha-canvas" width="150" height="40"></canvas>
-                    <button class="btn btn-outline-secondary" type="button" onclick="generateCaptcha('formulario_alumno')">
-                        <i class="bi bi-arrow-clockwise"></i>
-                    </button>
+                <div class="row g-0">
+                    <div class="col-6">
+                        <div class="input-group">
+                            <span class="input-group-text">
+                                <i class="bi bi-shield-lock"></i>
+                            </span>
+                            <input type="text"
+                                class="form-control"
+                                id="alumno_captcha"
+                                name="alumno_captcha"
+                                placeholder="Código"
+                                maxlength="5">
+                        </div>
+                    </div>
+                    <div class="col-6 d-flex align-items-end">
+                        <div class="input-group">
+                            <canvas class="captcha-canvas border rounded-start" width="100" height="38"></canvas>
+                            <button class="btn btn-outline-secondary rounded-end" type="button" onclick="generateCaptcha('formulario_alumno')">
+                                <i class="bi bi-arrow-clockwise"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="error-container mt-1" id="error_alumno_captcha"></div>
+                    </div>
                 </div>
-                <div class="error-container mt-1" id="error_alumno_captcha"></div>
             </div>
         </div>
 

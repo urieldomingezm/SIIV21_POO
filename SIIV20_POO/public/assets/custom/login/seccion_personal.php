@@ -5,7 +5,7 @@
 
         <div class="row g-3">
             <!-- Usuario -->
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <label class="form-label" for="personal_usuario">Usuario</label>
                 <div class="input-group">
                     <span class="input-group-text">
@@ -22,7 +22,7 @@
             </div>
 
             <!-- Contraseña -->
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <label class="form-label" for="personal_password">Contraseña</label>
                 <div class="input-group">
                     <span class="input-group-text">
@@ -41,22 +41,30 @@
             </div>
 
             <!-- Captcha -->
-            <div class="col-12">
+            <div class="col-md-4">
                 <label class="form-label" for="personal_captcha">Verificación de Seguridad</label>
-                <div class="input-group">
-                    <span class="input-group-text">
-                        <i class="bi bi-shield-lock"></i>
-                    </span>
-                    <input type="text"
-                           class="form-control"
-                           id="personal_captcha"
-                           name="personal_captcha"
-                           placeholder="Ingresa el código que ves en la imagen"
-                           maxlength="5">
-                    <canvas class="captcha-canvas" width="150" height="40"></canvas>
-                    <button class="btn btn-outline-secondary" type="button" onclick="generateCaptcha('formulario_personal')">
-                        <i class="bi bi-arrow-clockwise"></i>
-                    </button>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="input-group">
+                            <span class="input-group-text">
+                                <i class="bi bi-shield-lock"></i>
+                            </span>
+                            <input type="text"
+                                   class="form-control"
+                                   id="personal_captcha"
+                                   name="personal_captcha"
+                                   placeholder="Código"
+                                   maxlength="5">
+                        </div>
+                    </div>
+                    <div class="col-6 d-flex align-items-center">
+                        <div class="input-group">
+                            <canvas class="captcha-canvas" width="100" height="38"></canvas>
+                            <button class="btn btn-outline-secondary" type="button" onclick="generateCaptcha('formulario_personal')">
+                                <i class="bi bi-arrow-clockwise"></i>
+                            </button>
+                        </div>
+                    </div>
                 </div>
                 <div class="error-container mt-1" id="error_personal_captcha"></div>
             </div>
