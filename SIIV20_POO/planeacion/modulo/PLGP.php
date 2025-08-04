@@ -415,13 +415,7 @@ class GestionPagos
 
         // Funcionalidad de los modales
         
-        // Función para calcular total (faltaba esta función)
-        function calcularTotal() {
-            const descuento = parseFloat(document.getElementById('editDescuento').value) || 0;
-            const precioBase = 3200;
-            const total = precioBase - (precioBase * descuento / 100);
-            document.getElementById('editTotal').value = '$' + total.toFixed(2) + ' MXN';
-        }
+        // La función calcularTotal se maneja en el modal
         
         // Modal Registrar
         const btnRegistrar = document.getElementById('btnRegistrar');
@@ -432,48 +426,7 @@ class GestionPagos
             });
         }
 
-        // Manejar envío del formulario de registro
-        const formRegistrar = document.getElementById('formRegistrar');
-        if (formRegistrar) {
-            formRegistrar.addEventListener('submit', function(e) {
-                e.preventDefault();
-                if (this.checkValidity()) {
-                    const formData = new FormData(this);
-                    
-                    fetch('pago_registrar.php', {
-                        method: 'POST',
-                        body: formData
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
-                            bootstrap.Modal.getInstance(document.getElementById('modalRegistrar')).hide();
-                            location.reload();
-                        } else {
-                            alert('Error: ' + data.message);
-                        }
-                    })
-                    .catch(error => {
-                        alert('Error al procesar la solicitud');
-                    });
-                }
-                this.classList.add('was-validated');
-            });
-        }
-
-        // Calcular total automáticamente en el modal de registro
-        const descuentoInput = document.getElementById('descuento');
-        if (descuentoInput) {
-            descuentoInput.addEventListener('input', function() {
-                const descuento = parseFloat(this.value) || 0;
-                const precioBase = 3200;
-                const total = precioBase - (precioBase * descuento / 100);
-                const totalInput = document.getElementById('total');
-                if (totalInput) {
-                    totalInput.value = '$' + total.toFixed(2) + ' MXN';
-                }
-            });
-        }
+        // La funcionalidad de registro se maneja en el modal
 
         // Modal Editar
         document.querySelectorAll('.editar-registro').forEach(btn => {
@@ -508,8 +461,7 @@ class GestionPagos
                 if (editDescuentoInput) editDescuentoInput.value = descuento;
                 if (checkPagadoInput) checkPagadoInput.checked = realizado == '1';
                 
-                // Calcular y mostrar total
-                calcularTotal();
+                // El cálculo del total se maneja en el modal
                 
                 // Mostrar modal
                 const modalEditar = document.getElementById('modalEditar');
@@ -519,11 +471,7 @@ class GestionPagos
             });
         });
         
-        // Agregar evento para recalcular total cuando cambie el descuento en edición
-        const editDescuentoInput = document.getElementById('editDescuento');
-        if (editDescuentoInput) {
-            editDescuentoInput.addEventListener('input', calcularTotal);
-        }
+        // El evento para recalcular se maneja en el modal
 
         // Función para abrir modal de eliminación
         document.querySelectorAll('.eliminar-registro').forEach(btn => {
@@ -571,46 +519,15 @@ class GestionPagos
             });
         });
 
-        // Confirmar eliminación
-        const btnConfirmarEliminar = document.getElementById('btnConfirmarEliminar');
-        if (btnConfirmarEliminar) {
-            btnConfirmarEliminar.addEventListener('click', function() {
-                const eliminarIdInput = document.getElementById('eliminarId');
-                if (!eliminarIdInput) return;
-                
-                const id = eliminarIdInput.value;
-                const formData = new FormData();
-                formData.append('id', id);
-                
-                fetch('pago_eliminar.php', {
-                    method: 'POST',
-                    body: formData
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        const modalEliminar = document.getElementById('modalEliminar');
-                        if (modalEliminar) {
-                            bootstrap.Modal.getInstance(modalEliminar).hide();
-                        }
-                        location.reload();
-                    } else {
-                        alert('Error: ' + data.message);
-                    }
-                })
-                .catch(error => {
-                    alert('Error al procesar la solicitud');
-                });
-            });
-        }
+        // La funcionalidad de eliminación se maneja en el modal
     });
 </script>
 
 <!-- Incluir los modales al final -->
 <?php
-require_once('modales/modal_registrar.php');
-require_once('modales/modal_editar.php');
-require_once('modales/modal_eliminar.php'); 
+require_once(PRIVATE_PATH . 'modales/modal_planeacion/gestion_pagos/modal_registrar.php');
+require_once(PRIVATE_PATH . 'modales/modal_planeacion/gestion_pagos/modal_editar.php');
+require_once(PRIVATE_PATH . 'modales/modal_planeacion/gestion_pagos/modal_eliminar.php'); 
 ?>
 
 <?php
