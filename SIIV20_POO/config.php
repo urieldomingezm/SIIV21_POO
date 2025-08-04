@@ -19,14 +19,12 @@ define('CAPTURA_DATOS_SOCIOECONOMICOS_PATH', ROOT_PATH.'private/procesos/aspiran
 define('GESTION_ALUMNOS', PRIVATE_PATH.'procesos/planeacion/gestion_alumnos/');
 define('GESTION_PAGOS_PATH', PRIVATE_PATH.'procesos/planeacion/gestion_pagos/');
 
-
 // MODALES DEL SISTEMA
 define('MODALES_PATH', PRIVATE_PATH.'modales/');
 define('MODALES_PERSONAL_PATH', PRIVATE_PATH.'modales/personal/');
 define('MODALES_ASPIRANTES_PATH', PRIVATE_PATH.'modales/aspirantes/');
 define('MODALES_ALUMNOS_PATH', PRIVATE_PATH.'modales/alumnos/');
 define('MODALES_INICIO_SESSION_PATH', PRIVATE_PATH.'modal/modal_session_general/');
-
 
 // MODULOS DEL SISTEMA DE ASIPIRANTES
 define('DATOS_SOCIOECONOMICOS_PATH', ROOT_PATH.'modulo/aspirante/');
