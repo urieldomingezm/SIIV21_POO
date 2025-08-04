@@ -314,21 +314,6 @@ docker exec -it <container_name> chown -R www-data:www-data /var/www/html
 - Comprobar configuración de PHP para sesiones
 - Revisar permisos del directorio de sesiones
 
-## 📞 Soporte
-
-### Información de Contacto del Instituto
-
-- **Teléfono:** (867) 555-0123
-- **Problemas con SIIE:** Contactar soporte técnico
-- **Proceso de admisión:** Consultar fechas en el sistema
-
-### Fechas Importantes 2025
-
-- **Registro:** 4 febrero - 15 abril
-- **Examen de admisión:** 18-19 junio  
-- **Curso propedéutico:** 25 junio - 23 julio
-- **Publicación de listas:** 28 julio
-
 ## 📄 Licencia
 
 Este proyecto es de uso interno del instituto tecnológico. Todos los derechos reservados.
