@@ -73,9 +73,16 @@ class PersonalController {
     }
 
     private function showPageNotFound() {
+        // Usar output buffering para evitar problemas con headers
+        ob_start();
         echo '<h1>Página no encontrada</h1>';
         echo '<p>Redirigiendo a la página principal...</p>';
-        header('refresh:3;url=index.php');
+        echo '<script>
+            setTimeout(function() {
+                window.location.href = "/index.php";
+            }, 3000);
+        </script>';
+        ob_end_flush();
         exit();
     }
 }
