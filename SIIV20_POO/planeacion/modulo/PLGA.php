@@ -147,6 +147,9 @@ class GestionAcademica
                 </div>
                 <div class="col-md-6">
                     <div class="d-flex align-items-center justify-content-md-end gap-2 flex-wrap">
+                        <button class="btn btn-sm btn-light" id="btnRegistrarAcademico" title="Registrar Nueva Información Académica">
+                            <i class="bi bi-plus-circle"></i> Registrar
+                        </button>
                         <button class="btn btn-sm btn-light" id="btnExcel" title="Exportar a Excel">
                             <i class="bi bi-file-earmark-excel"></i>
                         </button>
@@ -289,6 +292,15 @@ document.addEventListener('DOMContentLoaded', function() {
         initializeExportFunctions('tablaAcademica', 'gestion-informacion-academica');
     }
 
+    // Botón Registrar
+    const btnRegistrarAcademico = document.getElementById('btnRegistrarAcademico');
+    if (btnRegistrarAcademico) {
+        btnRegistrarAcademico.addEventListener('click', function() {
+            const modal = new bootstrap.Modal(document.getElementById('modalRegistrarAcademica'));
+            modal.show();
+        });
+    }
+
     const botonesEditar = document.querySelectorAll('.editar-registro');
     botonesEditar.forEach(button => {
         button.addEventListener('click', function() {
@@ -305,8 +317,9 @@ document.addEventListener('DOMContentLoaded', function() {
             const promedio = cells[6].textContent.trim();
             
             const editId = document.getElementById('editId');
-            const numeroControlSpan = document.getElementById('numeroControl');
-            const nombreAlumnoSpan = document.getElementById('nombreAlumno');
+            const numeroControlSpan = document.getElementById('editNumeroControl');
+            const nombreAlumnoSpan = document.getElementById('editNombreAlumno');
+            const registroIdSpan = document.getElementById('editRegistroId');
             const editSemestre = document.getElementById('editSemestre');
             const editPeriodo = document.getElementById('editPeriodo');
             const editPromedio = document.getElementById('editPromedio');
@@ -314,6 +327,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (editId) editId.value = academicaId;
             if (numeroControlSpan) numeroControlSpan.textContent = numeroControl;
             if (nombreAlumnoSpan) nombreAlumnoSpan.textContent = `ID: ${alumnoId}`;
+            if (registroIdSpan) registroIdSpan.textContent = academicaId;
             if (editSemestre) editSemestre.value = semestre;
             if (editPeriodo) editPeriodo.value = periodo;
             if (editPromedio) editPromedio.value = promedio;
@@ -356,6 +370,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const eliminarPromedio = document.getElementById('eliminarPromedio');
             const eliminarSemestre = document.getElementById('eliminarSemestre');
             const eliminarPeriodo = document.getElementById('eliminarPeriodo');
+            const eliminarRegistroId = document.getElementById('eliminarRegistroId');
             
             if (eliminarId) eliminarId.value = academicaId;
             if (eliminarNumero) eliminarNumero.textContent = numeroControl;
@@ -364,6 +379,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (eliminarPromedio) eliminarPromedio.textContent = promedio;
             if (eliminarSemestre) eliminarSemestre.textContent = `${semestre}° Semestre`;
             if (eliminarPeriodo) eliminarPeriodo.textContent = periodo;
+            if (eliminarRegistroId) eliminarRegistroId.textContent = academicaId;
             
             console.log('Eliminando registro - Número de Control:', numeroControl);
             const modal = new bootstrap.Modal(document.getElementById('modalEliminarAcademica'));
@@ -374,8 +390,9 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <?php
-require_once('modales/modal_editar_usuario.php');
-require_once('modales/modal_eliminar_usuario.php');
+require_once(PRIVATE_PATH . 'modales/modal_planeacion/gestion_academica/modal_registrar.php');
+require_once(PRIVATE_PATH . 'modales/modal_planeacion/gestion_academica/modal_editar.php');
+require_once(PRIVATE_PATH . 'modales/modal_planeacion/gestion_academica/modal_eliminar.php');
 ?>
 
 <?php
