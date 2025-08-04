@@ -79,7 +79,7 @@ class PersonalController {
         echo '<p>Redirigiendo a la página principal...</p>';
         echo '<script>
             setTimeout(function() {
-                window.location.href = "/index.php";
+                window.location.href = "?page=Inicio";
             }, 3000);
         </script>';
         ob_end_flush();
