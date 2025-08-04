@@ -1,13 +1,12 @@
 <?php
-require_once(CONFIG_PATH . 'bd.php');
+require_once(GESTION_PAGOS_PATH. 'pago_mostrar.php');
 require_once(GESTION_PAGOS_PATH. 'pago_editar.php');
 require_once(GESTION_PAGOS_PATH. 'pago_registrar.php');
 require_once(GESTION_PAGOS_PATH. 'pago_eliminar.php');
 
 class GestionPagos
 {
-    private $db;
-    private const PRECIO_BASE = 3200; // Precio base de reinscripción
+    private $pagoMostrar;
     
     public function __construct()
     {
@@ -18,63 +17,13 @@ class GestionPagos
             header('Location: /login.php');
             exit;
         }
-        $database = new Database();
-        $this->db = $database->getConnection();
-        if (!$this->db) {
-            die("Error: No se pudo establecer la conexión con la base de datos.");
-        }
-    }
-    private function obtenerBadgePago($estado)
-    {
-        return $estado ?
-            '<span class="badge bg-success">Pagado</span>' :
-            '<span class="badge bg-danger">Pendiente</span>';
-    }
-    private function obtenerBadgeDescuento($descuento)
-    {
-        if ($descuento > 0) {
-            return sprintf('<span class="badge bg-info">%d%% Descuento</span>', $descuento);
-        }
-        return '<span class="badge bg-secondary">Sin descuento</span>';
-    }
-    private function calcularTotal($descuento)
-    {
-        $descuentoDecimal = $descuento / 100;
-        $descuentoAplicado = self::PRECIO_BASE * $descuentoDecimal;
-        return self::PRECIO_BASE - $descuentoAplicado;
-    }
-    private function obtenerBadgeTotal($total)
-    {
-        return sprintf('<span class="badge bg-primary">$%.2f MXN</span>', $total);
-    }
-    private function obtenerDatos()
-    {
-        $query = "SELECT 
-                    ap.pagos_id,
-                    ap.pagos_alumno_id,
-                    a.alumno_numero_control,
-                    ap.pagos_nombre,
-                    ap.pagos_apellido,
-                    ap.pagos_carrera,
-                    ap.pagos_semestre,
-                    ap.pagos_periodo,
-                    ap.pagos_realizado,
-                    ap.pagos_descuento,
-                    ap.pagos_total
-                FROM alumnos_pagos ap
-                INNER JOIN alumnos a ON ap.pagos_alumno_id = a.alumno_id";
-        try {
-            $stmt = $this->db->prepare($query);
-            $stmt->execute();
-            return $stmt;
-        } catch (PDOException $e) {
-            error_log("Error en la consulta: " . $e->getMessage());
-            return false;
-        }
+        
+        // Inicializar la clase de procesos de pagos
+        $this->pagoMostrar = new PagoMostrar();
     }
     public function renderizar()
     {
-        $resultado = $this->obtenerDatos();
+        $resultado = $this->pagoMostrar->obtenerDatos();
         if (!$resultado) {
             echo "<div class='alert alert-danger'>Error al obtener los datos de pagos.</div>";
             return;
@@ -83,36 +32,16 @@ class GestionPagos
         // Obtener todos los datos en un array
         $datos = $resultado->fetchAll(PDO::FETCH_ASSOC);
         
-        // Preparar datos para el dashboard
-        $totalAlumnos = 0;
-        $alumnosPagados = 0;
-        $totalRecaudado = 0;
-        $totalDescuentos = 0;
-        $descuentosPorcentaje = [];
-        $pagosPorCarrera = [];
+        // Obtener estadísticas usando la clase separada
+        $estadisticas = $this->pagoMostrar->obtenerEstadisticas($datos);
         
-        foreach ($datos as $fila) {
-            $totalAlumnos++;
-            if ($fila['pagos_realizado']) {
-                $alumnosPagados++;
-                $totalRecaudado += $fila['pagos_total'];
-            }
-            $totalDescuentos += $fila['pagos_descuento'];
-            
-            // Conteo de descuentos por porcentaje
-            $descuento = $fila['pagos_descuento'];
-            $descuentosPorcentaje[$descuento] = ($descuentosPorcentaje[$descuento] ?? 0) + 1;
-            
-            // Conteo de pagos por carrera
-            $carrera = $fila['pagos_carrera'];
-            if (!isset($pagosPorCarrera[$carrera])) {
-                $pagosPorCarrera[$carrera] = ['total' => 0, 'pagados' => 0];
-            }
-            $pagosPorCarrera[$carrera]['total']++;
-            if ($fila['pagos_realizado']) {
-                $pagosPorCarrera[$carrera]['pagados']++;
-            }
-        }
+        // Extraer variables para compatibilidad con el código existente
+        $totalAlumnos = $estadisticas['totalAlumnos'];
+        $alumnosPagados = $estadisticas['alumnosPagados'];
+        $totalRecaudado = $estadisticas['totalRecaudado'];
+        $totalDescuentos = $estadisticas['totalDescuentos'];
+        $descuentosPorcentaje = $estadisticas['descuentosPorcentaje'];
+        $pagosPorCarrera = $estadisticas['pagosPorCarrera'];
 ?>
 
 <div class="container py-4">
@@ -305,7 +234,7 @@ class GestionPagos
                         <button class="btn btn-sm btn-light" id="btnImprimir" title="Imprimir">
                             <i class="bi bi-printer"></i>
                         </button>
-                        <span class="badge bg-light text-primary ms-2">Precio Base: $<?php echo number_format(self::PRECIO_BASE, 2); ?> MXN</span>
+                        <span class="badge bg-light text-primary ms-2">Precio Base: $<?php echo number_format($this->pagoMostrar->getPrecioBase(), 2); ?> MXN</span>
                     </div>
                 </div>
             </div>
@@ -329,7 +258,7 @@ class GestionPagos
                     </thead>
                     <tbody>
                         <?php foreach ($datos as $fila):
-                            $total = $fila['pagos_total'] ?? $this->calcularTotal($fila['pagos_descuento']);
+                            $total = $fila['pagos_total'] ?? $this->pagoMostrar->calcularTotal($fila['pagos_descuento']);
                         ?>
                             <tr>
                                 <td><?php echo htmlspecialchars($fila['pagos_id']); ?></td>
@@ -340,9 +269,9 @@ class GestionPagos
                                 <td><?php echo htmlspecialchars($fila['pagos_carrera']); ?></td>
                                 <td><?php echo htmlspecialchars($fila['pagos_semestre']); ?></td>
                                 <td><?php echo htmlspecialchars($fila['pagos_periodo']); ?></td>
-                                <td><?php echo $this->obtenerBadgeDescuento($fila['pagos_descuento']); ?></td>
-                                <td><?php echo $this->obtenerBadgeTotal($total); ?></td>
-                                <td><?php echo $this->obtenerBadgePago($fila['pagos_realizado']); ?></td>
+                                <td><?php echo $this->pagoMostrar->obtenerBadgeDescuento($fila['pagos_descuento']); ?></td>
+                                <td><?php echo $this->pagoMostrar->obtenerBadgeTotal($total); ?></td>
+                                <td><?php echo $this->pagoMostrar->obtenerBadgePago($fila['pagos_realizado']); ?></td>
                                 <td>
                                     <button class="btn btn-sm btn-warning editar-registro"
                                         data-id="<?php echo $fila['pagos_id']; ?>"
@@ -486,13 +415,7 @@ class GestionPagos
 
         // Funcionalidad de los modales
         
-        // Función para calcular total (faltaba esta función)
-        function calcularTotal() {
-            const descuento = parseFloat(document.getElementById('editDescuento').value) || 0;
-            const precioBase = 3200;
-            const total = precioBase - (precioBase * descuento / 100);
-            document.getElementById('editTotal').value = '$' + total.toFixed(2) + ' MXN';
-        }
+        // La función calcularTotal se maneja en el modal
         
         // Modal Registrar
         const btnRegistrar = document.getElementById('btnRegistrar');
@@ -503,48 +426,7 @@ class GestionPagos
             });
         }
 
-        // Manejar envío del formulario de registro
-        const formRegistrar = document.getElementById('formRegistrar');
-        if (formRegistrar) {
-            formRegistrar.addEventListener('submit', function(e) {
-                e.preventDefault();
-                if (this.checkValidity()) {
-                    const formData = new FormData(this);
-                    
-                    fetch('pago_registrar.php', {
-                        method: 'POST',
-                        body: formData
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
-                            bootstrap.Modal.getInstance(document.getElementById('modalRegistrar')).hide();
-                            location.reload();
-                        } else {
-                            alert('Error: ' + data.message);
-                        }
-                    })
-                    .catch(error => {
-                        alert('Error al procesar la solicitud');
-                    });
-                }
-                this.classList.add('was-validated');
-            });
-        }
-
-        // Calcular total automáticamente en el modal de registro
-        const descuentoInput = document.getElementById('descuento');
-        if (descuentoInput) {
-            descuentoInput.addEventListener('input', function() {
-                const descuento = parseFloat(this.value) || 0;
-                const precioBase = 3200;
-                const total = precioBase - (precioBase * descuento / 100);
-                const totalInput = document.getElementById('total');
-                if (totalInput) {
-                    totalInput.value = '$' + total.toFixed(2) + ' MXN';
-                }
-            });
-        }
+        // La funcionalidad de registro se maneja en el modal
 
         // Modal Editar
         document.querySelectorAll('.editar-registro').forEach(btn => {
@@ -579,8 +461,7 @@ class GestionPagos
                 if (editDescuentoInput) editDescuentoInput.value = descuento;
                 if (checkPagadoInput) checkPagadoInput.checked = realizado == '1';
                 
-                // Calcular y mostrar total
-                calcularTotal();
+                // El cálculo del total se maneja en el modal
                 
                 // Mostrar modal
                 const modalEditar = document.getElementById('modalEditar');
@@ -590,11 +471,7 @@ class GestionPagos
             });
         });
         
-        // Agregar evento para recalcular total cuando cambie el descuento en edición
-        const editDescuentoInput = document.getElementById('editDescuento');
-        if (editDescuentoInput) {
-            editDescuentoInput.addEventListener('input', calcularTotal);
-        }
+        // El evento para recalcular se maneja en el modal
 
         // Función para abrir modal de eliminación
         document.querySelectorAll('.eliminar-registro').forEach(btn => {
@@ -642,46 +519,15 @@ class GestionPagos
             });
         });
 
-        // Confirmar eliminación
-        const btnConfirmarEliminar = document.getElementById('btnConfirmarEliminar');
-        if (btnConfirmarEliminar) {
-            btnConfirmarEliminar.addEventListener('click', function() {
-                const eliminarIdInput = document.getElementById('eliminarId');
-                if (!eliminarIdInput) return;
-                
-                const id = eliminarIdInput.value;
-                const formData = new FormData();
-                formData.append('id', id);
-                
-                fetch('pago_eliminar.php', {
-                    method: 'POST',
-                    body: formData
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        const modalEliminar = document.getElementById('modalEliminar');
-                        if (modalEliminar) {
-                            bootstrap.Modal.getInstance(modalEliminar).hide();
-                        }
-                        location.reload();
-                    } else {
-                        alert('Error: ' + data.message);
-                    }
-                })
-                .catch(error => {
-                    alert('Error al procesar la solicitud');
-                });
-            });
-        }
+        // La funcionalidad de eliminación se maneja en el modal
     });
 </script>
 
 <!-- Incluir los modales al final -->
 <?php
-require_once('modales/modal_registrar.php');
-require_once('modales/modal_editar.php');
-require_once('modales/modal_eliminar.php'); 
+require_once(PRIVATE_PATH . 'modales/modal_planeacion/gestion_pagos/modal_registrar.php');
+require_once(PRIVATE_PATH . 'modales/modal_planeacion/gestion_pagos/modal_editar.php');
+require_once(PRIVATE_PATH . 'modales/modal_planeacion/gestion_pagos/modal_eliminar.php'); 
 ?>
 
 <?php

@@ -1,160 +1,36 @@
 <?php
-require_once(CONFIG_PATH . 'bd.php');
+require_once(GESTION_ACADEMICOS_PATH . 'academico_mostrar.php');
 
 class GestionAcademica
 {
-    private $db;
+    private $academicoMostrar;
 
     public function __construct()
     {
-        // Verificar sesión
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
 
-        // Verificar autenticación
         if (!isset($_SESSION['user_type']) || $_SESSION['user_type'] !== 'personal') {
             header('Location: /login.php');
             exit;
         }
 
-        // Inicializar conexión usando la clase Database
-        $database = new Database();
-        $this->db = $database->getConnection();
-        if (!$this->db) {
-            die("Error: No se pudo establecer la conexión con la base de datos.");
-        }
-    }
-
-    private function obtenerDatos()
-    {
-        $query = "SELECT 
-                    aia.academica_id,
-                    aia.academica_alumno_id,
-                    a.alumno_numero_control,
-                    ci.carrera_nombre_completo,
-                    ci.carrera_clave,
-                    aia.academica_semestre,
-                    aia.academica_periodo,
-                    aia.academica_promedio
-                FROM alumnos_info_academica aia
-                INNER JOIN alumnos a ON aia.academica_alumno_id = a.alumno_id
-                INNER JOIN carreras_institucion ci ON aia.academica_carrera_id = ci.carrera_id";
-        try {
-            $stmt = $this->db->prepare($query);
-            $stmt->execute();
-            return $stmt;
-        } catch (PDOException $e) {
-            error_log("Error en la consulta: " . $e->getMessage());
-            return false;
-        }
-    }
-
-    private function obtenerEstadisticas($resultado)
-    {
-        $totalAlumnos = 0;
-        $alumnosPorSemestre = [];
-        $alumnosPorCarrera = [];
-        $clavesCarreras = []; // Array para almacenar las claves oficiales
-        $promedioGeneral = 0;
-        $totalPromedios = 0;
-
-        while ($fila = $resultado->fetch(PDO::FETCH_ASSOC)) {
-            $totalAlumnos++;
-            $totalPromedios += $fila['academica_promedio'];
-
-            // Conteo por semestre
-            $semestre = $fila['academica_semestre'];
-            if (!isset($alumnosPorSemestre[$semestre])) {
-                $alumnosPorSemestre[$semestre] = 0;
-            }
-            $alumnosPorSemestre[$semestre]++;
-
-            // Conteo por carrera y almacenar claves oficiales
-            $carrera = $fila['carrera_nombre_completo'];
-            $claveCarrera = $fila['carrera_clave'];
-            
-            if (!isset($alumnosPorCarrera[$carrera])) {
-                $alumnosPorCarrera[$carrera] = 0;
-                // Almacenar la clave oficial de la carrera
-                $clavesCarreras[$carrera] = $claveCarrera;
-            }
-            $alumnosPorCarrera[$carrera]++;
-        }
-
-        $promedioGeneral = $totalAlumnos > 0 ? round($totalPromedios / $totalAlumnos, 2) : 0;
-
-        return [
-            'totalAlumnos' => $totalAlumnos,
-            'alumnosPorSemestre' => $alumnosPorSemestre,
-            'alumnosPorCarrera' => $alumnosPorCarrera,
-            'clavesCarreras' => $clavesCarreras, // Incluir las claves oficiales
-            'promedioGeneral' => $promedioGeneral
-        ];
-    }
-
-    private function obtenerAlumnos()
-    {
-        // Consulta corregida sin GROUP BY innecesario
-        $query = "SELECT 
-                ap.pagos_alumno_id as alumno_id,
-                ap.pagos_numero_control as alumno_numero_control,
-                CONCAT(ap.pagos_nombre, ' ', ap.pagos_apellido) as nombre_completo,
-                ci.carrera_nombre_completo,
-                ci.carrera_clave,
-                aia.academica_semestre,
-                aia.academica_periodo,
-                aia.academica_promedio
-            FROM alumnos_pagos ap
-            LEFT JOIN alumnos a ON ap.pagos_numero_control = a.alumno_numero_control
-            LEFT JOIN alumnos_info_academica aia ON a.alumno_id = aia.academica_alumno_id
-            LEFT JOIN carreras_institucion ci ON aia.academica_carrera_id = ci.carrera_id
-            WHERE ap.pagos_numero_control IS NOT NULL
-            ORDER BY ap.pagos_numero_control";
-        
-        try {
-            $stmt = $this->db->prepare($query);
-            $stmt->execute();
-            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            
-            // Debug: Mostrar los datos obtenidos
-            error_log('Alumnos obtenidos desde alumnos_pagos: ' . count($result) . ' registros');
-            
-            return $result;
-        } catch (PDOException $e) {
-            error_log("Error al obtener alumnos: " . $e->getMessage());
-            return [];
-        }
-    }
-
-    private function obtenerCarreras()
-    {
-        $query = "SELECT carrera_id, carrera_clave, carrera_nombre_completo FROM carreras_institucion ORDER BY carrera_nombre_completo";
-        try {
-            $stmt = $this->db->prepare($query);
-            $stmt->execute();
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
-        } catch (PDOException $e) {
-            error_log("Error al obtener carreras: " . $e->getMessage());
-            return [];
-        }
+        $this->academicoMostrar = new AcademicoMostrar();
     }
 
     public function renderizar()
     {
-        $resultado = $this->obtenerDatos();
+        $resultado = $this->academicoMostrar->obtenerDatos();
         if (!$resultado) {
             echo "<div class='alert alert-danger'>Error al obtener los datos académicos.</div>";
             return;
         }
 
-        // Obtener estadísticas
-        $estadisticas = $this->obtenerEstadisticas($resultado);
-        $resultado->execute(); // Reiniciar el cursor para la tabla
-
-        // Obtener datos para los modales
-        $alumnos = $this->obtenerAlumnos();
-        $carreras = $this->obtenerCarreras();
+        $estadisticas = $this->academicoMostrar->obtenerEstadisticas($resultado);
+        $resultado->execute();
+        $alumnos = $this->academicoMostrar->obtenerAlumnos();
+        $carreras = $this->academicoMostrar->obtenerCarreras();
 ?>
 
 <div class="container py-4" style="max-width: 1400px;">
@@ -168,7 +44,6 @@ class GestionAcademica
         </div>
         <div id="estadisticasCollapse" class="collapse show">
             <div class="card-body">
-                <!-- Tarjetas de estadísticas mejoradas -->
                 <div class="row g-3 mb-4">
                     <div class="col-sm-6 col-xl-3">
                         <div class="card h-100 border-primary">
@@ -241,7 +116,6 @@ class GestionAcademica
                                         <h6 class="card-title text-muted mb-1">Por Carrera</h6>
                                         <div style="max-height: 90px; overflow-y: auto; padding-right: 5px;">
                                             <?php foreach ($estadisticas['alumnosPorCarrera'] as $carrera => $cantidad): 
-                                                // Usar la clave oficial de la carrera
                                                 $claveCarrera = isset($estadisticas['clavesCarreras'][$carrera]) 
                                                     ? $estadisticas['clavesCarreras'][$carrera] 
                                                     : substr($carrera, 0, 3);
@@ -265,7 +139,6 @@ class GestionAcademica
         </div>
     </div>
 
-    <!-- Tabla mejorada -->
     <div class="card shadow mt-5">
         <div class="card-header bg-primary text-white">
             <div class="row align-items-center">
@@ -274,7 +147,7 @@ class GestionAcademica
                 </div>
                 <div class="col-md-6">
                     <div class="d-flex align-items-center justify-content-md-end gap-2 flex-wrap">
-                        <button class="btn btn-sm btn-light" id="btnRegistrar" title="Registrar Nueva Información">
+                        <button class="btn btn-sm btn-light" id="btnRegistrarAcademico" title="Registrar Nueva Información Académica">
                             <i class="bi bi-plus-circle"></i> Registrar
                         </button>
                         <button class="btn btn-sm btn-light" id="btnExcel" title="Exportar a Excel">
@@ -334,17 +207,13 @@ class GestionAcademica
     </div>
 </div>
 
-<!-- Pasar datos a JavaScript usando vanilla JS -->
 <script>
-// Datos globales para los modales (vanilla JS)
 window.alumnos = <?php echo json_encode($alumnos); ?>;
 window.carreras = <?php echo json_encode($carreras); ?>;
 
-// Debug: Verificar que los datos se cargaron correctamente
 console.log('Alumnos cargados:', window.alumnos);
 console.log('Carreras cargadas:', window.carreras);
 
-// Función para mostrar alertas (vanilla JS)
 function mostrarAlerta(mensaje, tipo = 'info') {
     const alertaDiv = document.createElement('div');
     alertaDiv.className = `alert alert-${tipo} alert-dismissible fade show`;
@@ -357,7 +226,6 @@ function mostrarAlerta(mensaje, tipo = 'info') {
     if (container) {
         container.insertBefore(alertaDiv, container.firstChild);
         
-        // Auto-remover después de 5 segundos
         setTimeout(() => {
             if (alertaDiv.parentNode) {
                 alertaDiv.remove();
@@ -366,7 +234,6 @@ function mostrarAlerta(mensaje, tipo = 'info') {
     }
 }
 
-// Función para buscar alumno por número de control (vanilla JS)
 function buscarAlumnoPorNumeroControl(numeroControl) {
     console.log('Buscando alumno con número de control:', numeroControl);
     console.log('Array de alumnos disponible:', window.alumnos);
@@ -401,7 +268,6 @@ function buscarAlumnoPorNumeroControl(numeroControl) {
     }
 }
 
-// Función para limpiar formulario del modal (vanilla JS)
 function limpiarFormularioModal() {
     const inputs = document.querySelectorAll('#modalRegistrarAcademica input, #modalRegistrarAcademica select');
     inputs.forEach(input => {
@@ -410,9 +276,7 @@ function limpiarFormularioModal() {
     });
 }
 
-// Inicialización cuando el DOM esté listo (vanilla JS)
 document.addEventListener('DOMContentLoaded', function() {
-    // Inicializar DataTable
     const dataTable = new simpleDatatables.DataTable("#tablaAcademica", {
         searchable: true,
         fixedHeight: true,
@@ -424,29 +288,25 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Inicializar funciones de exportación
     if (typeof initializeExportFunctions === 'function') {
         initializeExportFunctions('tablaAcademica', 'gestion-informacion-academica');
     }
 
-    // Event listener para el botón Registrar (vanilla JS)
-    const btnRegistrar = document.getElementById('btnRegistrar');
-    if (btnRegistrar) {
-        btnRegistrar.addEventListener('click', function() {
-            limpiarFormularioModal();
+    // Botón Registrar
+    const btnRegistrarAcademico = document.getElementById('btnRegistrarAcademico');
+    if (btnRegistrarAcademico) {
+        btnRegistrarAcademico.addEventListener('click', function() {
             const modal = new bootstrap.Modal(document.getElementById('modalRegistrarAcademica'));
             modal.show();
         });
     }
 
-    // Event listeners para botones Editar (vanilla JS)
     const botonesEditar = document.querySelectorAll('.editar-registro');
     botonesEditar.forEach(button => {
         button.addEventListener('click', function() {
             const id = this.getAttribute('data-id');
             const row = this.closest('tr');
             
-            // Obtener datos de la fila
             const cells = row.querySelectorAll('td');
             const academicaId = cells[0].textContent.trim();
             const alumnoId = cells[1].textContent.trim();
@@ -456,10 +316,10 @@ document.addEventListener('DOMContentLoaded', function() {
             const periodo = cells[5].textContent.trim();
             const promedio = cells[6].textContent.trim();
             
-            // Llenar el modal de edición
             const editId = document.getElementById('editId');
-            const numeroControlSpan = document.getElementById('numeroControl');
-            const nombreAlumnoSpan = document.getElementById('nombreAlumno');
+            const numeroControlSpan = document.getElementById('editNumeroControl');
+            const nombreAlumnoSpan = document.getElementById('editNombreAlumno');
+            const registroIdSpan = document.getElementById('editRegistroId');
             const editSemestre = document.getElementById('editSemestre');
             const editPeriodo = document.getElementById('editPeriodo');
             const editPromedio = document.getElementById('editPromedio');
@@ -467,11 +327,11 @@ document.addEventListener('DOMContentLoaded', function() {
             if (editId) editId.value = academicaId;
             if (numeroControlSpan) numeroControlSpan.textContent = numeroControl;
             if (nombreAlumnoSpan) nombreAlumnoSpan.textContent = `ID: ${alumnoId}`;
+            if (registroIdSpan) registroIdSpan.textContent = academicaId;
             if (editSemestre) editSemestre.value = semestre;
             if (editPeriodo) editPeriodo.value = periodo;
             if (editPromedio) editPromedio.value = promedio;
             
-            // Buscar y seleccionar la carrera en el select por nombre completo
             const selectCarrera = document.getElementById('editCarrera');
             if (selectCarrera) {
                 const options = selectCarrera.querySelectorAll('option');
@@ -488,14 +348,12 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Event listeners para botones Eliminar (vanilla JS)
     const botonesEliminar = document.querySelectorAll('.eliminar-registro');
     botonesEliminar.forEach(button => {
         button.addEventListener('click', function() {
             const id = this.getAttribute('data-id');
             const row = this.closest('tr');
             
-            // Obtener datos de la fila
             const cells = row.querySelectorAll('td');
             const academicaId = cells[0].textContent.trim();
             const alumnoId = cells[1].textContent.trim();
@@ -505,7 +363,6 @@ document.addEventListener('DOMContentLoaded', function() {
             const periodo = cells[5].textContent.trim();
             const promedio = cells[6].textContent.trim();
             
-            // Llenar el modal de eliminación
             const eliminarId = document.getElementById('eliminarId');
             const eliminarNumero = document.getElementById('eliminarNumero');
             const eliminarNombre = document.getElementById('eliminarNombre');
@@ -513,6 +370,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const eliminarPromedio = document.getElementById('eliminarPromedio');
             const eliminarSemestre = document.getElementById('eliminarSemestre');
             const eliminarPeriodo = document.getElementById('eliminarPeriodo');
+            const eliminarRegistroId = document.getElementById('eliminarRegistroId');
             
             if (eliminarId) eliminarId.value = academicaId;
             if (eliminarNumero) eliminarNumero.textContent = numeroControl;
@@ -521,6 +379,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (eliminarPromedio) eliminarPromedio.textContent = promedio;
             if (eliminarSemestre) eliminarSemestre.textContent = `${semestre}° Semestre`;
             if (eliminarPeriodo) eliminarPeriodo.textContent = periodo;
+            if (eliminarRegistroId) eliminarRegistroId.textContent = academicaId;
             
             console.log('Eliminando registro - Número de Control:', numeroControl);
             const modal = new bootstrap.Modal(document.getElementById('modalEliminarAcademica'));
@@ -531,10 +390,9 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <?php
-// Incluir los modales
-require_once('modales/modal_registrar_usuario.php');
-require_once('modales/modal_editar_usuario.php');
-require_once('modales/modal_eliminar_usuario.php');
+require_once(PRIVATE_PATH . 'modales/modal_planeacion/gestion_academica/modal_registrar.php');
+require_once(PRIVATE_PATH . 'modales/modal_planeacion/gestion_academica/modal_editar.php');
+require_once(PRIVATE_PATH . 'modales/modal_planeacion/gestion_academica/modal_eliminar.php');
 ?>
 
 <?php

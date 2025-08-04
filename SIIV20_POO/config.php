@@ -18,6 +18,7 @@ define('LOGIN_PATH', ROOT_PATH.'private/procesos/login/');
 define('CAPTURA_DATOS_SOCIOECONOMICOS_PATH', ROOT_PATH.'private/procesos/aspirante/socioeconomicos/');
 define('GESTION_ALUMNOS', PRIVATE_PATH.'procesos/planeacion/gestion_alumnos/');
 define('GESTION_PAGOS_PATH', PRIVATE_PATH.'procesos/planeacion/gestion_pagos/');
+define('GESTION_ACADEMICOS_PATH', PRIVATE_PATH.'procesos/planeacion/gestion_academicos/');
 
 // MODALES DEL SISTEMA
 define('MODALES_PATH', PRIVATE_PATH.'modales/');
